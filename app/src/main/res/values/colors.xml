@@ -55,4 +55,12 @@
     <color name="violet_color_picker">#8359A3</color>
     <color name="yellow_color_picker">#FBE870</color>
     <color name="yellow_green_color_picker">#C5E17A</color>
+    <color name="gray">#f7f7f7</color>
+
+    <!--Attence_Status-->
+    <color name="normal_attence">#12BDF6</color>
+    <color name="late">#F29A42</color>
+    <color name="leaving">#D4237A</color>
+    <color name="earlier_leave">#F22B11</color>
+    <color name="absent">#F3EA42</color>
 </resources>

@@ -39,12 +39,7 @@ public class PersonCenterPresenter implements PersonCenterContract.Presenter {
     @Override
     public void exit() {
         appConfig.setLogin(false);
-        Intent intent = IntentUtils.getLaunchAppIntent(AppUtils.getAppPackageName());
-        if (intent != null) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("exit", true);
-            ActivityUtils.startActivity(intent);
-        }
+        view.exit();
     }
 
 }

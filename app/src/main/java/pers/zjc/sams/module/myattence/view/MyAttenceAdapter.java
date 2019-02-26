@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.myattence.view;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,34 +41,42 @@ public class MyAttenceAdapter extends AbsRecyclerAdapter<AttenceRecord> {
             case 0:
                 Glide.with(ivStatus).load(R.mipmap.normal_attence).into(ivStatus);
                 holder.setText(R.id.tv_status, "正常");
+                holder.setTextColor(R.id.tv_status, ContextCompat.getColor(mContext, R.color.normal_attence));
                 holder.setText(R.id.tv_reminding, mContext.getResources().getString(R.string.reminding_normal));
+
                 break;
             case 1:
                 holder.setText(R.id.tv_status, "迟到");
+                holder.setTextColor(R.id.tv_status, ContextCompat.getColor(mContext, R.color.late));
                 Glide.with(ivStatus).load(R.mipmap.late).into(ivStatus);
                 holder.setText(R.id.tv_reminding, mContext.getResources().getString(R.string.reminding_late));
                 break;
             case 2:
                 Glide.with(ivStatus).load(R.mipmap.leaving).into(ivStatus);
                 holder.setText(R.id.tv_status, "请假");
+                holder.setTextColor(R.id.tv_status, ContextCompat.getColor(mContext, R.color.leaving));
                 holder.setText(R.id.tv_reminding, mContext.getResources().getString(R.string.reminding_leaving));
                 break;
             case 3:
                 Glide.with(ivStatus).load(R.mipmap.absent).into(ivStatus);
                 holder.setText(R.id.tv_status, "缺课");
+
+                holder.setTextColor(R.id.tv_status, ContextCompat.getColor(mContext, R.color.absent));
                 holder.setText(R.id.tv_reminding, mContext.getResources().getString(R.string.reminding_absent));
                 break;
             case 4:
                 Glide.with(ivStatus).load(R.mipmap.earlier_leave).into(ivStatus);
                 holder.setText(R.id.tv_status, "早退");
+                holder.setTextColor(R.id.tv_status, ContextCompat.getColor(mContext, R.color.earlier_leave));
                 holder.setText(R.id.tv_reminding, mContext.getResources().getString(R.string.reminding_earlier_leave));
                 break;
             default:
                 break;
         }
-        holder.setText(R.id.time, TimeUtils.date2String(data.getUpdateTime(), Const.DateFormat.WITH_HMS));
+        holder.setText(R.id.tv_time, TimeUtils.getFriendlyTimeSpanByNow(data.getUpdateTime()));
         holder.setText(R.id.tv_operator, data.getOperator());
-        holder.setText(R.id.tv_course, data.getCourseId().toString());
-        holder.setText(R.id.tvContent, data.getCourseId().toString());
+        holder.setText(R.id.tv_course, data.getCourseName());
     }
+
+
 }

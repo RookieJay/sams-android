@@ -150,7 +150,7 @@
         android:background="@drawable/shape_click_btn"
         android:textColor="@color/cffffff" />
 
-    <Button
+  <!--  <Button
         android:id="@+id/offline_login"
         android:layout_below="@+id/bt_login"
         android:text="离线登录"
@@ -161,6 +161,6 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="@color/cffffff"
-        android:background="@drawable/shape_offline_login_btn" />
+        android:background="@drawable/shape_offline_login_btn" />-->
 
 </RelativeLayout>

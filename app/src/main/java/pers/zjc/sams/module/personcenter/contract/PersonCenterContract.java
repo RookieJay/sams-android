@@ -11,6 +11,7 @@ public interface PersonCenterContract {
 
     interface View extends BaseView<Presenter> {
 
+        void exit();
     }
 
     interface Presenter extends BasePresenter {

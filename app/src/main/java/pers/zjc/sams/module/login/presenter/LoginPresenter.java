@@ -34,7 +34,9 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void init() {
-
+        if (appConfig.isRemember()) {
+            login(appConfig.getAccount(), appConfig.getPassWord(), true);
+        }
     }
 
     @Override
@@ -43,6 +45,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             @Override
             public void run() {
                 mView.showProgress();
+                appConfig.setRemember(isRemember);
                 Result<UserWrapper> result = model.login(account, pwd);
                 if (result != null ) {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
@@ -79,10 +82,12 @@ public class LoginPresenter implements LoginContract.Presenter {
                 if (result.getData().getStudent() != null) {
                     appConfig.setUserName(result.getData().getStudent().getName());
                     appConfig.setTel(result.getData().getStudent().getTel());
+                    appConfig.setMajor(result.getData().getStudent().getMajor());
                 }
                 if (result.getData().getTeacher() != null) {
                     appConfig.setUserName(result.getData().getTeacher().getName());
                     appConfig.setTel(result.getData().getTeacher().getTel());
+                    appConfig.setMajor(result.getData().getTeacher().getMajor());
                 }
                 if (result.getData().getAdmin() != null) {
                     appConfig.setUserName(result.getData().getAdmin().getName());

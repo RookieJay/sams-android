@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -44,8 +45,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     TextView mTvForgetPwd;
     @BindView(R.id.bt_login)
     Button mBtLogin;
-    @BindView(R.id.offline_login)
-    Button mBtOfflineLogin;
+//    @BindView(R.id.offline_login)
+//    Button mBtOfflineLogin;
 
     @Inject
     LoginPresenter mPresenter;
@@ -77,7 +78,6 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
-        mPresenter.init();
     }
 
     private void initView() {
@@ -119,7 +119,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (compoundButton.isPressed()) {
-                    appConfig.setRemember(isRemember);
+                    Log.d("onCheckedChanged", String.valueOf(isChecked));
+                    isRemember = isChecked;
                 }
             }
         });

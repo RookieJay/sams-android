@@ -46,9 +46,9 @@ public class MainActivity extends BaseActivity<MainComponent> {
 
     public void switchToMainFragment(List<AttenceRecord> records) {
         Fragment fragment = new MainFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS,(ArrayList<AttenceRecord>)records);
-//        fragment.setArguments(bundle);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS,(ArrayList<AttenceRecord>)records);
+        fragment.setArguments(bundle);
         replace(R.id.container, fragment, fragment.getClass().getSimpleName());
 
     }

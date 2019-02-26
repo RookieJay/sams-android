@@ -1,6 +1,8 @@
 package pers.zjc.sams.data.entity;
 
 
+import com.zp.android.zlib.utils.TimeUtils;
+
 import java.util.Date;
 
 public class Leave {
@@ -42,16 +44,16 @@ public class Leave {
         this.reason = reason == null ? null : reason.trim();
     }
 
-    public Date getBeginTime() {
-        return beginTime;
+    public String getBeginTime() {
+        return TimeUtils.date2String(beginTime);
     }
 
     public void setBeginTime(Date beginTime) {
         this.beginTime = beginTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public String getEndTime() {
+        return TimeUtils.date2String(endTime);
     }
 
     public void setEndTime(Date endTime) {

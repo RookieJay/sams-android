@@ -83,7 +83,7 @@
     <string name="non_up_to_standrad">未达标</string>
     <string name="field">区域</string>
     <string name="assigment_name">任务名称：</string>
-    <string name="workspace">工作台</string>
+    <string name="workspace">应用中心</string>
     <string name="mutiple_dept">综合部</string>
     <!-- -->
     <string name="txt_commit_success">提交成功！</string>
@@ -193,8 +193,8 @@
     <string name="txt_major">计算机科学与技术</string>
     <!--考勤提示信息-->
     <string name="reminding_normal">考勤正常，请继续加油^-^</string>
-    <string name="reminding_late">下次可不能迟到了哟</string>
-    <string name="reminding_earlier_leave">闹钟，梦想，贫穷…一个都叫不醒我~zZ</string>
+    <string name="reminding_late">闹钟，梦想，贫穷…一个都叫不醒我~zZ</string>
+    <string name="reminding_earlier_leave">皇上这么早就退朝？</string>
     <string name="reminding_leaving">有特殊情况一定要及时跟老师反映哦~</string>
     <string name="reminding_absent">考勤不规范，期末两行泪。</string>
     <!--我的考勤-->

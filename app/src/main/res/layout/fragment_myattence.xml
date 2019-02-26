@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/base_title_toolbar"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRecyclerView"
+        android:layout_height="5dp"/>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_empty"
-        android:visibility="gone"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/blue_color_picker"
-        android:text="@string/txt_empty"/>
+        <pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout
+            android:id="@+id/mRefeshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:direction="both">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
+
+        <TextView
+            android:id="@+id/tv_empty"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/txt_empty"/>
+
+    </FrameLayout>
+
+
 
 </LinearLayout>

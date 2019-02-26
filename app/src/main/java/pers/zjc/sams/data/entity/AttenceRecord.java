@@ -14,6 +14,8 @@ public class AttenceRecord implements Parcelable {
 
     private Integer courseId;
 
+    private String courseName;
+
     private String operator;
 
     private Date createTime;
@@ -50,6 +52,14 @@ public class AttenceRecord implements Parcelable {
 
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getOperator() {

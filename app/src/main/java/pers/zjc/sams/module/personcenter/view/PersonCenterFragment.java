@@ -2,12 +2,16 @@ package pers.zjc.sams.module.personcenter.view;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.zp.android.zlib.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -18,17 +22,24 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.ScmpUtils;
+import pers.zjc.sams.module.main.MainActivity;
 import pers.zjc.sams.module.personcenter.DaggerPersonCenterComponent;
 import pers.zjc.sams.module.personcenter.PersonCenterModule;
 import pers.zjc.sams.module.personcenter.contract.PersonCenterContract;
+import pers.zjc.sams.module.personcenter.presenter.PersonCenterPresenter;
 
 public class PersonCenterFragment extends BaseFragment implements PersonCenterContract.View, View.OnClickListener {
 
     @Inject
     AppConfig appConfig;
+    @Inject
+    PersonCenterPresenter presenter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.bar_title)
+    TextView barTitle;
     @BindView(R.id.txt_user)
     TextView tvUser;
     @BindView(R.id.txt_role)
@@ -39,6 +50,8 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     TextView tvCacheSize;
     @BindView(R.id.rlModifyPwd)
     RelativeLayout rlModifyPwd;
+    @BindView(R.id.btn_exit)
+    TextView btExit;
 
     private Unbinder unbinder;
 
@@ -66,9 +79,10 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     }
 
     private void initView() {
-        toolbar.setTitle("个人中心");
+        barTitle.setText("我的考勤");
         tvCacheSize.setOnClickListener(this);
         tvUser.setText(appConfig.getUserName());
+        btExit.setOnClickListener(this);
     }
 
     private void initData() {
@@ -97,12 +111,32 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
             case R.id.rlModifyPwd:
                 switchToMidifyFragment();
                 break;
+            case R.id.btn_exit:
+                presenter.exit();
+                break;
             default:
                 break;
         }
     }
 
     private void switchToMidifyFragment() {
+
+    }
+
+    @Override
+    public void exit() {
+        MaterialDialog.Builder builder = ScmpUtils.createDialog(getActivity(),
+                getString(R.string.dialog_title),
+                getString(R.string.dialog_exit_login), ContextCompat.getColor(getContext(),R.color.c32d6af),
+                (dialog, which) -> {
+                    if (isAdded()) {
+                        MainActivity activity;
+                        if (null != (activity = (MainActivity)getActivity())) {
+                            activity.switchToLoginFragment();
+                        }
+                    }
+                }, null);
+        builder.show();
 
     }
 

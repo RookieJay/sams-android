@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.main.view;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -9,11 +10,14 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.zp.android.zlib.base.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.TabEntity;
+import pers.zjc.sams.data.entity.AttenceRecord;
 import pers.zjc.sams.module.main.contract.MainContract;
 import pers.zjc.sams.module.myattence.view.MyAttenceFragment;
 import pers.zjc.sams.module.personcenter.view.PersonCenterFragment;
@@ -36,7 +40,9 @@ public class MainFragment extends BaseFragment implements MainContract.View {
         super.onActivityCreated(savedInstanceState);
         mTabLayout = (CommonTabLayout)findViewById( R.id.ctl);
         Bundle args = new Bundle();
-        mFragments.add(new MyAttenceContainerFragment());
+        List<AttenceRecord> records = getArguments().getParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS);
+        args.putParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS, (ArrayList<? extends Parcelable>) records);
+        mFragments.add(Fragment.instantiate(getActivity(), MyAttenceFragment.class.getName(), args));
         args.putString("type", "1");
         mFragments.add(Fragment.instantiate(getActivity(), ContainerFragment.class.getName(), args));
         args = new Bundle();

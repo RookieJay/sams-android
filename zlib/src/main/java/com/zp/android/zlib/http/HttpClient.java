@@ -1,10 +1,12 @@
 package com.zp.android.zlib.http;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.Reader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -150,10 +152,9 @@ public class HttpClient {
                     return null;
                 }
                 Response response = client.newCall(request).execute();
-                ResponseBody body = response.body();
-                if (response != null && body != null) {
+                if (response != null && response.body() != null) {
 //                    Log.d("--------->body", body.string());
-                    return gson.fromJson(body.charStream(), method.getGenericReturnType());
+                    return gson.fromJson(response.body().charStream(), method.getGenericReturnType());
                 }
                 else {
                     return null;

@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.zp.android.zlib.base.BaseFragment;
 
 import pers.zjc.sams.R;
-import pers.zjc.sams.module.workspace.WorkSpaceFragment;
+import pers.zjc.sams.module.center.view.CenterFragment;
 
 public class ContainerFragment extends BaseFragment {
 
@@ -18,9 +18,9 @@ public class ContainerFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         FragmentManager cfm = getChildFragmentManager();
         FragmentTransaction trans = cfm.beginTransaction();
-        Fragment fm = Fragment.instantiate(getActivity(), WorkSpaceFragment.class.getName(), getArguments());
+        Fragment fm = Fragment.instantiate(getActivity(), CenterFragment.class.getName(), getArguments());
         trans.add(R.id.fl_container, fm);
-        trans.addToBackStack(WorkSpaceFragment.class.getSimpleName());
+        trans.addToBackStack(CenterFragment.class.getSimpleName());
         trans.commitAllowingStateLoss();
     }
 
