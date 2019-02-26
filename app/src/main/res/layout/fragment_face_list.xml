@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="人脸库管理"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_org_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="组织机构:"
+                    android:textColor="@color/c000000"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_org"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_org_name"
+                    android:paddingLeft="8dp"
+                    android:layout_centerVertical="true"
+                    android:text="2222"
+                    android:textColor="@color/c000000"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="人员同步"
+                    android:textSize="12sp"
+                    android:padding="4dp"
+                    android:id="@+id/tv_synchronization"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/cffffff"
+                    android:visibility="invisible"
+                    android:background="@drawable/shape_task_exec_btn1"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                     />
+
+                <TextView
+                    android:id="@+id/tvNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="暂无数据"
+                    android:visibility="gone"
+              />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_education"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="7dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

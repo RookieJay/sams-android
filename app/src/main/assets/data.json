@@ -1,0 +1,1889 @@
+[
+  {
+    "name": "task-data1",
+    "pagination": {},
+    "data": {
+      "expires": "2018-04-12 09:55:37",
+      "tasks": [
+        {
+          "checkItem": [
+            {
+              "bookItemCategory": "加钞间",
+              "checkItemDesc": "至少配备1名网点保安，年龄18至45岁之间（综合素质较高的可放宽至50周岁以下），男身高1.65米以上，初中以上文化程度。客流量大、在行式自助设备多的要增加配备",
+              "checkItemId": 1800009860,
+              "checkItemName": "至少配备1名网点保安",
+              "checkItemNumb": "43",
+              "keyPoints": [
+                {
+                  "bookCategory": "消防",
+                  "checkMethod": "实地查看",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "非现金区外边角",
+                      "inspPointId": 238823669760,
+                      "inspPointNumb": "20180412020256",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009998,
+                  "keyPointName": "配备充足",
+                  "keyPointNumb": "1"
+                },
+                {
+                  "bookCategory": "消防",
+                  "checkMethod": "实地查看",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "非现金区外边角",
+                      "inspPointId": 238823669760,
+                      "inspPointNumb": "20180412020256",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009999,
+                  "keyPointName": "符合标准",
+                  "keyPointNumb": "2"
+                }
+              ],
+              "taskId": 161346486272
+            },
+            {
+              "bookItemCategory": "加钞间",
+              "checkItemDesc": "明确安保责任人。至少配备1名网点保安，年龄18至45岁之间（综合素质较高的可放宽至50周岁以下），男身高1.65米以上，初中以上文化程度。客流量大、在行式自助设备多的要增加配备",
+              "checkItemId": 1800009861,
+              "checkItemName": "明确安保责任人",
+              "checkItemNumb": "44",
+              "keyPoints": [
+                {
+                  "bookCategory": "安保",
+                  "checkMethod": "实地查看",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "非现金区外边角",
+                      "inspPointId": 238823669760,
+                      "inspPointNumb": "20180412020256",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800010000,
+                  "keyPointName": "安保责任人",
+                  "keyPointNumb": "1"
+                },
+                {
+                  "bookCategory": "安保",
+                  "checkMethod": "实地查看",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "非现金区外边角",
+                      "inspPointId": 238823669760,
+                      "inspPointNumb": "20180412020256",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800010001,
+                  "keyPointName": "保安数量",
+                  "keyPointNumb": "2"
+                }
+              ],
+              "taskId": 161346486272
+            }
+          ],
+          "checkOrganId": 1788937187,
+          "checkOrganName": "深州 榆科分理处",
+          "execOrganId": 1788937187,
+          "execOrganName": "深州 榆科分理处",
+          "execPostId": 1385290530816,
+          "execPostName": "安全员",
+          "execStatus": "0",
+          "execTimeEnd": "2018-04-17 17:30:00",
+          "execTimeStart": "2018-04-11 12:00:00",
+          "execUser": [],
+          "realExecTimeEnd": "",
+          "realExecTimeStart": "",
+          "taskId": 161346486272,
+          "taskName": "机构自查",
+          "taskType": "1",
+          "updateTime": ""
+        }
+      ],
+      "token": "4a020536186e4d0bbb977547737765b7"
+    },
+    "message": "登录成功",
+    "version": ""
+  },
+  {
+    "name": "task-data",
+    "pagination": {},
+    "data": {
+      "expires": "2018-04-11 18:17:39",
+      "tasks": [
+        {
+          "checkItem": [
+            {
+              "bookCategory": "消防",
+              "bookItemCategory": "综 合 管 理",
+              "checkItemDesc": "",
+              "checkItemId": 1800009144,
+              "checkItemName": "设立防火安全员",
+              "checkItemNumb": "247",
+              "keyPoints": [
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009154,
+                  "keyPointName": "设置岗位人员",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009155,
+                  "keyPointName": "职责明确",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009157,
+                  "keyPointName": "记录完整",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009156,
+                  "keyPointName": "检查全面、认真",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009160,
+                  "keyPointName": "登记规范",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009161,
+                  "keyPointName": "阀门是否关闭",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009162,
+                  "keyPointName": "电源水源是否切断",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009163,
+                  "keyPointName": "是否及时清理灶具管道等",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                }
+              ]
+            },
+            {
+              "bookCategory": "消防",
+              "bookItemCategory": "综 合 管 理",
+              "checkItemDesc": "",
+              "checkItemId": 1800009145,
+              "checkItemName": "每日早中晚3次对食堂进行消防巡查，并登记《消防安全检查日志》",
+              "checkItemNumb": "248",
+              "keyPoints": [
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009154,
+                  "keyPointName": "设置岗位人员",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009155,
+                  "keyPointName": "职责明确",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009157,
+                  "keyPointName": "记录完整",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009156,
+                  "keyPointName": "检查全面、认真",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009160,
+                  "keyPointName": "登记规范",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009161,
+                  "keyPointName": "阀门是否关闭",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009162,
+                  "keyPointName": "电源水源是否切断",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009163,
+                  "keyPointName": "是否及时清理灶具管道等",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                }
+              ]
+            },
+            {
+              "bookCategory": "消防",
+              "bookItemCategory": "综 合 管 理",
+              "checkItemDesc": "",
+              "checkItemId": 1800009146,
+              "checkItemName": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》",
+              "checkItemNumb": "249",
+              "keyPoints": [
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009154,
+                  "keyPointName": "设置岗位人员",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009155,
+                  "keyPointName": "职责明确",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009157,
+                  "keyPointName": "记录完整",
+                  "stdReq": "设立防火安全员"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009156,
+                  "keyPointName": "检查全面、认真",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009160,
+                  "keyPointName": "登记规范",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009161,
+                  "keyPointName": "阀门是否关闭",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009162,
+                  "keyPointName": "电源水源是否切断",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                },
+                {
+                  "checkMethod": "1002",
+                  "checkResult": {},
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009001,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009002,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800008998
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointName": "食堂采集点3",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 690688622592,
+                      "inspPointName": "食堂采集点1",
+                      "inspPointNumb": "20180328",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    },
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 760116936704,
+                      "inspPointName": "食堂采集点2",
+                      "inspPointNumb": "2018032802",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009163,
+                  "keyPointName": "是否及时清理灶具管道等",
+                  "stdReq": "每周至少进行一次全面消防安全检查（含燃气设备、用电设备、门窗锁闭、操作台和炉灶清理、输气软管完好、排油排烟设备、食品保管使用管理情况），登记《消防安全检查日志》"
+                }
+              ]
+            }
+          ],
+          "checkOrganId": 1788937187,
+          "checkOrganName": "深州 榆科分理处",
+          "execOrganId": 1788937187,
+          "execOrganName": "深州 榆科分理处",
+          "execPostId": 1385290530816,
+          "execPostName": "安全员",
+          "execStatus": "0",
+          "execTimeEnd": "2018-04-27 17:30:00",
+          "execTimeStart": "2018-04-02 12:00:00",
+          "execUser": [],
+          "realExecTimeEnd": "",
+          "realExecTimeStart": "",
+          "taskId": 124075900928,
+          "taskName": "营业网点机构自查",
+          "taskType": "5",
+          "updateTime": "2018-04-02 00:00:00"
+        }
+      ],
+      "token": "540e73160dd34f85b62d1d926b55f623"
+    },
+    "message": "登录成功",
+    "version": ""
+  },
+  {
+    "name": "task-finish",
+    "pagination": {
+      "current": "1",
+      "next": "2",
+      "pages": "1",
+      "perPage": "20",
+      "previous": "0",
+      "total": "1"
+    },
+    "data": {
+      "tasks": [
+        {
+          "checkItem": [
+            {
+              "bookItemCategory": "加钞间",
+              "checkItemDesc": "至少配备1名网点保安，年龄18至45岁之间（综合素质较高的可放宽至50周岁以下），男身高1.65米以上，初中以上文化程度。客流量大、在行式自助设备多的要增加配备",
+              "checkItemId": 1800009860,
+              "checkItemName": "至少配备1名网点保安",
+              "checkItemNumb": "43",
+              "keyPoints": [
+                {
+                  "bookCategory": "消防",
+                  "checkMethod": "实地查看",
+                  "checkResult": {
+                    "keyPointId": 1800009998,
+                    "execTime": "2018-04-17 10:46:39",
+                    "inspPointNumb": "804AECB2FCD904",
+                    "resultDesc": "",
+                    "checkResult": "0",
+                    "photos": [
+                      {
+                        "fileId": 123123123123,
+                        "photoDesc": "安全检查文件"
+                      }
+                    ]
+                  },
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009620,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009621,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "2",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800009617
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "非现金区外边角",
+                      "inspPointId": 238823669760,
+                      "inspPointNumb": "804AECB2FCD904",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009998,
+                  "keyPointName": "配备充足",
+                  "keyPointNumb": "1"
+                },
+                {
+                  "bookCategory": "消防",
+                  "checkMethod": "实地查看",
+                  "checkResult": {
+                    "keyPointId": 1800009999,
+                    "execTime": "2018-04-17 10:46:41",
+                    "inspPointNumb": "804AECB2BFAE04",
+                    "resultDesc": "",
+                    "checkResult": "0",
+                    "photos": [
+                      {
+                        "fileId": 123123123123,
+                        "photoDesc": "安全检查文件"
+                      }
+                    ]
+                  },
+                  "dataTypeItem": [
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009620,
+                      "dataItemName": "正常",
+                      "dataItemNumb": "001",
+                      "dataItemPar": "",
+                      "dataItemValue": "0"
+                    },
+                    {
+                      "dataItemFmt": "",
+                      "dataItemId": 1800009621,
+                      "dataItemName": "异常",
+                      "dataItemNumb": "002",
+                      "dataItemPar": "",
+                      "dataItemValue": "1"
+                    }
+                  ],
+                  "dataTypeObj": {
+                    "nValid": "2",
+                    "dataTypeName": "是否正常",
+                    "dataType": "01",
+                    "dataTypeId": 1800009617
+                  },
+                  "inspPoints": [
+                    {
+                      "inspAreaName": "食堂",
+                      "inspPointId": 785026908160,
+                      "inspPointNumb": "804AECB2BFAE04",
+                      "organCode": "1788937188",
+                      "organId": 1788937187
+                    }
+                  ],
+                  "keyPointId": 1800009999,
+                  "keyPointName": "符合标准",
+                  "keyPointNumb": "2"
+                }
+              ],
+              "taskId": 195685253120
+            }
+          ],
+          "checkOrganId": 1788937187,
+          "checkOrganName": "深州 榆科分理处",
+          "execOrganId": 1788937187,
+          "execOrganName": "深州 榆科分理处",
+          "execPostId": 1385290530816,
+          "execPostName": "安全员",
+          "execStatus": "1",
+          "execTimeEnd": "2018-04-18 15:30:00",
+          "execTimeStart": "2018-04-13 12:00:00",
+          "execUser": [],
+          "realExecTimeEnd": "2018-04-17 10:46:41",
+          "realExecTimeStart": "2018-04-17 10:46:39",
+          "taskId": 195685253120,
+          "taskName": "机构自查新增",
+          "taskType": "1",
+          "updateTime": "2018-04-12 18:48:06"
+        }
+      ]
+    },
+    "message": "获取已办任务信息列表成功",
+    "version": ""
+  },
+
+  {
+    "name": "ops-insp-task",
+    "pagination": {},
+    "data": {
+      "inspTasks": [
+        {
+          "checkOrganId": 1788937187,
+          "checkOrganName": "深州 榆科分理处",
+          "execOrganId": 1788937187,
+          "execOrganName": "康达科技",
+          "execPostId": 1385290530816,
+          "execPostName": "安全员",
+          "execStatus": "0",
+          "execTimeEnd": "2018-12-20 17:30:00",
+          "execTimeStart": "2018-12-20 12:00:00",
+          "realExecTimeEnd": "",
+          "realExecTimeStart": "",
+          "taskId": 161346486272,
+          "taskName": "每季度对技防系统巡检",
+          "taskType": "1",
+          "updateTime": "",
+          "execCycle":"",
+          "execInterval":"1",
+          "planId":"123",
+          "hasInsp":"2",
+          "execUserId":"333",
+          "execUserName":"zhangsan",
+          "evalResult":"",
+          "evalRank":"4.5",
+          "evalDesc":"",
+          "inspItems":[
+              {
+                "taskId":"161346486272",
+                "inspClassId":"1",
+                "inspClassName":"硬件维护",
+                "inspItemId":"11",
+                "inspItemName":"摄像机",
+                "inspItemNumb":"1",
+                "inspItemContent":"摄像机除尘、检测",
+                "isRegEquip":"1",
+                "inspEquips":[],
+                "inspItemResult":"",
+                "inspItemStatus":"",
+                "execTime":"",
+                "execUserId":"",
+                "execUserName":""
+              },
+              {
+                "taskId":"161346486272",
+                "inspClassId":"1",
+                "inspClassName":"硬件维护",
+                "inspItemId":"12",
+                "inspItemName":"摄像机",
+                "inspItemNumb":"2",
+                "inspItemContent":"监控角度调整",
+                "isRegEquip":"1",
+                "inspEquips":[],
+                "inspItemResult":"",
+                "inspItemStatus":"",
+                "execTime":"",
+                "execUserId":"",
+                "execUserName":""
+              },
+              {
+                "taskId":"161346486272",
+                "inspClassId":"1",
+                "inspClassName":"硬件维护",
+                "inspItemId":"13",
+                "inspItemName":"对讲系统",
+                "inspItemNumb":"1",
+                "inspItemContent":"语音对讲设备检测",
+                "isRegEquip":"0",
+                "inspEquips":[],
+                "inspItemResult":"",
+                "inspItemStatus":"",
+                "execTime":"",
+                "execUserId":"",
+                "execUserName":""
+              }
+          ]
+        }
+      ],
+      "token": "4a020536186e4d0bbb977547737765b7"
+    },
+    "message": "登录成功",
+    "version": ""
+  }
+]

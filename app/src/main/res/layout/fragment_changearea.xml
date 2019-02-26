@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/txt_selec_field"
+            android:textColor="@color/cffffffff"
+            android:textSize="17sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="7dp" />
+        </FrameLayout>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="@color/cff09776e"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="@color/cff09776e"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

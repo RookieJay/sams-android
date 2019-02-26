@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="教育培训"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/bar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:text="查询"
+            android:textColor="#FFFFFFFF"
+            android:textSize="14sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llOrg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="组织机构"
+                    android:textColor="@color/c333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvOrgName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    tools:drawableRight="@mipmap/icon_arrow_down"
+                    android:paddingVertical="10dp"
+                    android:singleLine="true"
+                    android:text="组织机构"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/commonTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginHorizontal="20dp"
+                app:tl_indicator_color="@color/c008158"
+                app:tl_indicator_gravity="BOTTOM"
+                app:tl_indicator_height="2dp"
+                app:tl_indicator_width="40dp"
+                app:tl_tab_space_equal="true"
+                app:tl_textSelectColor="@color/c008158"
+                app:tl_textUnselectColor="@color/c333333"
+                app:tl_textsize="14sp"
+                app:tl_underline_color="@color/c999999"
+                app:tl_underline_gravity="BOTTOM"
+                app:tl_underline_height="1dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.zp.android.scmp.widget.swipyrefreshlayout.SwipyRefreshLayout
+                    android:id="@+id/refreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:direction="both">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_seccheck"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="7dp" />
+                </com.zp.android.scmp.widget.swipyrefreshlayout.SwipyRefreshLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:text="暂无数据" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

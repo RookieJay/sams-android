@@ -1,0 +1,11 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/captures
+.idea
+build
+.svn
+app/src/main/java/com/zp/android/scmp/db
+.externalNativeBuild
+lib_face/src/main/jniLibs/armeabi-v7a/libGSFaceRecog.so

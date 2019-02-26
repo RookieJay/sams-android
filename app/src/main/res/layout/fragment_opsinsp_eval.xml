@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:orientation="vertical"
+    tools:ignore="SmallSp,HardcodedText,RelativeOverlap">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="运维巡检评价"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_eval_order_numb"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:padding="8dp"
+                android:background="@color/cffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务名"
+                    android:textColor="#FF000000"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text=""
+                    android:id="@+id/tv_insp_eval_task_name"
+                    android:textColor="#FF000000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_eval_group_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_maint_task_expand"
+                tools:ignore="UseCompoundDrawables,UselessParent">
+
+                <TextView
+                    android:id="@+id/txt_check_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:maxWidth="180dp"
+                    android:textColor="#000000"
+                    android:textSize="17sp"
+                    android:text="评价信息"
+                    tools:text="评价信息" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@color/cffffff">
+
+                <TextView
+                    android:id="@+id/lbl_eval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="服务评价"
+                    android:textColor="@color/black"
+                    tools:text="服务评价" />
+
+                <Spinner
+                    android:id="@+id/sp_eval"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:dropDownWidth="100dp"
+                    android:dropDownVerticalOffset="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/lbl_eval" />
+
+                <RatingBar
+                    android:id="@+id/rt_eval"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:isIndicator="false"
+                    android:maxHeight="15dp"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:theme="@style/rating_bar" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_eval_desc"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shape_task_checkitem1"
+                android:gravity="left|top"
+                android:hint="请录入服务评价"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="8dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/btn_finish"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/selector_btn_finish"
+                android:gravity="center"
+                android:text="@string/achieve"
+                android:textColor="@color/cffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

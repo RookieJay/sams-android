@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#12BDF6</color>
+    <color name="colorPrimaryDark">@null</color>
+    <color name="colorAccent">#2289ab</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="windowBackground">#f3f5f4</color>
+    <color name="buttonSelected">#FFB60F</color>
+    <color name="orangeBackground">#FF8C00</color>
+    <color name="transparency">#00000000</color>
+
+    <color name="ce8e8e8">#e8e8e8</color>
+    <color name="c008158">#008158</color>
+    <color name="c00ad82">#00ad82</color>
+    <color name="c339933">#339933</color>
+    <color name="cebebeb">#ebebeb</color>
+    <color name="cf8f8f8">#f8f8f8</color>
+    <color name="cffffff">#ffffff</color>
+    <color name="c999999">#999999</color>
+    <color name="c000000">#000000</color>
+    <color name="c333333">#333333</color>
+    <color name="c666666">#666666</color>
+    <color name="ccccccc">#cccccc</color>
+    <color name="c00906c">#00906c</color>
+    <color name="cffca1a">#ffca1a</color>
+    <color name="c007457">#007457</color>
+    <color name="cff9900">#ff9900</color>
+    <color name="c0099ff">#0099ff</color>
+    <color name="cffc600">#ffc600</color>
+    <color name="cff6600">#ff6600</color>
+    <color name="c969696">#969696</color>
+    <color name="c646464">#646464</color>
+    <color name="c0e9f59">#0e9f59</color>
+    <color name="cf5f5f5">#f5f5f5</color>
+    <color name="cdcdcdc">#dcdcdc</color>
+    <color name="cf1f1f1">#f1f1f1</color>
+    <color name="c32d6af">#32d6af</color>
+    <color name="c12aba0">#12aba0</color>
+    <color name="cffab32">#ffab32</color>
+    <color name="c1fa6e6">#1fa6e6</color>
+    <color name="cf2f5f4">#F2F5F4</color>
+    <color name="cffffffff">#FFFFFFFF</color>
+    <color name="cff09776e">#FF09776E</color>
+    <color name="cccffffff">#ccffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="blue_color_picker">#0066FF</color>
+    <color name="brown_color_picker">#AF593E</color>
+    <color name="green_color_picker">#01A368</color>
+    <color name="orange_color_picker">#FF861F</color>
+    <color name="red_color_picker">#ED0A3F</color>
+    <color name="red_orange_color_picker">#FF3F34</color>
+    <color name="sky_blue_color_picker">#76D7EA</color>
+    <color name="violet_color_picker">#8359A3</color>
+    <color name="yellow_color_picker">#FBE870</color>
+    <color name="yellow_green_color_picker">#C5E17A</color>
+</resources>

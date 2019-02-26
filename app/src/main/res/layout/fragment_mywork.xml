@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress AndroidDomInspection -->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_ctl_bg">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_bar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@null"
+        app:elevation="0dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@null"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.zp.android.scmp.widget.DashboardView
+                android:id="@+id/dv_safety_score"
+                android:layout_width="158dp"
+                android:layout_height="158dp"
+                android:layout_gravity="center"
+                app:body_color="#FFFFFFFF"
+                app:body_size="60sp"
+                app:body_text="98"
+                app:level_size="20sp"
+                app:level_text="L1"
+                app:level_color="#FFF7A1"
+                app:date_color="#FFFFFFFF"
+                app:date_size="12sp"
+                app:date_text="2018-10-10"
+                app:enable_animation="true"
+                app:head_color="#FFFFFFFF"
+                app:head_size="12sp"
+                app:head_text="@string/secury_index"
+                app:progress_alpha="50"
+                app:progress_background="#1db89d"
+                app:progress_background_alpha="70"
+                app:progress_color="#ffffff"
+                app:progress_highlights_width="7dp"
+                app:progress_padding="5dp"
+                app:progress_width="2.5dp"
+                app:scale_background_alpha="0"
+                app:scale_color="#ffffff"
+                app:scale_width="4dp"
+                app:text_padding="5dp"
+                app:title_color="#FFFFFFFF"
+                app:title_size="14sp"
+                app:title_text="@string/xxxxxxxxxxxxxxxxx_branch"
+                app:total_scale="100"
+                app:unit_scale="10" />
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin"
+                app:logo="@null"
+                app:navigationIcon="@null"
+                app:title="">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_info"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@mipmap/icon_user_head"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/img_info"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_toEndOf="@+id/img_info"
+                        android:layout_toLeftOf="@+id/v_fraction"
+                        android:layout_toRightOf="@+id/img_info"
+                        android:layout_toStartOf="@+id/v_fraction"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="10sp"
+                        android:visibility="invisible"
+                        tools:text="@string/Mr_wangxx" />
+
+                    <TextView
+                        android:id="@+id/txt_sub_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/img_info"
+                        android:layout_alignLeft="@+id/txt_title"
+                        android:layout_alignStart="@+id/txt_title"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_toLeftOf="@+id/v_fraction"
+                        android:layout_toStartOf="@+id/v_fraction"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="10sp"
+                        android:visibility="invisible"
+                        tools:text="@string/Security_specialist" />
+
+                    <com.zp.android.scmp.widget.DashboardView
+                        android:id="@+id/v_fraction"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        app:body_color="#FFFFFFFF"
+                        app:body_size="14sp"
+                        app:body_text="98"
+                        app:enable_animation="true"
+                        app:progress_alpha="50"
+                        app:progress_background="#1db89d"
+                        app:progress_background_alpha="70"
+                        app:progress_color="#ffffff"
+                        app:progress_highlights_width="4dp"
+                        app:progress_padding="2dp"
+                        app:progress_width="2dp"
+                        app:scale_background_alpha="0"
+                        app:scale_color="#ffffff"
+                        app:scale_width="2dp"
+                        app:total_scale="50"
+                        app:unit_scale="20" />
+
+                    <ImageView
+                        android:id="@+id/img_verify"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:visibility="invisible"
+                        android:background="@mipmap/icon_public_auth" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_todo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/tab_todo_pressed">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl_todo_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_todo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.SwipeRefreshLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_finished_task"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/tab_finishedtask_normal"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl_finished_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_finished_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.SwipeRefreshLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/switch_tab"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+
+    <com.github.xwc.view.ShapeView
+        android:layout_width="9dp"
+        android:layout_height="7dp"
+        android:layout_gravity="bottom"
+        app:shape_default_color="#FF09776E"
+        app:shape_triangle_percentBottom="1"
+        app:shape_triangle_percentLeft="1"
+        app:shape_triangle_percentRight="0"
+        app:shape_type="triangle" />
+
+    <com.github.xwc.view.ShapeView
+        android:layout_width="9dp"
+        android:layout_height="7dp"
+        android:layout_gravity="bottom|end"
+        app:shape_default_color="#FF09776E"
+        app:shape_triangle_percentBottom="0"
+        app:shape_triangle_percentLeft="0"
+        app:shape_triangle_percentRight="1"
+        app:shape_type="triangle" />
+</android.support.design.widget.CoordinatorLayout>

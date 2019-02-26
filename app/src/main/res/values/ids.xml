@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="key_point_id" type="id" />
+    <item name="key_photo_id" type="id" />
+    <item name="select_id" type="id" />
+</resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?><!--运维管理-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="报修单信息"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/shape_submit_btn"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="提交"
+            android:textColor="#FFFFFFFF" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/include_equipment" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1px"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障描述:"
+                        android:textColor="#32D6AF"
+                        android:textSize="14sp" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_task_checkitem1">
+
+                        <EditText
+                            android:id="@+id/et_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_toLeftOf="@+id/iv_image"
+                            android:layout_toStartOf="@+id/iv_image"
+                            android:background="@android:color/transparent"
+                            android:gravity="left|top"
+                            android:hint="故障描述说明"
+                            android:minWidth="80dp"
+                            android:padding="8dp"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+
+                        <ImageView
+                            android:id="@+id/iv_image"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+
+                            android:layout_toLeftOf="@+id/ll_add"
+                            android:src="@drawable/icon_add_photo" />
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/ll_add"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/iv_add"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+
+                                android:layout_margin="8dp"
+                                android:src="@mipmap/icon_camera"
+                                android:visibility="visible" />
+                        </FrameLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/include_service" />
+            </LinearLayout>
+        </ScrollView>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

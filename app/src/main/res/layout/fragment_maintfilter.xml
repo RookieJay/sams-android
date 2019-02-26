@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_frm_bg"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="更多条件"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/bar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:text="确定"
+            android:textColor="#FFFFFFFF"
+            android:textSize="14sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_slice"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="日期"
+                    android:textColor="@color/c333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:paddingVertical="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp"
+                    tools:text="@string/app_name" />
+            </LinearLayout>
+
+            <com.zp.android.scmp.widget.SquareGridLayout
+                android:id="@+id/dateGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:numColumn="3"
+                app:space="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="0"
+                    android:text="当天"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="7"
+                    android:text="七天"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="30"
+                    android:text="一个月"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="90"
+                    android:text="三个月"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="180"
+                    android:text="六个月"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="-1"
+                    android:text="自定义"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+            </com.zp.android.scmp.widget.SquareGridLayout>
+
+
+            <TextView
+                android:id="@+id/tvPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:text="任务状态"
+                android:textColor="@color/c333333"
+                android:textSize="14sp" />
+
+            <com.zp.android.scmp.widget.SquareGridLayout
+                android:id="@+id/statusGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:numColumn="3"
+                app:space="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_select"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:text="全部"
+                    android:textColor="@color/blue_color_picker"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="01"
+                    android:text="待接单"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="04"
+                    android:text="待维修"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="02"
+                    android:text="待评价"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_stroke_unselect"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    android:tag="03"
+                    android:text="完成"
+                    android:textColor="@color/c666666"
+                    android:textSize="14sp" />
+
+            </com.zp.android.scmp.widget.SquareGridLayout>
+
+        </LinearLayout>
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="1"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle" />
+
+        <com.github.xwc.view.ShapeView
+            android:layout_width="9dp"
+            android:layout_height="7dp"
+            android:layout_gravity="bottom|end"
+            app:shape_default_color="#FF09776E"
+            app:shape_triangle_percentBottom="0"
+            app:shape_triangle_percentLeft="0"
+            app:shape_triangle_percentRight="1"
+            app:shape_type="triangle" />
+    </FrameLayout>
+</LinearLayout>

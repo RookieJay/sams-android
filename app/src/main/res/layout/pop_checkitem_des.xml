@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.library.bubbleview.BubbleLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:angle="5dp"
+    app:arrowCenter="true"
+    app:arrowHeight="10dp"
+    app:arrowLocation="top"
+    app:arrowWidth="20dp"
+    app:bubbleColor="#32D6AF">
+
+    <TextView
+        android:id="@+id/tvCheckDes"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/cffffff"
+        android:textSize="14sp"
+        tools:text="@string/app_name" />
+</com.github.library.bubbleview.BubbleLinearLayout>
+
+

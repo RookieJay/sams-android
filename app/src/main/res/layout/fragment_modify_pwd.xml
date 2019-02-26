@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/windowBackground"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_back_title_right_toolbar" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/cffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/txt_old_pwd"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etOldPwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:hint="@string/hint_input_old_pwd"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:paddingHorizontal="5dp"
+            android:singleLine="true"
+            android:textColor="@color/c333333"
+            android:textColorHint="@color/c999999"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/cffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/txt_new_pwd"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etNewPwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:hint="@string/hint_input_new_pwd"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:paddingHorizontal="5dp"
+            android:singleLine="true"
+            android:textColor="@color/c333333"
+            android:textColorHint="@color/c999999"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/cffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/txt_confirm_new_pwd"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etConfirmNewPwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:hint="@string/hint_confirm_input_new_pwd"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingHorizontal="5dp"
+            android:singleLine="true"
+            android:textColor="@color/c333333"
+            android:textColorHint="@color/c999999"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

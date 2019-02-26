@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/cffffff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/ll_insp_area"
+    tools:ignore="HardcodedText">
+
+    <RadioButton
+        android:id="@+id/rb_insp_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:clickable="false"
+        android:checked="false">
+
+    </RadioButton>
+
+    <TextView
+        android:id="@+id/tv_insp_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择巡检区域"
+        android:textColor="@color/c333333"
+        android:textSize="14sp" />
+
+</LinearLayout>

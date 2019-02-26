@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.xunmei.android.calendarview.MonthView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_monthview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:dayTextSize="16sp"
+    app:monthTextSize="18sp"
+    app:selectedCircleColor="#00ad82" />
+

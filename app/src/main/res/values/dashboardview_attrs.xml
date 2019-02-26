@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DashboardView">
+        <!--启动动画-->
+        <attr name="enable_animation" format="boolean"/>
+        <!--刻度总数-->
+        <attr name="total_scale" format="integer"/>
+        <!--刻度单位-->
+        <attr name="unit_scale" format="integer"/>
+        <!--刻度盘与控件之间间隔-->
+        <attr name="scale_padding" format="dimension"/>
+        <!--刻度条颜色-->
+        <attr name="scale_color" format="color"/>
+        <!--刻度盘背景-->
+        <attr name="scale_background" format="color"/>
+        <!--刻度条透明度百分比 0-100-->
+        <attr name="scale_alpha" format="integer"/>
+        <!--刻度盘背景透明度百分比 0-100-->
+        <attr name="scale_background_alpha" format="integer"/>
+        <!--刻度条宽度-->
+        <attr name="scale_width" format="dimension"/>
+        <!--进度盘背景-->
+        <attr name="progress_background" format="color"/>
+        <!--进度盘与刻度盘之间间隔-->
+        <attr name="progress_padding" format="dimension"/>
+        <!--进度盘宽度-->
+        <attr name="progress_width" format="dimension"/>
+        <!--进度条颜色-->
+        <attr name="progress_color" format="color"/>
+        <!--进度条透明度百分比 0-100-->
+        <attr name="progress_alpha" format="integer"/>
+        <!--进度条背景透明度百分比 0-100-->
+        <attr name="progress_background_alpha" format="integer"/>
+        <!--进度条高亮点宽度-->
+        <attr name="progress_highlights_width" format="dimension"/>
+        <!--进度值-->
+        <attr name="progress" format="integer"/>
+        <!--文本之间间隔-->
+        <attr name="text_padding" format="dimension"/>
+        <!--标题头文本-->
+        <attr name="head_text" format="string"/>
+        <!--标题头文字大小-->
+        <attr name="head_size" format="dimension"/>
+        <!--标题头颜色-->
+        <attr name="head_color" format="color"/>
+        <!--主题内容文本-->
+        <attr name="body_text" format="string"/>
+        <!--主体内容文字大小-->
+        <attr name="body_size" format="dimension"/>
+        <!--主体内容文字颜色-->
+        <attr name="body_color" format="color"/>
+        <!--等级文本-->
+        <attr name="level_text" format="string"/>
+        <!--等级文字大小-->
+        <attr name="level_size" format="dimension"/>
+        <!--等级文字颜色-->
+        <attr name="level_color" format="color"/>
+        <!--日期文本-->
+        <attr name="date_text" format="string"/>
+        <!--日期文字大小-->
+        <attr name="date_size" format="dimension"/>
+        <!--日期文字颜色-->
+        <attr name="date_color" format="color"/>
+        <!--标题内容-->
+        <attr name="title_text" format="string"/>
+        <!--标题文字大小-->
+        <attr name="title_size" format="dimension"/>
+        <!--标题文字颜色-->
+        <attr name="title_color" format="color"/>
+    </declare-styleable>
+</resources>

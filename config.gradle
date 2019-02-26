@@ -1,0 +1,115 @@
+ext {
+
+    Properties properties = new Properties()
+    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
+    properties.load(inputStream)
+
+    android = [
+            applicationId    : "pers.zjc.android${postfixValue}",
+            compileSdkVersion: 28,
+            buildToolsVersion: '28.0.3',
+            minSdkVersion    : 23,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : '0.0.1',
+            baseUrl          : "${baseUrlValue}",
+            keyAlias         : properties.getProperty('keyAlias'),
+            keyPassword      : properties.getProperty('keyPassword'),
+            storePassword    : properties.getProperty('storePassword'),
+            storeFile        : "${rootDir.absolutePath}/keystore/android.keystore",
+            regionCode       : "${regionCodeValue}",
+            versionType      : "${versionTypeValue}"
+    ]
+
+    version = [
+            androidSupportVersion       : '28.0.0',
+            constraintLayoutVersion     : '1.0.2',
+            runnerVersion               : '1.0.1',
+            espressoVersion             : '3.0.1',
+            junitVersion                : '4.12',
+            okhttpVersion               : '3.10.0',
+            gsonVersion                 : '2.8.2',
+            daggerVersion               : '2.15',
+            glideVersion                : '4.7.1',
+            stethoVersion               : '1.5.0',
+            flycoTabLayoutVersion       : '2.1.2',
+            shapeViewVersion            : '1.2.2',
+            materialDialogsVersion      : '0.9.6.0',
+            updateAppVersion            : '3.5.2',
+            permissionsdispatcherVersion: '3.1.0',
+            photoViewVersion            : '1.4.1',
+            dbflowVersion               : '4.2.4',
+            bubbleViewVersion           : '1.0.1',
+            eventbusVersion             : '3.1.1',
+            AndroidRatingStarVersion    : '1.0.1',
+            guavaVersion                : '24.0',
+            AndroidPickerViewVersion    : '4.1.6'
+    ]
+
+    dependencies = [
+            appcompatV7                  : "com.android.support:appcompat-v7:${version['androidSupportVersion']}",
+            supportV4                    : "com.android.support:support-v4:${version['androidSupportVersion']}",
+            design                       : "com.android.support:design:${version['androidSupportVersion']}",
+            constraintLayout             : "com.android.support.constraint:constraint-layout:${version['constraintLayoutVersion']}",
+            okhttp                       : "com.squareup.okhttp3:okhttp:${version['okhttpVersion']}",
+            gson                         : "com.google.code.gson:gson:${version['gsonVersion']}",
+            glide                        : "com.github.bumptech.glide:glide:${version['glideVersion']}",
+            glideCompiler                : "com.github.bumptech.glide:compiler:${version['glideVersion']}",
+            dagger                       : "com.google.dagger:dagger:${version['daggerVersion']}",
+            daggerCompiler               : "com.google.dagger:dagger-compiler:${version['daggerVersion']}",
+            dbflow                       : "com.github.Raizlabs.DBFlow:dbflow:${version['dbflowVersion']}",
+            dbflowCore                   : "com.github.Raizlabs.DBFlow:dbflow-core:${version['dbflowVersion']}",
+            dbflowCompiler               : "com.github.Raizlabs.DBFlow:dbflow-processor:${version['dbflowVersion']}",
+            flycoTabLayout               : "com.flyco.tablayout:FlycoTabLayout_Lib:${version['flycoTabLayoutVersion']}@aar",
+            shapeView                    : "com.github.xwc:ShapeView:${version['shapeViewVersion']}",
+            materialDialogs              : "com.afollestad.material-dialogs:core:${version['materialDialogsVersion']}",
+            updateApp                    : "com.qianwen:update-app:${version['updateAppVersion']}",
+            photoview                    : "com.bm.photoview:library:${version['photoViewVersion']}",
+            permissionsdispatcher        : "com.github.hotchemi:permissionsdispatcher:${version['permissionsdispatcherVersion']}",
+            permissionsdispatcherCompiler: "com.github.hotchemi:permissionsdispatcher-processor:${version['permissionsdispatcherVersion']}",
+            stetho                       : "com.facebook.stetho:stetho:${version['stethoVersion']}",
+            junit                        : "junit:junit:${version['junitVersion']}",
+            espresso                     : "com.android.support.test.espresso:espresso-core:${version['espressoVersion']}",
+            runner                       : "com.android.support.test:runner:${version['runnerVersion']}",
+            bubbleView                   : "com.github.lguipeng:BubbleView:${version['bubbleViewVersion']}",
+            eventbus                     : "org.greenrobot:eventbus:${version['eventbusVersion']}",
+            AndroidRatingStar            : "com.github.everhad:AndroidRatingStar:v${version['AndroidRatingStarVersion']}",
+            guava                        : "com.google.guava:guava:${version['guavaVersion']}-android",
+            AndroidPickerView            : "com.contrarywind:Android-PickerView:${version['AndroidPickerViewVersion']}"
+    ]
+}
+
+def getPostfixValue() {
+    if (hasProperty('postfix')) {
+        return postfix
+    } else {
+        return '.sams'
+    }
+}
+
+def getBaseUrlValue() {
+    if (hasProperty('baseurl') && baseurl) {
+        return baseurl
+    } else {
+        // 外网
+//         return 'http://zhoujuncai.vicp.io:10152/sams'
+        // 内网
+        return 'http://192.168.1.4:8080/sams'
+    }
+}
+
+def getRegionCodeValue() {
+    if (hasProperty('region') && region) {
+        return region
+    } else {
+        return '13'
+    }
+}
+
+def getVersionTypeValue() {
+    if (hasProperty('vt') && vt) {
+        return vt
+    } else {
+        return 'Face'
+    }
+}
