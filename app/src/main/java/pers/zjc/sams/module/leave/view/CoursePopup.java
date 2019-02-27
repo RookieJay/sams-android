@@ -72,7 +72,7 @@ public class CoursePopup extends BasePopupWindow  implements CourseAdapter.ItemC
         adapter.addAll(data);
     }
 
-    interface PopupItemClick {
+    public interface PopupItemClick {
         void onPopupItemclick(Course data);
     }
 }

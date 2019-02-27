@@ -200,4 +200,7 @@
     <!--我的考勤-->
     <string name="txt_empty">好像暂时没有数据…</string>
 
+    <!--签到-->
+    <string name="txt_unsigned">签到</string>
+    <string name="txt_signed">已签到</string>
 </resources>

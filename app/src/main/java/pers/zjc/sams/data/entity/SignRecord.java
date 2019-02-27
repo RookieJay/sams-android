@@ -3,6 +3,7 @@ package pers.zjc.sams.data.entity;
 import java.util.Date;
 
 public class SignRecord {
+
     private String id;
 
     private Integer stuId;

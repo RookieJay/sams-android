@@ -9,6 +9,7 @@ import pers.zjc.sams.data.datawrapper.CoursesWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
+import pers.zjc.sams.data.entity.SignRecord;
 
 public interface ApiService {
 
@@ -26,4 +27,7 @@ public interface ApiService {
 
     @POST("/api/mobile/courses/list")
     Result<CoursesWrapper> getCourses();
+
+    @POST("/api/mobile/sign")
+    Result sign(@ParamMap HttpParam param);
 }

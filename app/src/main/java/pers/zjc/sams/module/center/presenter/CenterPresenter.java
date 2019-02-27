@@ -10,7 +10,7 @@ import pers.zjc.sams.data.entity.FunctionInfo;
 import pers.zjc.sams.module.approval.ApprovalFragment;
 import pers.zjc.sams.module.center.contract.CenterContract;
 import pers.zjc.sams.module.leave.view.LeaveFragment;
-import pers.zjc.sams.module.sign.SignFragment;
+import pers.zjc.sams.module.sign.view.SignFragment;
 
 public class CenterPresenter implements CenterContract.Presenter {
 

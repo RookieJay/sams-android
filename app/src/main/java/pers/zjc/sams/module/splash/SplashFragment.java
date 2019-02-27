@@ -37,10 +37,12 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
     ImageView mIvSplash;
     @BindView(R.id.tv_countdown_time)
     TextView mTvCountDownTime;
-    DelayHandler handler= new DelayHandler(this);
+    DelayHandler handler = new DelayHandler(this);
     private Unbinder unbinder;
 
     MainActivity mainActivity;
+
+    Thread thread;
 
     @Override
     public void onAttach(Activity activity) {
@@ -62,7 +64,7 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
             }
         });
         mIvSplash.setImageResource(R.drawable.app_logo);
-        new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 5; i >= 0; i--) {
@@ -77,7 +79,8 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
                     }
                 }
             }
-        }).start();
+        });
+        thread.start();
     }
 
     private void finish() {
@@ -120,6 +123,19 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (thread != null) {
+            thread = null;
+        }
+//        if (handler != null) {
+//            handler.removeMessages(0);
+//            handler = null;
+//        }
+        unbinder.unbind();
+    }
+
     static class DelayHandler extends Handler {
 
         private WeakReference<SplashFragment> weakReference;
@@ -138,7 +154,7 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
                     case 0:
                         if (msg.arg1 == 0) {
                             fragment.finish();
-                        } else {
+                        } else if (fragment.mTvCountDownTime != null){
                             fragment.mTvCountDownTime.setText(msg.arg1+"s");
                         }
                         break;

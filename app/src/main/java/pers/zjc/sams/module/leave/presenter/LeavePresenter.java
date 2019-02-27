@@ -52,7 +52,6 @@ public class LeavePresenter implements LeaveContract.Presenter {
                     Log.d("捕获异常", e.getMessage());
                     view.showMessage(e.getMessage());
                 }
-
             }
         });
 

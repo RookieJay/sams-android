@@ -33,6 +33,16 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <!--location-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
     <application
         android:name=".app.SamsApplication"
         android:allowBackup="true"
@@ -41,6 +51,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="1LjTBACrgAvep8YC316z5BjroiPMtCsk" />
+
         <activity
             android:name="pers.zjc.sams.module.main.MainActivity">
             <intent-filter>
@@ -52,13 +67,14 @@
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".module.login.view.LoginActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".app.WindowActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remmote" />
 
     </application>
 

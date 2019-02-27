@@ -81,6 +81,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     }
 
     private void initView() {
+        isRemember = appConfig.isRemember();
         mEtAccount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -110,7 +111,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
             }
         });
         mBtLogin.setOnClickListener(this);
-        mCbxRMBPwd.setChecked(appConfig.isRemember());
+        mCbxRMBPwd.setChecked(isRemember);
         if (mCbxRMBPwd.isChecked()) {
             mEtAccount.setText(appConfig.getAccount());
             mEtUserPwd.setText(appConfig.getPassWord());
