@@ -4,12 +4,14 @@ import android.util.Log;
 import com.zp.android.zlib.utils.TimeUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
 import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.datawrapper.CoursesWrapper;
+import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.sign.contract.SignContract;
@@ -83,7 +85,7 @@ public class SignPresenter implements SignContract.Presenter {
 
     @Override
     public void getTime() {
-
-
     }
+
+
 }

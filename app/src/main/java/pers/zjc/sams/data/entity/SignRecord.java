@@ -1,8 +1,11 @@
 package pers.zjc.sams.data.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class SignRecord {
+public class SignRecord implements Parcelable {
 
     private String id;
 
@@ -17,6 +20,11 @@ public class SignRecord {
     private Integer signStatus;
 
     private String signIp;
+
+    private String courseName;
+
+    private String stuName;
+
 
     public String getId() {
         return id;
@@ -78,16 +86,65 @@ public class SignRecord {
         this.signIp = signIp == null ? null : signIp.trim();
     }
 
-    @Override
-    public String toString() {
-        return "SignRecord{" +
-                "id='" + id + '\'' +
-                ", stuId=" + stuId +
-                ", signTime=" + signTime +
-                ", courseId=" + courseId +
-                ", location='" + location + '\'' +
-                ", signStatus=" + signStatus +
-                ", signIp='" + signIp + '\'' +
-                '}';
+    public String getCourseName() {
+        return courseName;
     }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeValue(this.stuId);
+        dest.writeLong(this.signTime != null ? this.signTime.getTime() : -1);
+        dest.writeValue(this.courseId);
+        dest.writeString(this.location);
+        dest.writeValue(this.signStatus);
+        dest.writeString(this.signIp);
+        dest.writeString(this.courseName);
+        dest.writeString(this.stuName);
+    }
+
+    public SignRecord() {
+    }
+
+    protected SignRecord(Parcel in) {
+        this.id = in.readString();
+        this.stuId = (Integer) in.readValue(Integer.class.getClassLoader());
+        long tmpSignTime = in.readLong();
+        this.signTime = tmpSignTime == -1 ? null : new Date(tmpSignTime);
+        this.courseId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.location = in.readString();
+        this.signStatus = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.signIp = in.readString();
+        this.courseName = in.readString();
+        this.stuName = in.readString();
+    }
+
+    public static final Parcelable.Creator<SignRecord> CREATOR = new Parcelable.Creator<SignRecord>() {
+        @Override
+        public SignRecord createFromParcel(Parcel source) {
+            return new SignRecord(source);
+        }
+
+        @Override
+        public SignRecord[] newArray(int size) {
+            return new SignRecord[size];
+        }
+    };
 }

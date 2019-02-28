@@ -198,7 +198,7 @@
     <string name="reminding_leaving">有特殊情况一定要及时跟老师反映哦~</string>
     <string name="reminding_absent">考勤不规范，期末两行泪。</string>
     <!--我的考勤-->
-    <string name="txt_empty">好像暂时没有数据…</string>
+    <string name="txt_empty">好像没有更多数据了…</string>
 
     <!--签到-->
     <string name="txt_unsigned">签到</string>

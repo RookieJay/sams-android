@@ -76,22 +76,18 @@ public class LoginPresenter implements LoginContract.Presenter {
                 appConfig.setToken(token);
                 appConfig.setAccount(account);
                 appConfig.setPassWord(pwd);
-
                 appConfig.setUserId(result.getData().getUserId());
                 appConfig.setRole(result.getData().getRole());
                 if (result.getData().getStudent() != null) {
-                    appConfig.setUserName(result.getData().getStudent().getName());
+
                     appConfig.setTel(result.getData().getStudent().getTel());
                     appConfig.setMajor(result.getData().getStudent().getMajor());
                 }
                 if (result.getData().getTeacher() != null) {
-                    appConfig.setUserName(result.getData().getTeacher().getName());
                     appConfig.setTel(result.getData().getTeacher().getTel());
                     appConfig.setMajor(result.getData().getTeacher().getMajor());
                 }
-                if (result.getData().getAdmin() != null) {
-                    appConfig.setUserName(result.getData().getAdmin().getName());
-                }
+                appConfig.setUserName(result.getData().getUserName());
                 appConfig.save();
             }
         });

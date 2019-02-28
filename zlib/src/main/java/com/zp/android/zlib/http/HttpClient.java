@@ -153,8 +153,9 @@ public class HttpClient {
                 }
                 Response response = client.newCall(request).execute();
                 if (response != null && response.body() != null) {
-//                    Log.d("--------->body", body.string());
-                    return gson.fromJson(response.body().charStream(), method.getGenericReturnType());
+                    String body = response.body().string();
+                    Log.d("--------->body",body);
+                    return gson.fromJson(body, method.getGenericReturnType());
                 }
                 else {
                     return null;

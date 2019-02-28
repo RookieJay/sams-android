@@ -30,5 +30,6 @@ public interface SignContract {
         void sign(SignRecord record);
 
         void getTime();
+
     }
 }

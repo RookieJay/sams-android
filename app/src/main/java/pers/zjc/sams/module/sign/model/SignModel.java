@@ -1,10 +1,12 @@
 package pers.zjc.sams.module.sign.model;
 
 import com.zp.android.zlib.http.HttpParam;
+import com.zp.android.zlib.utils.TimeUtils;
 
 import javax.inject.Inject;
 
 import pers.zjc.sams.data.datawrapper.CoursesWrapper;
+import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.sign.contract.SignContract;
@@ -30,4 +32,6 @@ public class SignModel implements SignContract.Model {
                 .add("signIp", record.getSignIp());
         return apiService.sign(factory.create());
     }
+
+
 }

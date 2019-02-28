@@ -35,6 +35,18 @@
             android:textColor="#FFFFFFFF"
             android:textSize="17sp" />
 
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/icon_history"
+            android:gravity="center"
+            android:scaleType="center"
+            android:text="历史"
+            android:textColor="#FFFFFFFF" />
+
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout

@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -59,6 +60,7 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.common.IPUtils;
+import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Course;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.leave.view.CoursePopup;
@@ -109,6 +111,8 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     RoundedImageView ivLocate;
     @BindView(R.id.fl_sign)
     FrameLayout flSign;
+    @BindView(R.id.iv_history)
+    ImageView ivHistory;
     //BaiduMap
     private BaiduMap baiduMap;
     public LocationClient mLocationClient;
@@ -162,6 +166,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
         rlChooseCourse.setOnClickListener(this);
         ivLocate.setOnClickListener(this);
         flSign.setOnClickListener(this);
+        ivHistory.setOnClickListener(this);
     }
 
     @SuppressLint("HandlerLeak")
@@ -207,7 +212,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
             ActivityCompat.requestPermissions(curActivity, permissions, 1);
         } else {
             requestLocation();
-
         }
     }
 
@@ -325,7 +329,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        unbinder.unbind();
     }
 
     @Override
@@ -336,7 +340,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
             handler = null;
             Log.d("SignFragment", "release Handler success");
         }
-        unbinder.unbind();
         mLocationClient.stop();
         if (mapView != null) {
             mapView.onDestroy();
@@ -386,9 +389,22 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 showShortToast("回到当前位置");
                 locate();
                 break;
+            case R.id.iv_history:
+                switchToSignHistoryFragment();
+                break;
             default:
                 break;
         }
+    }
+
+    private void switchToSignHistoryFragment() {
+//        FragmentManager fm = getFragmentManager();
+//        FragmentTransaction transaction = fm.beginTransaction();
+//        Fragment fragment = Fragment.instantiate(getActivity(), LeaveListFragment.class.getName());
+//        transaction.add(R.id.fl_container, fragment);
+//        transaction.addToBackStack(LeaveListFragment.class.getSimpleName());
+//        transaction.commitAllowingStateLoss();
+        ScmpUtils.startWindow(getContext(), SignListFragment.class.getName());
     }
 
     @Override

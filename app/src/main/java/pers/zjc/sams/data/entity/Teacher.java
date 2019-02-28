@@ -5,7 +5,7 @@ public class Teacher {
 
     private String major;
 
-    private String name;
+    private String tName;
 
     private String email;
 
@@ -30,11 +30,11 @@ public class Teacher {
     }
 
     public String getName() {
-        return name;
+        return tName;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.tName = name == null ? null : name.trim();
     }
 
     public String getEmail() {

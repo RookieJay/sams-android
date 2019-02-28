@@ -1505,4 +1505,30 @@ public final class TimeUtils {
         }
         return sb.toString();
     }
+
+    public static String getTodayStart() {
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.set(Calendar.HOUR_OF_DAY, 0);
+        todayStart.set(Calendar.MINUTE, 0);
+        todayStart.set(Calendar.SECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 0);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String effectiveTime = format.format(todayStart.getTime());
+        System.out.println("凌晨:" + effectiveTime);
+        return effectiveTime;
+    }
+
+    public static String getTodayEnd() {
+        Calendar todayEnd = Calendar.getInstance();
+        todayEnd.set(Calendar.HOUR_OF_DAY, 23);
+        todayEnd.set(Calendar.MINUTE, 59);
+        todayEnd.set(Calendar.SECOND, 59);
+        todayEnd.set(Calendar.MILLISECOND, 0);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String effectiveTime = format.format(todayEnd.getTime());
+        System.out.println("晚上:" + effectiveTime);
+        return effectiveTime;
+    }
 }

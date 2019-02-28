@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--报警主机Group-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center|left"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_ip"
+
+        android:layout_toRightOf="@+id/iv_image"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="192.168.1.1"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            tools:text="签到时间：201708-02"
+            android:textColor="#FF000000"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+
+        android:layout_below="@+id/ll_ip"
+        android:layout_toRightOf="@+id/iv_image"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="签到地点"
+            android:textColor="#FF000000"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            tools:text="192.168.1.1"
+            android:textColor="#FF000000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -28,18 +28,8 @@
 
         </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
 
-        <TextView
-            android:id="@+id/tv_empty"
-            tools:visibility="visible"
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/txt_empty"/>
+        <include layout="@layout/include_empty_data"/>
 
     </FrameLayout>
-
-
 
 </LinearLayout>

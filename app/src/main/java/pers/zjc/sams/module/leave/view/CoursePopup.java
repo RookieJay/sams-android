@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.leave.view;
 
 import android.content.Context;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -42,6 +43,7 @@ public class CoursePopup extends BasePopupWindow  implements CourseAdapter.ItemC
         View view = createPopupById(R.layout.popup_choose_course);
         mRecyclerView = view.findViewById(R.id.mRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         adapter = new CourseAdapter(getContext(), this);
         mRecyclerView.setAdapter(adapter);
         return view;

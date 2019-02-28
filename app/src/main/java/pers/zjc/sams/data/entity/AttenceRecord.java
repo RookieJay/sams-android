@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class AttenceRecord implements Parcelable {
-    private Integer attenceId;
+    private String attenceId;
 
     private Integer status;
 
@@ -14,19 +14,21 @@ public class AttenceRecord implements Parcelable {
 
     private Integer courseId;
 
-    private String courseName;
-
     private String operator;
 
     private Date createTime;
 
     private Date updateTime;
 
-    public Integer getAttenceId() {
+    private String courseName;
+
+    private String stuName;
+
+    public String getAttenceId() {
         return attenceId;
     }
 
-    public void setAttenceId(Integer attenceId) {
+    public void setAttenceId(String attenceId) {
         this.attenceId = attenceId;
     }
 
@@ -86,6 +88,17 @@ public class AttenceRecord implements Parcelable {
         this.updateTime = updateTime;
     }
 
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName;
+    }
+
+    public AttenceRecord() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -100,13 +113,12 @@ public class AttenceRecord implements Parcelable {
         dest.writeString(this.operator);
         dest.writeLong(this.createTime != null ? this.createTime.getTime() : -1);
         dest.writeLong(this.updateTime != null ? this.updateTime.getTime() : -1);
-    }
-
-    public AttenceRecord() {
+        dest.writeString(this.courseName);
+        dest.writeString(this.stuName);
     }
 
     protected AttenceRecord(Parcel in) {
-        this.attenceId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.attenceId = in.readString();
         this.status = (Integer) in.readValue(Integer.class.getClassLoader());
         this.stuId = (Integer) in.readValue(Integer.class.getClassLoader());
         this.courseId = (Integer) in.readValue(Integer.class.getClassLoader());
@@ -115,9 +127,11 @@ public class AttenceRecord implements Parcelable {
         this.createTime = tmpCreateTime == -1 ? null : new Date(tmpCreateTime);
         long tmpUpdateTime = in.readLong();
         this.updateTime = tmpUpdateTime == -1 ? null : new Date(tmpUpdateTime);
+        this.courseName = in.readString();
+        this.stuName = in.readString();
     }
 
-    public static final Parcelable.Creator<AttenceRecord> CREATOR = new Parcelable.Creator<AttenceRecord>() {
+    public static final Creator<AttenceRecord> CREATOR = new Creator<AttenceRecord>() {
         @Override
         public AttenceRecord createFromParcel(Parcel source) {
             return new AttenceRecord(source);

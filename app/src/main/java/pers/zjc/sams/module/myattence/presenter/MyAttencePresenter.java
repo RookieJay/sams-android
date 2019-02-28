@@ -38,11 +38,14 @@ public class MyAttencePresenter implements MyAttenceContract.Presenter {
                 if (result != null && result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                     if (result.getData() != null) {
                         List<AttenceRecord> records = result.getData().getRecords();
-                        if (records == null) {
+                        if (records.size() == 0) {
                             view.showEmpty();
+                        } else {
+                            view.hideEmpty();
+                            view.showMessage("数据加载成功");
+                            view.resetData(records);
                         }
-                        view.showMessage("数据加载成功");
-                        view.resetData(records);
+
                         view.finishRefresh();
                     }
                 } else {

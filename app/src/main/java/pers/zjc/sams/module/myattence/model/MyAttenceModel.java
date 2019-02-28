@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.myattence.model;
 
 import com.zp.android.zlib.http.HttpParam;
+import com.zp.android.zlib.utils.TimeUtils;
 
 import javax.inject.Inject;
 
@@ -23,7 +24,9 @@ public class MyAttenceModel implements MyAttenceContract.Model {
 
     public Result<AttenceRecordsWrapper> getRecords() {
         HttpParam.Factory factory = new HttpParam.Factory()
-                .add("stuId", appConfig.getUserId());
+                .add("stuId", appConfig.getUserId())
+                .add("createTime", TimeUtils.getTodayStart())
+                .add("updateTime", TimeUtils.getTodayEnd());
         return apiService.getMultiCondRecord(factory.create());
     }
 

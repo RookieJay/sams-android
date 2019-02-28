@@ -17,6 +17,8 @@ public class Approval {
 
     private Date time;
 
+    private String teacName;
+
     public String getId() {
         return id;
     }
@@ -57,14 +59,11 @@ public class Approval {
         this.time = time;
     }
 
-    @Override
-    public String toString() {
-        return "Approval{" +
-                "id='" + id + '\'' +
-                ", tId=" + tId +
-                ", signId=" + signId +
-                ", status=" + status +
-                ", time=" + time +
-                '}';
+    public String getTeacName() {
+        return teacName;
+    }
+
+    public void setTeacName(String teacName) {
+        this.teacName = teacName;
     }
 }

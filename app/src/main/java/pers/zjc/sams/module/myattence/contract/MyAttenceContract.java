@@ -25,6 +25,8 @@ public interface MyAttenceContract {
         void showNetworkErro();
 
         void showEmpty();
+
+        void hideEmpty();
     }
 
     interface Presenter extends BasePresenter<MainContract.View, Model> {

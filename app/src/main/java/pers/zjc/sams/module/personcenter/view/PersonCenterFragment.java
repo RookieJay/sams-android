@@ -79,7 +79,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     }
 
     private void initView() {
-        barTitle.setText("我的考勤");
+        barTitle.setText("个人中心");
         tvCacheSize.setOnClickListener(this);
         tvUser.setText(appConfig.getUserName());
         btExit.setOnClickListener(this);

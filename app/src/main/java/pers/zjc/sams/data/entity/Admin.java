@@ -3,7 +3,7 @@ package pers.zjc.sams.data.entity;
 public class Admin {
     private Integer adminId;
 
-    private String name;
+    private String aName;
 
     public Integer getAdminId() {
         return adminId;
@@ -14,10 +14,10 @@ public class Admin {
     }
 
     public String getName() {
-        return name;
+        return aName;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.aName = name == null ? null : name.trim();
     }
 }

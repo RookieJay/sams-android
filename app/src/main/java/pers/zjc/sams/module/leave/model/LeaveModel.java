@@ -1,6 +1,5 @@
 package pers.zjc.sams.module.leave.model;
 
-import com.google.gson.JsonObject;
 import com.zp.android.zlib.http.HttpParam;
 
 import javax.inject.Inject;

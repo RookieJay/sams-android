@@ -31,6 +31,7 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Course;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.module.leave.DaggerLeaveComponent;
@@ -83,6 +84,8 @@ public class LeaveFragment extends BaseFragment implements LeaveContract.View, V
     EditText etReason;
     @BindView(R.id.tv_submit)
     TextView tvSubmit;
+    @BindView(R.id.iv_history)
+    ImageView ivHistory;
 
     private TimePickerView pvTime;
 
@@ -119,6 +122,7 @@ public class LeaveFragment extends BaseFragment implements LeaveContract.View, V
         rlBeginTime.setOnClickListener(this);
         rlEndTime.setOnClickListener(this);
         tvSubmit.setOnClickListener(this);
+        ivHistory.setOnClickListener(this);
         initTimePicker();
     }
 
@@ -168,9 +172,16 @@ public class LeaveFragment extends BaseFragment implements LeaveContract.View, V
                 commitLeave.setStuId(Integer.valueOf(appConfig.getUserId()));
                 presenter.commit(commitLeave);
                 break;
+            case R.id.iv_history:
+                switchToLeaveListFragment();
+                break;
             default:
                 break;
         }
+    }
+
+    private void switchToLeaveListFragment() {
+        ScmpUtils.startWindow(getContext(), LeaveListFragment.class.getName());
     }
 
     private void initTimePicker() {

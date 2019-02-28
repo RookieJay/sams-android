@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.http.Param;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -49,6 +51,8 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     TextView barTitle;
     @BindView(R.id.mRefeshLayout)
     SwipyRefreshLayout mRefeshLayout;
+    @BindView(R.id.iv_empty)
+    ImageView ivEmpty;
 
     private Unbinder unbinder;
 
@@ -108,10 +112,26 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (attenceAdapter.getData()!=null && attenceAdapter.getData().size() > 0) {
+                    attenceAdapter.clear();
+                    attenceAdapter.notifyDataSetChanged();
+                }
                 tvEmpty.setVisibility(View.VISIBLE);
+                ivEmpty.setVisibility(View.VISIBLE);
+                showShortToast(getResources().getString(R.string.txt_empty));
             }
         });
+    }
 
+    @Override
+    public void hideEmpty() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvEmpty.setVisibility(View.GONE);
+                ivEmpty.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

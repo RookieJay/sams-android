@@ -1,11 +1,14 @@
 package pers.zjc.sams.data.entity;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.zp.android.zlib.utils.TimeUtils;
 
 import java.util.Date;
 
-public class Leave {
+public class Leave implements Parcelable {
     private String id;
 
     private Integer stuId;
@@ -19,6 +22,11 @@ public class Leave {
     private Integer courseId;
 
     private Integer status;
+
+    private String courseName;
+
+    private String stuName;
+
 
     public String getId() {
         return id;
@@ -75,4 +83,67 @@ public class Leave {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeValue(this.stuId);
+        dest.writeString(this.reason);
+        dest.writeLong(this.beginTime != null ? this.beginTime.getTime() : -1);
+        dest.writeLong(this.endTime != null ? this.endTime.getTime() : -1);
+        dest.writeValue(this.courseId);
+        dest.writeValue(this.status);
+        dest.writeString(this.courseName);
+        dest.writeString(this.stuName);
+    }
+
+    public Leave() {
+    }
+
+    protected Leave(Parcel in) {
+        this.id = in.readString();
+        this.stuId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.reason = in.readString();
+        long tmpBeginTime = in.readLong();
+        this.beginTime = tmpBeginTime == -1 ? null : new Date(tmpBeginTime);
+        long tmpEndTime = in.readLong();
+        this.endTime = tmpEndTime == -1 ? null : new Date(tmpEndTime);
+        this.courseId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.status = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.courseName = in.readString();
+        this.stuName = in.readString();
+    }
+
+    public static final Parcelable.Creator<Leave> CREATOR = new Parcelable.Creator<Leave>() {
+        @Override
+        public Leave createFromParcel(Parcel source) {
+            return new Leave(source);
+        }
+
+        @Override
+        public Leave[] newArray(int size) {
+            return new Leave[size];
+        }
+    };
 }

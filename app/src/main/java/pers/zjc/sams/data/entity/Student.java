@@ -11,7 +11,7 @@ public class Student {
 
     private String idCard;
 
-    private String name;
+    private String sName;
 
     private String email;
 
@@ -56,11 +56,11 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return sName;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.sName = name == null ? null : name.trim();
     }
 
     public String getEmail() {
