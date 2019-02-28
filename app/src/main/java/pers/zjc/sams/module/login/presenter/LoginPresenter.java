@@ -56,7 +56,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                                 records = new ArrayList<>();
                             }
                             EventBus.getDefault().post(records);
-                            mView.swithToMainFragment(records);
+                            mView.swithToMainFragment(records, result.getData().getRole());
                         }
                         mView.showMessage(result.getMessage());
 

@@ -163,14 +163,14 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     }
 
     @Override
-    public void swithToMainFragment(List<AttenceRecord> records) {
+    public void swithToMainFragment(List<AttenceRecord> records, String role) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (isAdded()) {
                     MainActivity activity;
                     if (null != (activity = (MainActivity)getActivity())) {
-                        activity.switchToMainFragment(records);
+                        activity.switchToMainFragment(records, role);
                     }
                 }
             }

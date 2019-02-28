@@ -23,7 +23,7 @@ public interface LoginContract {
 
         void showMessage(String msg);
 
-        void swithToMainFragment(List<AttenceRecord> records);
+        void swithToMainFragment(List<AttenceRecord> records, String role);
 
         void showNetWorkErroMessage();
 

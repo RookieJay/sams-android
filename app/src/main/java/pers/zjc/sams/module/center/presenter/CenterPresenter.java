@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.data.entity.FunctionInfo;
 import pers.zjc.sams.module.approval.ApprovalFragment;
 import pers.zjc.sams.module.center.contract.CenterContract;
@@ -16,6 +17,8 @@ public class CenterPresenter implements CenterContract.Presenter {
 
     private CenterContract.View view;
     private List<FunctionInfo> functions = new ArrayList<>();
+    @Inject
+    AppConfig appConfig;
 
     @Inject
     CenterPresenter(CenterContract.View view) {
@@ -23,14 +26,53 @@ public class CenterPresenter implements CenterContract.Presenter {
     }
 
     @Override
-    public void loadData() {
+    public void loadCenterData() {
         initFunctions();
         view.showData(functions);
     }
 
     private void initFunctions() {
-        functions.add(new FunctionInfo("签到", R.drawable.icon_function_sign, SignFragment.class.getName()));
-        functions.add(new FunctionInfo("请假", R.drawable.icon_function_leaving, LeaveFragment.class.getName()));
-        functions.add(new FunctionInfo("审批", R.drawable.icon_function_approval, ApprovalFragment.class.getName()));
+        switch (appConfig.getRole()) {
+            case "0":
+                functions.add(new FunctionInfo("用户信息", R.drawable.icon_function_user_manage, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("设备管理", R.drawable.icon_function_device_manage, SignFragment.class.getName()));
+//                functions.add(new FunctionInfo("公告管理", R.drawable.icon_function_sign, SignFragment.class.getName()));
+                break;
+            case "1":
+                functions.add(new FunctionInfo("签到", R.drawable.icon_function_sign, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("请假", R.drawable.icon_function_leaving, LeaveFragment.class.getName()));
+                functions.add(new FunctionInfo("课程", R.drawable.icon_function_course, LeaveFragment.class.getName()));
+                break;
+            case "2":
+                functions.add(new FunctionInfo("点到", R.drawable.icon_function_check, ApprovalFragment.class.getName()));
+                functions.add(new FunctionInfo("审批", R.drawable.icon_function_approval, ApprovalFragment.class.getName()));
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void loadSatisticsData() {
+        switch (appConfig.getRole()) {
+            case "0":
+                functions.add(new FunctionInfo("课程信息", R.drawable.icon_function_device_manage, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("签到信息", R.drawable.icon_function_user_manage, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("请假信息", R.drawable.icon_function_device_manage, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("设备信息", R.drawable.icon_function_device_manage, SignFragment.class.getName()));
+//                functions.add(new FunctionInfo("公告管理", R.drawable.icon_function_sign, SignFragment.class.getName()));
+                break;
+            case "1":
+                functions.add(new FunctionInfo("签到统计", R.drawable.icon_function_sign, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("请假统计", R.drawable.icon_function_leaving, LeaveFragment.class.getName()));
+//                functions.add(new FunctionInfo("课程", R.drawable.icon_function_course, LeaveFragment.class.getName()));
+                break;
+            case "2":
+                functions.add(new FunctionInfo("点到", R.drawable.icon_function_check, ApprovalFragment.class.getName()));
+                functions.add(new FunctionInfo("审批", R.drawable.icon_function_approval, ApprovalFragment.class.getName()));
+                break;
+            default:
+                break;
+        }
     }
 }

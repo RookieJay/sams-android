@@ -13,6 +13,8 @@ public interface CenterContract {
     }
 
     interface Presenter {
-        void loadData();
+        void loadCenterData();
+
+        void loadSatisticsData();
     }
 }

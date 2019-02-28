@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
 
@@ -35,6 +36,8 @@ public class CenterFragment extends BaseFragment implements CenterContract.View,
 
     @BindView(R.id.mRecyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private CenterAdapter adapter;
     private Unbinder unbinder;
@@ -61,7 +64,21 @@ public class CenterFragment extends BaseFragment implements CenterContract.View,
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
-        presenter.loadData();
+        Bundle args = getArguments();
+        String type = args.getString("type", "0");
+        switch (type) {
+            case "1":
+                tvTitle.setText("应用中心");
+                presenter.loadCenterData();
+                break;
+            case "2":
+                tvTitle.setText("统计分析");
+                presenter.loadSatisticsData();
+                break;
+            default:
+                break;
+        }
+
     }
 
 
