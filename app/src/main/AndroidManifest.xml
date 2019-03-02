@@ -76,7 +76,7 @@
         </activity>
         <activity android:name=".module.face.DetecterActivity">
         </activity>
-        <activity android:name=".module.face.MainActivity">
+        <activity android:name=".module.face.FaceMainActivity">
         </activity>
         <service
             android:name="com.baidu.location.f"

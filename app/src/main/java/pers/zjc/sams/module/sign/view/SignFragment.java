@@ -448,6 +448,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 txtSign.setText(getResources().getString(R.string.txt_unsigned));
                 tvSignTime.setVisibility(View.VISIBLE);
                 isSigned = false;
+
             }
         });
     }

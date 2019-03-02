@@ -83,6 +83,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         tvCacheSize.setOnClickListener(this);
         tvUser.setText(appConfig.getUserName());
         btExit.setOnClickListener(this);
+        rlModifyPwd.setOnClickListener(this);
     }
 
     private void initData() {
@@ -120,7 +121,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     }
 
     private void switchToMidifyFragment() {
-
+        ScmpUtils.startWindow(getContext(), ModifyPwdFragment.class.getName());
     }
 
     @Override

@@ -1,13 +1,21 @@
 package pers.zjc.sams.module.main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.zp.android.zlib.base.BaseActivity;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +38,22 @@ public class MainActivity extends BaseActivity<MainComponent> {
 
     private FragmentManager fm;
 
+//    private IntentFilter intentFilter;
+//
+//    private NetworkChangeReceiver networkChangeReceiver;
+
+    private static final String action = "android.net.wifi.WIFI_STATE_CHANGED";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        intentFilter = new IntentFilter();
+//        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+////        intentFilter.addAction(action);
+//        networkChangeReceiver = new NetworkChangeReceiver();
+//        registerReceiver(networkChangeReceiver, intentFilter);
+
         fm = getSupportFragmentManager();
         appConfig.load();
         switchToSplashFragment();
@@ -126,4 +146,49 @@ public class MainActivity extends BaseActivity<MainComponent> {
         }
         return true;
     }
-}
+
+//    class NetworkChangeReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            ConnectivityManager connectionManager = (ConnectivityManager)
+//                    getSystemService(Context.CONNECTIVITY_SERVICE);
+//            NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
+//            if (networkInfo != null && networkInfo.isAvailable()) {
+////                Toast.makeText(context, "network is available",
+////                        Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(context, "网络异常，请检查网络状态",
+//                        Toast.LENGTH_SHORT).show();
+            }
+//            if (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(intent.getAction())) {
+//                //获取当前的wifi状态int类型数据
+//                int mWifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0);
+//                switch (mWifiState) {
+//                    case WifiManager.WIFI_STATE_ENABLED:
+//                        ToastUtils.showShort("已打开");
+//                        //已打开
+//                        break;
+//                    case WifiManager.WIFI_STATE_ENABLING:
+//                        ToastUtils.showShort("打开中");
+//                        //打开中
+//                        break;
+//                    case WifiManager.WIFI_STATE_DISABLED:
+//                        ToastUtils.showShort("已关闭");
+//                        //已关闭
+//                        break;
+//                    case WifiManager.WIFI_STATE_DISABLING:
+//                        ToastUtils.showShort("关闭中");
+//                        //关闭中
+//                        break;
+//                    case WifiManager.WIFI_STATE_UNKNOWN:
+//                        ToastUtils.showShort("未知");
+//                        //未知
+//                        break;
+//                }
+//
+//            }
+//        }
+
+//    }
+//}

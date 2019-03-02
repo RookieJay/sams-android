@@ -13,6 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import pers.zjc.sams.app.SamsApplication;
+
 /**
  * Created by gqj3375 on 2017/2/24.
  */
@@ -85,13 +87,13 @@ public class PermissionAcitivity extends Activity {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					Application app = (Application) PermissionAcitivity.this.getApplicationContext();
+					SamsApplication app = SamsApplication.get();
 					app.mFaceDB.loadFaces();
 					PermissionAcitivity.this.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							mProgressDialog.cancel();
-							Intent intent = new Intent(PermissionAcitivity.this, MainActivity.class);
+							Intent intent = new Intent(PermissionAcitivity.this, FaceMainActivity.class);
 							startActivityForResult(intent, PERMISSION_REQ);
 						}
 					});

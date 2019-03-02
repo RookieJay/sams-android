@@ -1,7 +1,12 @@
 package com.zp.android.zlib.base;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.zp.android.zlib.utils.ToastUtils;
 
@@ -26,11 +32,22 @@ public abstract class BaseFragment extends Fragment {
     private boolean isFirstVisible;
     private View rootView;
     private Unbinder unbinder;
+    private IntentFilter intentFilter;
+    private NetworkChangeReceiver networkChangeReceiver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initVariable();
+        initNetWorkStatus();
+    }
+
+    private void initNetWorkStatus() {
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+//        intentFilter.addAction(action);
+        networkChangeReceiver = new NetworkChangeReceiver();
+        getContext().registerReceiver(networkChangeReceiver, intentFilter);
     }
 
     @Override
@@ -289,4 +306,22 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
 //        unbinder.unbind();
     }
+
+    class NetworkChangeReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectionManager = (ConnectivityManager)
+                    getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isAvailable()) {
+//                Toast.makeText(context, "network is available",
+//                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "网络异常，请检查网络状态",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

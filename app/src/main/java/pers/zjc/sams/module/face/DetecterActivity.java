@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 
 /**
  * Created by gqj3375 on 2017/4/28.
@@ -96,7 +97,7 @@ public class DetecterActivity extends Activity implements OnCameraListener, View
 		AFR_FSDKVersion version = new AFR_FSDKVersion();
 		AFR_FSDKEngine engine = new AFR_FSDKEngine();
 		AFR_FSDKFace result = new AFR_FSDKFace();
-		List<FaceDB.FaceRegist> mResgist = ((Application)DetecterActivity.this.getApplicationContext()).mFaceDB.mRegister;
+		List<FaceDB.FaceRegist> mResgist = ((SamsApplication)DetecterActivity.this.getApplicationContext()).mFaceDB.mRegister;
 		List<ASAE_FSDKFace> face1 = new ArrayList<>();
 		List<ASGE_FSDKFace> face2 = new ArrayList<>();
 		

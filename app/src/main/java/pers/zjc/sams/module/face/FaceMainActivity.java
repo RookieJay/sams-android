@@ -21,12 +21,15 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class FaceMainActivity extends Activity implements OnClickListener {
 	private final String TAG = this.getClass().toString();
-
+	//拍摄照片
 	private static final int REQUEST_CODE_IMAGE_CAMERA = 1;
+	//打开图片
 	private static final int REQUEST_CODE_IMAGE_OP = 2;
+	//
 	private static final int REQUEST_CODE_OP = 3;
 
 	/* (non-Javadoc)
@@ -59,7 +62,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		if (requestCode == REQUEST_CODE_IMAGE_OP && resultCode == RESULT_OK) {
 			Uri mPath = data.getData();
 			String file = getPath(mPath);
-			Bitmap bmp = Application.decodeImage(file);
+			Bitmap bmp = SamsApplication.decodeImage(file);
 			if (bmp == null || bmp.getWidth() <= 0 || bmp.getHeight() <= 0 ) {
 				Log.e(TAG, "error");
 			} else {
@@ -75,9 +78,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			String path = bundle.getString("imagePath");
 			Log.i(TAG, "path="+path);
 		} else if (requestCode == REQUEST_CODE_IMAGE_CAMERA && resultCode == RESULT_OK) {
-			Uri mPath = ((Application)(MainActivity.this.getApplicationContext())).getCaptureImage();
+			Uri mPath = ((SamsApplication)(FaceMainActivity.this.getApplicationContext())).getCaptureImage();
 			String file = getPath(mPath);
-			Bitmap bmp = Application.decodeImage(file);
+			Bitmap bmp = SamsApplication.decodeImage(file);
 			startRegister(bmp, file);
 		}
 	}
@@ -87,7 +90,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		int i = paramView.getId();//作为module引入报错:错误: 需要常量表达式,将case换成if
 		if (i == R.id.button2) {
-			if (((Application)getApplicationContext()).mFaceDB.mRegister.isEmpty()) {
+			if (((SamsApplication)getApplicationContext()).mFaceDB.mRegister.isEmpty()) {
 				Toast.makeText(this, "没有注册人脸，请先注册！", Toast.LENGTH_SHORT).show();
 			}
 			else {
@@ -121,12 +124,11 @@ public class MainActivity extends Activity implements OnClickListener {
 																 Uri uri = getContentResolver().insert(
 																		 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
 																		 values);
-																 ((Application)(MainActivity.this.getApplicationContext()))
+																 ((SamsApplication)(FaceMainActivity.this.getApplicationContext()))
 																		 .setCaptureImage(uri);
 																 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 																 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-																	 startActivityForResult(intent,
-																			 REQUEST_CODE_IMAGE_CAMERA);
+																	 startActivityForResult(intent, REQUEST_CODE_IMAGE_CAMERA);
 																 }
 
 																 break;
@@ -272,7 +274,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	 * @param mBitmap
 	 */
 	private void startRegister(Bitmap mBitmap, String file) {
-		Intent it = new Intent(MainActivity.this, RegisterActivity.class);
+		Intent it = new Intent(FaceMainActivity.this, RegisterActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("imagePath", file);
 		it.putExtras(bundle);
@@ -280,7 +282,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private void startDetector(int camera) {
-		Intent it = new Intent(MainActivity.this, DetecterActivity.class);
+		Intent it = new Intent(FaceMainActivity.this, DetecterActivity.class);
 		it.putExtra("Camera", camera);
 		startActivityForResult(it, REQUEST_CODE_OP);
 	}

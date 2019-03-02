@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 
 /**
  * Created by gqj3375 on 2017/4/27.
@@ -91,7 +92,7 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 		mHListView.setOnItemClickListener(mRegisterViewAdapter);
 
 		mUIHandler = new UIHandler();
-		mBitmap = Application.decodeImage(mFilePath);
+		mBitmap = SamsApplication.decodeImage(mFilePath);
 		src.set(0,0,mBitmap.getWidth(),mBitmap.getHeight());
 		mSurfaceView = (SurfaceView)this.findViewById(R.id.surfaceView);
 		mSurfaceView.getHolder().addCallback(this);
@@ -285,7 +286,7 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									((Application)RegisterActivity.this.getApplicationContext()).mFaceDB.addFace(mEditText.getText().toString(), mAFR_FSDKFace, face);
+									((SamsApplication)RegisterActivity.this.getApplicationContext()).mFaceDB.addFace(mEditText.getText().toString(), mAFR_FSDKFace, face);
 									mRegisterViewAdapter.notifyDataSetChanged();
 									dialog.dismiss();
 								}
@@ -330,7 +331,7 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return ((Application)mContext.getApplicationContext()).mFaceDB.mRegister.size();
+			return ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.size();
 		}
 
 		@Override
@@ -359,8 +360,8 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 				convertView.setTag(holder);
 			}
 
-			if (!((Application)mContext.getApplicationContext()).mFaceDB.mRegister.isEmpty()) {
-				FaceDB.FaceRegist face = ((Application) mContext.getApplicationContext()).mFaceDB.mRegister.get(position);
+			if (!((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.isEmpty()) {
+				FaceDB.FaceRegist face = ((SamsApplication) mContext.getApplicationContext()).mFaceDB.mRegister.get(position);
 				holder.tv.setText(face.mName);
 				String keyPath = face.mFaceList.keySet().iterator().next();
                 holder.siv.setImageBitmap(BitmapFactory.decodeFile(keyPath));
@@ -375,9 +376,9 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Log.d("onItemClick", "onItemClick = " + position + "pos=" + mHListView.getScroll());
-			final String name = ((Application)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mName;
-			final int count = ((Application)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList.size();
-			final Map<String, AFR_FSDKFace> face = ((Application)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList;
+			final String name = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mName;
+			final int count = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList.size();
+			final Map<String, AFR_FSDKFace> face = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList;
 			new AlertDialog.Builder(RegisterActivity.this)
 					.setTitle("删除注册名:" + name)
 					.setMessage("包含:" + count + "个注册人脸特征信息")
@@ -386,7 +387,7 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							((Application)mContext.getApplicationContext()).mFaceDB.delete(name);
+							((SamsApplication)mContext.getApplicationContext()).mFaceDB.delete(name);
 							mRegisterViewAdapter.notifyDataSetChanged();
 							dialog.dismiss();
 						}

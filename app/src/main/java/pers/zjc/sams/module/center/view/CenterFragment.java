@@ -78,7 +78,6 @@ public class CenterFragment extends BaseFragment implements CenterContract.View,
             default:
                 break;
         }
-
     }
 
 

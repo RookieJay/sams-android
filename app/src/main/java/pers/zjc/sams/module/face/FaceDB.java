@@ -157,7 +157,7 @@ public class FaceDB {
 
 	public	void addFace(String name, AFR_FSDKFace face, Bitmap faceicon) {
 		try {
-			// save face
+            //upload to server
 			final String keyPath = mDBPath + "/" + System.nanoTime() + ".jpg";
 			File keyFile = new File(keyPath);
 			OutputStream stream = new FileOutputStream(keyFile);
@@ -165,8 +165,6 @@ public class FaceDB {
 				Log.d(TAG, "saved face bitmap to jpg!");
 			}
 			stream.close();
-
-			//upload to server
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -183,6 +181,7 @@ public class FaceDB {
 					break;
 				}
 			}
+
 			if (add) { // not registered.
 				FaceRegist frface = new FaceRegist(name);
 				frface.mFaceList.put(keyPath, face);
@@ -257,14 +256,12 @@ public class FaceDB {
 
 	/**
 	 * 上传文件到服务器
-	 * @param context
-	 * @param uploadUrl     上传服务器地址
 	 * @param oldFilePath       本地文件路径
 	 */
 	public static void uploadLogFile(String oldFilePath){
 		try {
 			String BOUNDARY = "---------------------------7d4a6d158c9"; // 分隔符
-			URL url = new URL("http://192.168.1.127:8080/mall/file/faceUpload");
+			URL url = new URL("http://192.168.1.4:8080/mall/file/faceUpload");
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 
 			// 允许Input、Output，不使用Cache
