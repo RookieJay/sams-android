@@ -305,6 +305,10 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 //        unbinder.unbind();
+        if (getContext() != null && networkChangeReceiver != null) {
+            getContext().unregisterReceiver(networkChangeReceiver);
+        }
+
     }
 
     class NetworkChangeReceiver extends BroadcastReceiver {

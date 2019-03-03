@@ -435,8 +435,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     public void onPopupItemclick(Course data) {
         tvCourse.setText(data.getName());
         courseId = data.getId();
-        //验证本课程是否已签到，待添加
-//        presenter.validate();
         showUnSignedView();
     }
 
@@ -487,11 +485,11 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 navigateTo(bdLocation);
 
             } else if (bdLocation.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
-                // 运营商信息
                 if (bdLocation.hasAltitude()) {// *****如果有海拔高度*****
                     bdLocation.getAltitude();// 单位：米
                 }
-                bdLocation.getOperators();   // 运营商信息
+                // 运营商信息
+                bdLocation.getOperators();
 //                showShortToast("网络定位成功");
                 navigateTo(bdLocation);
 
@@ -512,8 +510,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 @Override
                 public void run() {
                     StringBuilder currentPosition = new StringBuilder();
-                    //注意：百度坐标是先纬度（Lat）再经度（Lng/Lon），其他坐标是先经度再纬度，
-//                    Point point = new Point(location.getLatitude(), location.getLongitude());
                     currentPosition.append("纬度：").append(mCurrentLat)
                             .append("\n");
                     currentPosition.append("经度：").append(mCurrentLon)

@@ -3,6 +3,7 @@ package pers.zjc.sams.module.personcenter.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,21 +49,36 @@ public class ModifyPwdFragment extends BaseFragment implements View.OnClickListe
 
     private void initView() {
         barTitle.setText("修改密码");
+        barRight.setText("提交");
         barRight.setOnClickListener(this);
-        toolbar.setNavigationOnClickListener(this);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (unbinder != null) {
+                    Log.d("onDestroyView: ", "binder is not null");
+                    unbinder.unbind();
+                }
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
+            }
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null) {
+            Log.d("onDestroyView: ", "binder is not null");
+            unbinder.unbind();
+        }
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bar_right:
-
                 String oldPwd = etOldPwd.getText().toString();
                 String newPwd = etNewPwd.getText().toString();
                 String confirmNewPwd = etConfirmNewPwd.getText().toString();
@@ -80,12 +96,6 @@ public class ModifyPwdFragment extends BaseFragment implements View.OnClickListe
                 if (!StringUtils.equals(oldPwd, newPwd)) {
                     showShortToast("两次输入新密码不一致");
                     return;
-                }
-                break;
-            case R.id.toolbar:
-                showShortToast("点击返回");
-                if (getActivity() != null) {
-                    getActivity().finish();
                 }
                 break;
             default:

@@ -77,7 +77,7 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
-        EventBusUtil.register(this);
+//        EventBusUtil.register(this);
         initView();
         loadData();
 
@@ -139,22 +139,22 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLoadData(List<AttenceRecord> records) {
-        Log.d("onLoadData", "EventBus生效");
-        if (records != null && records.size() > 0) {
-            Log.d("records", records.toString());
-            attenceAdapter.addAll(records);
-        } else {
-            showEmpty();
-        }
-    }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onLoadData(List<AttenceRecord> records) {
+//        Log.d("onLoadData", "EventBus生效");
+//        if (records != null && records.size() > 0) {
+//            Log.d("records", records.toString());
+//            attenceAdapter.addAll(records);
+//        } else {
+//            showEmpty();
+//        }
+//    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        EventBusUtil.unregister(this);
+//        EventBusUtil.unregister(this);
     }
 
     @Override
