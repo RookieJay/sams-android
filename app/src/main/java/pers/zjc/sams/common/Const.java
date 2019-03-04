@@ -62,6 +62,7 @@ public interface Const {
         String ACTION_REFORM_HISTORY_FILTER = "com.zp.android.scmp.reform_history_filter";
         String ACTION_AUTH_ERROR = "com.zp.android.scmp.ACTION_AUTH_ERROR";
         String ACTION_MAINT_FILTER = "com.zp.android.scmp.ACTION_MAINT_FILTER";
+        String ACTION_LOGOUT = "pers.zjc.android.sams.logout";
     }
 
     interface UrlConst {

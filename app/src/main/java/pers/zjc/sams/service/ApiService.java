@@ -13,6 +13,7 @@ import pers.zjc.sams.data.datawrapper.UserWrapper;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
+import pers.zjc.sams.data.entity.User;
 
 public interface ApiService {
 
@@ -28,7 +29,7 @@ public interface ApiService {
     @POST("/api/mobile/leaves/askForLeave")
     Result askForLeave(@ParamMap HttpParam param);
 
-    @POST("/api/mobile/courses/list")
+    @POST("/api/mobile/courses/all")
     Result<CoursesWrapper> getCourses();
 
     @POST("/api/mobile/sign")
@@ -39,4 +40,7 @@ public interface ApiService {
 
     @POST("/api/mobile/leaves/individual")
     Result<LeaveWrapper> leaveList(@ParamMap HttpParam param);
+
+    @POST("/api/mobile/users/modify/pwd")
+    Result modifyPwd(@ParamMap  HttpParam param);
 }

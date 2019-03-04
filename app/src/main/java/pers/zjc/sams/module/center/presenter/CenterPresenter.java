@@ -10,7 +10,7 @@ import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.data.entity.FunctionInfo;
 import pers.zjc.sams.module.approval.ApprovalFragment;
 import pers.zjc.sams.module.center.contract.CenterContract;
-import pers.zjc.sams.module.course.CourseFragment;
+import pers.zjc.sams.module.course.view.CourseListFragment;
 import pers.zjc.sams.module.face.CheckFragment;
 import pers.zjc.sams.module.leave.view.LeaveFragment;
 import pers.zjc.sams.module.sign.view.SignFragment;
@@ -43,7 +43,7 @@ public class CenterPresenter implements CenterContract.Presenter {
             case "1":
                 functions.add(new FunctionInfo("签到", R.drawable.icon_function_sign, SignFragment.class.getName()));
                 functions.add(new FunctionInfo("请假", R.drawable.icon_function_leaving, LeaveFragment.class.getName()));
-                functions.add(new FunctionInfo("课程", R.drawable.icon_function_course, CourseFragment.class.getName()));
+                functions.add(new FunctionInfo("课程", R.drawable.icon_function_course, CourseListFragment.class.getName()));
                 break;
             case "2":
                 functions.add(new FunctionInfo("点到", R.drawable.icon_function_check, CheckFragment.class.getName()));

@@ -80,7 +80,6 @@ dependencies {
     implementation project(':calendarLib')
     implementation project(':facelibrary')
     implementation project(':FlycoTabLayout_Lib')
-    implementation project(':lib_face')
     //okhttp
     implementation rootProject.ext.dependencies.okhttp
     //gson

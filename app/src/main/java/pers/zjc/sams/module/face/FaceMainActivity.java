@@ -39,7 +39,7 @@ public class FaceMainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.main_test);
+		this.setContentView(R.layout.activity_face_main);
 		View v = this.findViewById(R.id.button1);
 		v.setOnClickListener(this);
 		v = this.findViewById(R.id.button2);

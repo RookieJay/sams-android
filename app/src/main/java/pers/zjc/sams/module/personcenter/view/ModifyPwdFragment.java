@@ -11,12 +11,19 @@ import android.widget.TextView;
 import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.StringUtils;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.module.personcenter.DaggerModifyPwdComponent;
+import pers.zjc.sams.module.personcenter.ModifyPwdModule;
+import pers.zjc.sams.module.personcenter.contract.ModifyPwdContract;
+import pers.zjc.sams.module.personcenter.presenter.ModifyPwdPresenter;
 
-public class ModifyPwdFragment extends BaseFragment implements View.OnClickListener {
+public class ModifyPwdFragment extends BaseFragment implements ModifyPwdContract.View, View.OnClickListener {
 
 
     @BindView(R.id.bar_title)
@@ -33,12 +40,22 @@ public class ModifyPwdFragment extends BaseFragment implements View.OnClickListe
     EditText etConfirmNewPwd;
     Unbinder unbinder;
 
+    @Inject
+    ModifyPwdPresenter presenter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_modify_pwd;
     }
 
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerModifyPwdComponent.builder().appComponent(SamsApplication.getComponent())
+                                .modifyPwdModule(new ModifyPwdModule(this))
+                                .build()
+                                .inject(this);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -86,20 +103,41 @@ public class ModifyPwdFragment extends BaseFragment implements View.OnClickListe
                     showShortToast("请输入旧密码");
                     return;
                 }
-                if (StringUtils.isEmpty(oldPwd)) {
+                if (StringUtils.isEmpty(newPwd)) {
                     showShortToast("请输入新密码");
                     return;
                 }
                 if (StringUtils.isEmpty(confirmNewPwd)) {
                     showShortToast("请再次输入新密码");
                 }
-                if (!StringUtils.equals(oldPwd, newPwd)) {
+                if (!StringUtils.equals(newPwd, confirmNewPwd)) {
                     showShortToast("两次输入新密码不一致");
                     return;
                 }
+                presenter.commit(oldPwd, newPwd);
+                break;
+            case R.id.btn_back:
+                back();
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void showMessage(String message) {
+        showShortToast(message);
+    }
+
+    @Override
+    public void showNetWorkErro() {
+        showShortToast(getResources().getString(R.string.toast_fail_to_connect_server));
+    }
+
+    @Override
+    public void back() {
+        if (getActivity() != null) {
+            getActivity().finish();
         }
     }
 }

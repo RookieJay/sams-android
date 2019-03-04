@@ -1,6 +1,10 @@
 package pers.zjc.sams.module.personcenter.view;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +26,7 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.module.main.MainActivity;
 import pers.zjc.sams.module.personcenter.DaggerPersonCenterComponent;
@@ -54,11 +59,26 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     TextView btExit;
 
     private Unbinder unbinder;
+    private BroadcastReceiver receiver;
 
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_personcenter;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Const.Actions.ACTION_LOGOUT)) {
+                    switchToLoginFragment();
+                }
+            }
+        };
+        context.registerReceiver(receiver, new IntentFilter(Const.Actions.ACTION_LOGOUT));
     }
 
     @Override
@@ -76,6 +96,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         unbinder = ButterKnife.bind(this, getView());
         initView();
         initData();
+
     }
 
     private void initView() {
@@ -130,15 +151,19 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 getString(R.string.dialog_title),
                 getString(R.string.dialog_exit_login), ContextCompat.getColor(getContext(),R.color.c32d6af),
                 (dialog, which) -> {
-                    if (isAdded()) {
-                        MainActivity activity;
-                        if (null != (activity = (MainActivity)getActivity())) {
-                            activity.switchToLoginFragment();
-                        }
-                    }
+                    switchToLoginFragment();
                 }, null);
         builder.show();
 
+    }
+
+    private void switchToLoginFragment() {
+        if (isAdded()) {
+            MainActivity activity;
+            if (null != (activity = (MainActivity)getActivity())) {
+                activity.switchToLoginFragment();
+            }
+        }
     }
 
     @Override
