@@ -9,7 +9,6 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
         android:layout_margin="10dp"
         app:contentPadding="10dp"
         app:cardCornerRadius="15dp">
@@ -25,6 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="课程名称："
+                    android:text="课程名称："
                     android:ellipsize="end"
                     android:textSize="15sp"
                     android:textColor="@color/colorAccent"/>
@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="上课时间："
+                    android:text="上课时间："
                     android:ellipsize="end"
                     android:textSize="15sp"
                     android:textColor="@color/colorAccent"/>
@@ -67,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="下课时间："
+                    android:text="下课时间："
                     android:ellipsize="end"
                     android:textSize="15sp"
                     android:textColor="@color/colorAccent"/>
@@ -87,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="上课地点："
+                    android:text="上课地点："
                     android:ellipsize="end"
                     android:textSize="15sp"
                     android:textColor="@color/colorAccent"/>
@@ -99,8 +102,6 @@
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"/>
             </LinearLayout>
-
-
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
