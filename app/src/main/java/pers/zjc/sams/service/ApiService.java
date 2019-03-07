@@ -43,4 +43,7 @@ public interface ApiService {
 
     @POST("/api/mobile/users/modify/pwd")
     Result modifyPwd(@ParamMap  HttpParam param);
+
+    @POST("/api/mobile/users/register")
+    Result regiser(@ParamMap HttpParam httpParam);
 }

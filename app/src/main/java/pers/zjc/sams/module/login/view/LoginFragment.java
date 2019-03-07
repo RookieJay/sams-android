@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.KeyboardUtils;
 import com.zp.android.zlib.utils.StringUtils;
+import com.zp.android.zlib.utils.ToastUtils;
 
 import java.util.List;
 
@@ -26,12 +27,14 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.AttenceRecord;
 import pers.zjc.sams.module.login.DaggerLoginComponent;
 import pers.zjc.sams.module.login.LoginModule;
 import pers.zjc.sams.module.login.contract.LoginContract;
 import pers.zjc.sams.module.login.presenter.LoginPresenter;
 import pers.zjc.sams.module.main.MainActivity;
+import pers.zjc.sams.module.register.view.RegisterFragment;
 
 public class LoginFragment extends BaseFragment implements LoginContract.View, View.OnClickListener {
 
@@ -47,6 +50,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     Button mBtLogin;
 //    @BindView(R.id.offline_login)
 //    Button mBtOfflineLogin;
+    @BindView(R.id.tv_to_register)
+    TextView tvToRegister;
 
     @Inject
     LoginPresenter mPresenter;
@@ -125,6 +130,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
                 }
             }
         });
+        mTvForgetPwd.setOnClickListener(this);
+        tvToRegister.setOnClickListener(this);
     }
 
     @Override
@@ -151,6 +158,12 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
                     return;
                 }
                 mPresenter.login(account, pwd, isRemember);
+                break;
+            case R.id.tv_forget_pwd:
+                showShortToast("请联系辅导员重置密码");
+                break;
+            case R.id.tv_to_register:
+                ScmpUtils.startWindow(getContext(), RegisterFragment.class.getName());
                 break;
             default:
                 break;

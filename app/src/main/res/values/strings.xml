@@ -187,6 +187,7 @@
     </string>
     <string name="rem_pwd">记住密码</string>
     <string name="txt_forget_pwd">忘记密码？</string>
+    <string name="txt_to_register">去注册></string>
 
     <!--个人中心-->
     <string name="txt_role">学生</string>
@@ -203,4 +204,8 @@
     <!--签到-->
     <string name="txt_unsigned">签到</string>
     <string name="txt_signed">已签到</string>
+
+    <!--注册-->
+    <string name="txt_user_role">用户角色</string>
+    <string name="txt_choose_role">请选择角色</string>
 </resources>

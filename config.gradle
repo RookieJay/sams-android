@@ -92,9 +92,11 @@ def getBaseUrlValue() {
         return baseurl
     } else {
         // 外网
-         return 'http://zhoujuncai.vicp.io:10152/sams'
+//         return 'http://zhoujuncai.vicp.io:10152/sams'
         // 内网
 //        return 'http://192.168.1.3:8080/sams'
+        //本机
+        return 'http://127.0.0.1:8080/sams'
     }
 }
 

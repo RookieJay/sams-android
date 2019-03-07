@@ -1,5 +1,6 @@
 package pers.zjc.sams.module.splash;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -11,21 +12,30 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.EncryptUtils;
+import com.zp.android.zlib.utils.PhoneUtils;
 
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.RuntimePermissions;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.module.main.MainActivity;
 
+@RuntimePermissions
 public class SplashFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
@@ -122,6 +132,12 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
+
+    @OnPermissionDenied(
+            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
+    @OnNeverAskAgain(
+            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
+
 
     @Override
     public void onDestroyView() {

@@ -24,6 +24,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Created by gqj3375 on 2017/7/11.
  */
@@ -259,55 +270,103 @@ public class FaceDB {
 	 * @param oldFilePath       本地文件路径
 	 */
 	public static void uploadLogFile(String oldFilePath){
-		try {
-			String BOUNDARY = "---------------------------7d4a6d158c9"; // 分隔符
-			URL url = new URL("http://192.168.1.4:8080/mall/file/faceUpload");
-			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+//		try {
+//			String BOUNDARY = "---------------------------7d4a6d158c9"; // 分隔符
+//			URL url = new URL("http://192.168.1.4:8080/mall/file/faceUpload");
+//			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+//
+//			// 允许Input、Output，不使用Cache
+//			con.setDoInput(true);
+//			con.setDoOutput(true);
+//			con.setUseCaches(false);
+//
+//			con.setConnectTimeout(50000);
+//			con.setReadTimeout(50000);
+//			// 设置传送的method=POST
+//			con.setRequestMethod("POST");
+//			//在一次TCP连接中可以持续发送多份数据而不会断开连接
+//			con.setRequestProperty("Connection", "Keep-Alive");
+//			//设置编码
+//			con.setRequestProperty("Charset", "UTF-8");
+//			//text/plain能上传纯文本文件的编码格式
+//			con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + BOUNDARY);
+//
+//			// 设置DataOutputStream
+//			DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+//
+//			// 取得文件的FileInputStream
+//			FileInputStream fStream = new FileInputStream(oldFilePath);
+//			// 设置每次写入1024bytes
+//			int bufferSize = 1024;
+//			byte[] buffer = new byte[bufferSize];
+//
+//			int length = -1;
+//			// 从文件读取数据至缓冲区
+//			while ((length = fStream.read(buffer)) != -1) {
+//				// 将资料写入DataOutputStream中
+//				ds.write(buffer, 0, length);
+//				ds.writeChars("file");
+//			}
+//			ds.flush();
+//			fStream.close();
+//			ds.close();
+//			if(con.getResponseCode() == 200){
+//				Log.d("FaceDB","文件上传成功！上传文件为：" + oldFilePath);
+//			} else {
+//				Log.d("code", String.valueOf(con.getResponseCode()));
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			Log.d("FaceDB","文件上传失败！上传文件为：" + oldFilePath);
+//			Log.d("FaceDB", "报错信息toString：" + e.toString());
+//		}
 
-			// 允许Input、Output，不使用Cache
-			con.setDoInput(true);
-			con.setDoOutput(true);
-			con.setUseCaches(false);
+        OkHttpClient client = new OkHttpClient();
 
-			con.setConnectTimeout(50000);
-			con.setReadTimeout(50000);
-			// 设置传送的method=POST
-			con.setRequestMethod("POST");
-			//在一次TCP连接中可以持续发送多份数据而不会断开连接
-			con.setRequestProperty("Connection", "Keep-Alive");
-			//设置编码
-			con.setRequestProperty("Charset", "UTF-8");
-			//text/plain能上传纯文本文件的编码格式
-			con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + BOUNDARY);
+		//一种：参数请求体
+		FormBody paramsBody=new FormBody.Builder()
+				.add("stuId","10010001")
+				.build();
 
-			// 设置DataOutputStream
-			DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+		//二种：文件请求体  application/octet-stream    /data/data/com.example.company/files/plan/plans.xml
+		MediaType type=MediaType.parse("application/octet-stream");//"text/xml;charset=utf-8"
+		File file=new File(oldFilePath);
+		RequestBody fileBody=RequestBody.create(type,file);
 
-			// 取得文件的FileInputStream
-			FileInputStream fStream = new FileInputStream(oldFilePath);
-			// 设置每次写入1024bytes
-			int bufferSize = 1024;
-			byte[] buffer = new byte[bufferSize];
 
-			int length = -1;
-			// 从文件读取数据至缓冲区
-			while ((length = fStream.read(buffer)) != -1) {
-				// 将资料写入DataOutputStream中
-				ds.write(buffer, 0, length);
-				ds.writeChars("file");
-			}
-			ds.flush();
-			fStream.close();
-			ds.close();
-			if(con.getResponseCode() == 200){
-				Log.d("FaceDB","文件上传成功！上传文件为：" + oldFilePath);
-			} else {
-				Log.d("code", String.valueOf(con.getResponseCode()));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			Log.d("FaceDB","文件上传失败！上传文件为：" + oldFilePath);
-			Log.d("FaceDB", "报错信息toString：" + e.toString());
-		}
+		//三种：混合参数和文件请求
+		RequestBody multipartBody = new MultipartBody.Builder()
+				.setType(MultipartBody.ALTERNATIVE)
+				.addPart(Headers.of(
+						"Content-Disposition",
+						"form-data; name=\"params\"")
+						,paramsBody)
+				.addPart(Headers.of(
+						"Content-Disposition",
+						"form-data; name=\"file\"; filename=\"plans.xml\"")
+						, fileBody)
+                .build();
+
+        Request request=new Request.Builder().url("http://localhost:8080/sams/api/mobile/face/upload")
+                                             .addHeader("User-Agent","android")
+                                             .header("Content-Type","text/html; charset=utf-8;")
+                                             .post(fileBody)//传参数、文件或者混合，改一下就行请求体就行
+                                             .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                Log.i("xxx","1、连接的消息"+response.message());
+                if(response.isSuccessful()){
+                    String body = response.body() != null ? response.body().string() : null;
+                    Log.i("xxx","2、连接成功获取的内容"+ body);
+                }
+            }
+        });
 	}
 }
