@@ -20,9 +20,9 @@ public class RegisterModel implements RegisterContract.Model {
     @Override
     public Result register(User user, String deviceId) {
         HttpParam.Factory factory = new HttpParam.Factory()
-                .add("deviceId", deviceId)
                 .add("account", user.getAccount())
-                .add("password", user.getPassword());
-        return apiService.regiser(factory.create());
+                .add("password", user.getPassword())
+                .add("role", String.valueOf(user.getRole()));
+        return apiService.register(factory.create(), Integer.valueOf(deviceId));
     }
 }

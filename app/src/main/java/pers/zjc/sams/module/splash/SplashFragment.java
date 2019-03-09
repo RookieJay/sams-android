@@ -35,7 +35,7 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.module.main.MainActivity;
 
-@RuntimePermissions
+//@RuntimePermissions
 public class SplashFragment extends BaseFragment implements View.OnClickListener {
 
     @Override

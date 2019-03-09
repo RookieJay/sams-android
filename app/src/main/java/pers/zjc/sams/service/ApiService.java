@@ -10,15 +10,12 @@ import pers.zjc.sams.data.datawrapper.CoursesWrapper;
 import pers.zjc.sams.data.datawrapper.LeaveWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
-import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
-import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.data.entity.User;
 
 public interface ApiService {
 
     @POST("/api/mobile/login")
-    Result<UserWrapper> login(@ParamMap HttpParam param);
+    Result<UserWrapper> login(@ParamMap HttpParam param, @Param("deviceId") String deviceId);
 
     @POST("/test/1")
     Result<?> test();
@@ -45,5 +42,5 @@ public interface ApiService {
     Result modifyPwd(@ParamMap  HttpParam param);
 
     @POST("/api/mobile/users/register")
-    Result regiser(@ParamMap HttpParam httpParam);
+    Result register(@ParamMap HttpParam httpParam, @Param("deviceId") String deviceId);
 }

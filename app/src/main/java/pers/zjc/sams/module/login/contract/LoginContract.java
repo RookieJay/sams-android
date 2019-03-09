@@ -12,7 +12,7 @@ import pers.zjc.sams.data.entity.Result;
 public interface LoginContract {
 
     interface Model extends BaseModel {
-        Result<?> login(String account, String pwd);
+        Result<?> login(String account, String pwd, String imei);
     }
 
     interface View extends BaseView<Presenter> {

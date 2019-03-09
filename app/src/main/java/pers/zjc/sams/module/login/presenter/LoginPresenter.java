@@ -1,5 +1,9 @@
 package pers.zjc.sams.module.login.presenter;
 
+import android.annotation.SuppressLint;
+
+import com.zp.android.zlib.utils.PhoneUtils;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
@@ -46,7 +50,14 @@ public class LoginPresenter implements LoginContract.Presenter {
             public void run() {
                 mView.showProgress();
                 appConfig.setRemember(isRemember);
-                Result<UserWrapper> result = model.login(account, pwd);
+                String imei = null;
+                try {
+                    imei = PhoneUtils.getIMEI();
+                }
+                catch (SecurityException e) {
+                    e.printStackTrace();
+                }
+                Result<UserWrapper> result = model.login(account, pwd, imei);
                 if (result != null ) {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                         saveToLocal(result);

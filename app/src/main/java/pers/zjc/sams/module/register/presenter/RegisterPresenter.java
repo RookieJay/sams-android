@@ -33,36 +33,47 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void loadImei() {
-        String imei = null;
-        try {
-            imei = PhoneUtils.getIMEI();
-        }
-        catch (SecurityException e) {
-            e.printStackTrace();
-        }
-        view.fillImei(TextUtils.isEmpty(imei) ? "" : imei);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                String imei = null;
+                try {
+                    imei = PhoneUtils.getIMEI();
+                }
+                catch (SecurityException e) {
+                    e.printStackTrace();
+                }
+                view.fillImei(TextUtils.isEmpty(imei) ? "" : imei);
+            }
+        });
     }
 
     @Override
     public void register(User user, String deviceId) {
-        try {
-            Result result = model.register(user, deviceId);
-            if (result != null) {
-                if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
-                    view.showMessage(result.getMessage());
-                } else {
-                    view.showMessage(result.getMessage());
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Result result = model.register(user, deviceId);
+                    if (result != null) {
+                        if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
+                            view.showMessage(result.getMessage());
+                        } else {
+                            view.showMessage(result.getMessage());
+                        }
+                    }
+                    else {
+                        view.showNetWorkErro();
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("捕获异常", e.getMessage());
+                    view.showMessage(e.getMessage());
                 }
             }
-            else {
-                view.showNetWorkErro();
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            Log.d("捕获异常", e.getMessage());
-            view.showMessage(e.getMessage());
-        }
+        });
     }
+
 
 }

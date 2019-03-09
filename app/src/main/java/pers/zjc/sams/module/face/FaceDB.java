@@ -179,6 +179,7 @@ public class FaceDB {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
+					Log.d(TAG, "新线程run: ");
 					uploadLogFile(keyPath);
 				}
 			}).start();
@@ -330,6 +331,7 @@ public class FaceDB {
 
 		//二种：文件请求体  application/octet-stream    /data/data/com.example.company/files/plan/plans.xml
 		MediaType type=MediaType.parse("application/octet-stream");//"text/xml;charset=utf-8"
+		Log.d("文件路径", oldFilePath);
 		File file=new File(oldFilePath);
 		RequestBody fileBody=RequestBody.create(type,file);
 

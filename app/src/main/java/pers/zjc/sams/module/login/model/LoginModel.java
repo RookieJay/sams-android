@@ -19,10 +19,10 @@ public class LoginModel implements LoginContract.Model {
     LoginModel(){}
 
     @Override
-    public Result<UserWrapper> login(String account, String pwd) {
+    public Result<UserWrapper> login(String account, String pwd, String imei) {
         HttpParam.Factory factory = new HttpParam.Factory()
                                     .add("account", account)
                                     .add("password", pwd);
-        return apiService.login(factory.create());
+        return apiService.login(factory.create(), imei);
     }
 }

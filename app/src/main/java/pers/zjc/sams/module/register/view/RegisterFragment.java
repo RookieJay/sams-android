@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.User;
 import pers.zjc.sams.module.register.DaggerRegisterComponent;
 import pers.zjc.sams.module.register.RegisterModule;
@@ -112,6 +113,7 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
         btnRegister.setOnClickListener(this);
         rlDeviceNo.setVisibility(View.VISIBLE);
         rlFace.setVisibility(View.VISIBLE);
+
     }
 
 
@@ -135,14 +137,20 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
                 if (user.getRole() == 1) {
                     deviceId = txtDeviceNo.getText().toString();
                     if (StringUtils.isEmpty(deviceId)) {
-                        showShortToast("设备编码获取失败，请重新打开界面");
+                        showShortToast("设备编码获取失败，请检查是否开启读取本机识别码权限");
                         return;
                     }
+                    Log.d("提交的deviceId", deviceId);
                     presenter.register(user, deviceId);
-                } else {
-                    presenter.register(user, "0");
                 }
-
+                break;
+            case R.id.btn_back:
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
+                break;
+            case R.id.rl_face:
+                //                        ScmpUtils.startActivityForResult(getContext());
                 break;
             default:
                 break;
@@ -183,6 +191,10 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (StringUtils.isEmpty(imei)) {
+                    txtDeviceNo.setText("本机识别码获取失败");
+                    return;
+                }
                 txtDeviceNo.setText(imei);
             }
         });
