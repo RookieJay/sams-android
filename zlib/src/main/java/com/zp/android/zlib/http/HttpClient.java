@@ -126,6 +126,7 @@ public class HttpClient {
                         rb.addHeader(((Header)an[0]).value(), objects[i].toString());
                     }
                     else if (an[0] instanceof Param) {
+                        Log.d("param", ((Param)an[0]).value()+objects[i].toString());
                         map.put(((Param)an[0]).value(), objects[i] != null ? objects[i].toString() : "");
                     }
                     else if (an[0] instanceof ParamMap) {
@@ -142,6 +143,7 @@ public class HttpClient {
             }
             try {
                 String content = gson.toJson(map);
+                Log.d("上传数据:", content);
                 Request request = rb.post(RequestBody.create(MEDIA_TYPE_JSON, content)).build();
                 if (interceptor != null && !interceptor.intercept() && !skips.contains(action)) {
                     if (interceptor.getHandlers() != null) {

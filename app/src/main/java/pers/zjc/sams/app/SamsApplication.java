@@ -22,6 +22,8 @@ import com.zp.android.zlib.utils.CrashUtils;
 import com.zp.android.zlib.utils.LogUtils;
 import com.zp.android.zlib.utils.Utils;
 
+import javax.inject.Inject;
+
 import pers.zjc.sams.module.face.FaceDB;
 
 public class SamsApplication extends Application {

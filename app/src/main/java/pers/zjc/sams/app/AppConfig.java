@@ -16,6 +16,7 @@ public class AppConfig {
     private String role;
     private String tel;
     private String major;
+    private String sex;
 
     public AppConfig(SharedPreferences preferences) {
         this.preferences = preferences;
@@ -110,6 +111,14 @@ public class AppConfig {
         this.major = major;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public void load() {
         userId = preferences.getString("userId", "");
         isLogin = "1".equals(preferences.getString("isLogin", ""));
@@ -121,6 +130,7 @@ public class AppConfig {
         tel = preferences.getString("tel", "");
         role = preferences.getString("role", "");
         major = preferences.getString("major", "");
+        sex = preferences.getString("sex", "");
     }
 
 
@@ -136,6 +146,7 @@ public class AppConfig {
         editor.putString("tel", tel);
         editor.putString("role", role);
         editor.putString("major", major);
+        editor.putString("sex", sex);
         editor.apply();
     }
 

@@ -5,6 +5,7 @@
     android:layout_height="72dp"
     android:background="@color/cffffff"
     android:gravity="center_vertical"
+    android:id="@+id/rl_user_info"
     tools:ignore="UseCompoundDrawables">
 
     <pers.zjc.sams.widget.roundedimageview.RoundedImageView

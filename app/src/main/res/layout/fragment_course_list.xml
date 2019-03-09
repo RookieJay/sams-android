@@ -33,12 +33,12 @@
             android:textSize="17sp" />
 
         <ImageView
-            android:id="@+id/iv_history"
+            android:id="@+id/iv_add"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center|right"
             android:layout_marginRight="16dp"
-            android:src="@mipmap/icon_history"
+            android:src="@drawable/icon_add_photo"
             android:gravity="center"
             android:scaleType="center"
             android:text="历史"

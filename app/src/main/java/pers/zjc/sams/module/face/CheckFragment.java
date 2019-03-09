@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.zp.android.zlib.base.BaseFragment;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.module.main.MainActivity;
 
 public class CheckFragment extends BaseFragment {
@@ -27,11 +28,10 @@ public class CheckFragment extends BaseFragment {
         return R.layout.item_maintain;
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Intent intent = new Intent(getActivity(), FaceMainActivity.class);
+        Intent intent = new Intent(getActivity(), PermissionAcitivity.class);
         curActivity.startActivity(intent);
     }
 }

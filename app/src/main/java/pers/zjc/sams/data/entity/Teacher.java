@@ -26,7 +26,7 @@ public class Teacher {
     }
 
     public void setMajor(String major) {
-        this.major = major == null ? null : major.trim();
+        this.major = major == null ? "未录入" : major.trim();
     }
 
     public String getName() {
@@ -34,7 +34,7 @@ public class Teacher {
     }
 
     public void setName(String name) {
-        this.tName = name == null ? null : name.trim();
+        this.tName = name == null ? "未录入" : name.trim();
     }
 
     public String getEmail() {
@@ -42,7 +42,7 @@ public class Teacher {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email == null ? "未录入" : email.trim();
     }
 
     public String getTel() {

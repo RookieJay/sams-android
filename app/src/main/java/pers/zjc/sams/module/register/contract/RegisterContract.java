@@ -21,6 +21,8 @@ public interface RegisterContract {
         void showMessage(String message);
 
         void showNetWorkErro();
+
+        void back();
     }
 
     interface Presenter extends BasePresenter<View, Model> {

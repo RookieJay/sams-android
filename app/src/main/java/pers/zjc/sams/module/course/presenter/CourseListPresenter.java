@@ -56,4 +56,25 @@ public class CourseListPresenter implements CourseListContract.Presenter {
         });
 
     }
+
+    @Override
+    public void deleteCourse(Course mCourse) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result = model.removeCourse(mCourse);
+                if (result != null) {
+                    view.showMessage(result.getMessage());
+                    if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
+                        view.update(mCourse);
+                    } else {
+                        view.showMessage("删除失败");
+                    }
+                } else {
+                    view.showNetworkErro();
+                }
+            }
+        });
+
+    }
 }

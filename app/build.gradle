@@ -121,6 +121,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //BasePopup
     implementation 'com.github.razerdp:BasePopup:2.1.8'
+    //OkHttpUtils
+    implementation 'com.zhy:okhttputils:2.6.2'
     //ArcFace 虹软人脸
     implementation files('libs/facedetection.jar')
     implementation files('libs/facerecognition.jar')

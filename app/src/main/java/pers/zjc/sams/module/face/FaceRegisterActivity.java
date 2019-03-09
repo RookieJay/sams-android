@@ -1,6 +1,5 @@
 package pers.zjc.sams.module.face;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,19 +37,28 @@ import com.arcsoft.facerecognition.AFR_FSDKVersion;
 import com.guo.android_extend.image.ImageConverter;
 import com.guo.android_extend.widget.ExtImageView;
 import com.guo.android_extend.widget.HListView;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zp.android.zlib.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
+import okhttp3.OkHttpClient;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.module.face.contract.FaceUploadContract;
+import pers.zjc.sams.module.face.presenter.FaceUploadPresenter;
 
 /**
  * Created by gqj3375 on 2017/4/27.
  */
 
-public class RegisterActivity extends Activity implements SurfaceHolder.Callback {
+public class FaceRegisterActivity extends BaseActivity<FaceRegisterComponent> implements SurfaceHolder.Callback, FaceUploadContract.View {
 	private final String TAG = this.getClass().toString();
 	private final static int MSG_CODE = 0x1000;
 	private final static int MSG_EVENT_REG = 0x1001;
@@ -75,12 +83,26 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 	private RegisterViewAdapter mRegisterViewAdapter;
 	private AFR_FSDKFace mAFR_FSDKFace;
 
+    FaceUploadPresenter presenter;
+    @Inject
+    AppConfig appConfig;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_face_register);
+//		this.setContentView(R.layout.activity_face_register);
 		//initial data.
+        //初始化OkHttpClient
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
+        presenter = new FaceUploadPresenter(this);
+        Log.d(TAG, String.valueOf(appConfig == null)+appConfig.getUserId());
+        SamsApplication application = (SamsApplication) getApplication();
 		if (!getIntentData(getIntent().getExtras())) {
 			Log.e(TAG, "getIntentData fail!");
 			this.finish() ;
@@ -226,7 +248,25 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 
 	}
 
-	/**
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_face_register;
+    }
+
+    @Override
+    protected FaceRegisterComponent createComponent() {
+        return DaggerFaceRegisterComponent.builder()
+                .appComponent(SamsApplication.getComponent())
+                .faceRegisterModule(new FaceRegisterModule(this, this))
+                .build();
+    }
+
+    @Override
+    protected void inject(FaceRegisterComponent component) {
+        component.inject(this);
+    }
+
+    /**
 	 * @note bundle data :
 	 * String imagePath
 	 *
@@ -266,28 +306,35 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 		}
 	}
 
-	class UIHandler extends android.os.Handler {
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    class UIHandler extends android.os.Handler {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (msg.what == MSG_CODE) {
 				if (msg.arg1 == MSG_EVENT_REG) {
-					LayoutInflater inflater = LayoutInflater.from(RegisterActivity.this);
+					LayoutInflater inflater = LayoutInflater.from(FaceRegisterActivity.this);
 					View layout = inflater.inflate(R.layout.dialog_register, null);
 					mEditText = (EditText) layout.findViewById(R.id.editview);
 					mEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(16)});
 					mExtImageView = (ExtImageView) layout.findViewById(R.id.extimageview);
 					mExtImageView.setImageBitmap((Bitmap) msg.obj);
 					final Bitmap face = (Bitmap) msg.obj;
-					new AlertDialog.Builder(RegisterActivity.this)
+					new AlertDialog.Builder(FaceRegisterActivity.this)
 							.setTitle("请输入注册名字")
 							.setIcon(android.R.drawable.ic_dialog_info)
 							.setView(layout)
 							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									((SamsApplication)RegisterActivity.this.getApplicationContext()).mFaceDB.addFace(mEditText.getText().toString(), mAFR_FSDKFace, face);
-									mRegisterViewAdapter.notifyDataSetChanged();
+									String name = mEditText.getText().toString();
+//									presenter.uploadFace(SamsApplication.get().mFaceDB, name, mAFR_FSDKFace, face);
+									((SamsApplication) FaceRegisterActivity.this.getApplicationContext()).mFaceDB.addFace(appConfig.getUserId(), name, mAFR_FSDKFace, face);
+//									mRegisterViewAdapter.notifyDataSetChanged();
 									dialog.dismiss();
 								}
 							})
@@ -299,15 +346,15 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 							})
 							.show();
 				} else if(msg.arg1 == MSG_EVENT_NO_FEATURE ){
-					Toast.makeText(RegisterActivity.this, "人脸特征无法检测，请换一张图片", Toast.LENGTH_SHORT).show();
+					Toast.makeText(FaceRegisterActivity.this, "人脸特征无法检测，请换一张图片", Toast.LENGTH_SHORT).show();
 				} else if(msg.arg1 == MSG_EVENT_NO_FACE ){
-					Toast.makeText(RegisterActivity.this, "没有检测到人脸，请换一张图片", Toast.LENGTH_SHORT).show();
+					Toast.makeText(FaceRegisterActivity.this, "没有检测到人脸，请换一张图片", Toast.LENGTH_SHORT).show();
 				} else if(msg.arg1 == MSG_EVENT_FD_ERROR ){
-					Toast.makeText(RegisterActivity.this, "FD初始化失败，错误码：" + msg.arg2, Toast.LENGTH_SHORT).show();
+					Toast.makeText(FaceRegisterActivity.this, "FD初始化失败，错误码：" + msg.arg2, Toast.LENGTH_SHORT).show();
 				} else if(msg.arg1 == MSG_EVENT_FR_ERROR){
-					Toast.makeText(RegisterActivity.this, "FR初始化失败，错误码：" + msg.arg2, Toast.LENGTH_SHORT).show();
+					Toast.makeText(FaceRegisterActivity.this, "FR初始化失败，错误码：" + msg.arg2, Toast.LENGTH_SHORT).show();
 				} else if(msg.arg1 == MSG_EVENT_IMG_ERROR){
-					Toast.makeText(RegisterActivity.this, "图像格式错误，：" + msg.obj, Toast.LENGTH_SHORT).show();
+					Toast.makeText(FaceRegisterActivity.this, "图像格式错误，：" + msg.obj, Toast.LENGTH_SHORT).show();
 				}
 			}
 		}
@@ -379,11 +426,12 @@ public class RegisterActivity extends Activity implements SurfaceHolder.Callback
 			final String name = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mName;
 			final int count = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList.size();
 			final Map<String, AFR_FSDKFace> face = ((SamsApplication)mContext.getApplicationContext()).mFaceDB.mRegister.get(position).mFaceList;
-			new AlertDialog.Builder(RegisterActivity.this)
+			new AlertDialog.Builder(FaceRegisterActivity.this)
 					.setTitle("删除注册名:" + name)
 					.setMessage("包含:" + count + "个注册人脸特征信息")
 					.setView(new ListView(mContext))
 					.setIcon(android.R.drawable.ic_dialog_alert)
+
 					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {

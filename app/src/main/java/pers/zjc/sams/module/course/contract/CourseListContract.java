@@ -7,10 +7,13 @@ import com.zp.android.zlib.base.BaseView;
 import java.util.List;
 
 import pers.zjc.sams.data.entity.Course;
+import pers.zjc.sams.data.entity.Result;
 
 public interface CourseListContract {
 
-    interface Model extends BaseModel { }
+    interface Model extends BaseModel {
+        Result removeCourse(Course mCourse);
+    }
 
     interface View extends BaseView<Presenter> {
 
@@ -20,17 +23,21 @@ public interface CourseListContract {
 
         void hideEmpty();
 
-        void showMessage(String 数据加载成功);
+        void showMessage(String msg);
 
         void loadData(List<Course> courses);
 
         void finishRefresh();
 
         void showNetworkErro();
+
+        void update(Course mCourse);
     }
 
     interface Presenter extends BasePresenter<View, Model> {
 
         void load();
+
+        void deleteCourse(Course mCourse);
     }
 }

@@ -71,7 +71,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".module.face.PermissionAcitivity">
         </activity>
-        <activity android:name=".module.face.RegisterActivity">
+        <activity android:name=".module.face.FaceRegisterActivity">
         </activity>
         <activity android:name=".module.face.DetecterActivity">
         </activity>

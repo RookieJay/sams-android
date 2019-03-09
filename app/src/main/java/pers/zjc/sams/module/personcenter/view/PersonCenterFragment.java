@@ -33,6 +33,9 @@ import pers.zjc.sams.module.personcenter.DaggerPersonCenterComponent;
 import pers.zjc.sams.module.personcenter.PersonCenterModule;
 import pers.zjc.sams.module.personcenter.contract.PersonCenterContract;
 import pers.zjc.sams.module.personcenter.presenter.PersonCenterPresenter;
+import pers.zjc.sams.module.personinfo.view.PersonInfoFragment;
+
+import static pers.zjc.sams.common.Const.Keys.KEY_USER_NAME;
 
 public class PersonCenterFragment extends BaseFragment implements PersonCenterContract.View, View.OnClickListener {
 
@@ -57,9 +60,13 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     RelativeLayout rlModifyPwd;
     @BindView(R.id.btn_exit)
     TextView btExit;
+    @BindView(R.id.rl_user_info)
+    RelativeLayout rlUserInfo;
 
     private Unbinder unbinder;
     private BroadcastReceiver receiver;
+    private BroadcastReceiver refReceiver;
+    private String userName;
 
 
     @Override
@@ -78,7 +85,18 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 }
             }
         };
+        refReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Const.Actions.ACTION_REFRESH_PERSON_INFO)) {
+                    userName = intent.getStringExtra(Const.Keys.KEY_USER_NAME);
+                    tvUser.setText(userName);
+                }
+            }
+        };
         context.registerReceiver(receiver, new IntentFilter(Const.Actions.ACTION_LOGOUT));
+        context.registerReceiver(refReceiver, new IntentFilter(Const.Actions.ACTION_REFRESH_PERSON_INFO));
+
     }
 
     @Override
@@ -105,6 +123,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         tvUser.setText(appConfig.getUserName());
         btExit.setOnClickListener(this);
         rlModifyPwd.setOnClickListener(this);
+        rlUserInfo.setOnClickListener(this);
     }
 
     private void initData() {
@@ -135,6 +154,12 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 break;
             case R.id.btn_exit:
                 presenter.exit();
+                break;
+            case R.id.rl_user_info:
+                if (appConfig.getRole() == "0") {
+                    return;
+                }
+                ScmpUtils.startWindow(getContext(), PersonInfoFragment.class.getName());
                 break;
             default:
                 break;

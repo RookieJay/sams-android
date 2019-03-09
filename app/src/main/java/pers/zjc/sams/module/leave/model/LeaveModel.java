@@ -31,6 +31,6 @@ public class LeaveModel implements LeaveContract.Model {
 
 
     public Result<CoursesWrapper> getCourses() {
-        return apiService.getCourses();
+        return apiService.getTodayCourses();
     }
 }

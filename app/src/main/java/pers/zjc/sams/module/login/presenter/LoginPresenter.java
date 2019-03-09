@@ -90,11 +90,12 @@ public class LoginPresenter implements LoginContract.Presenter {
                 appConfig.setUserId(result.getData().getUserId());
                 appConfig.setRole(result.getData().getRole());
                 if (result.getData().getStudent() != null) {
-
+                    appConfig.setSex(result.getData().getStudent().getSex() == 1 ? "男" : "女");
                     appConfig.setTel(result.getData().getStudent().getTel());
                     appConfig.setMajor(result.getData().getStudent().getMajor());
                 }
                 if (result.getData().getTeacher() != null) {
+                    appConfig.setSex(result.getData().getTeacher().getSex() == 1 ? "男" : "女");
                     appConfig.setTel(result.getData().getTeacher().getTel());
                     appConfig.setMajor(result.getData().getTeacher().getMajor());
                 }

@@ -58,6 +58,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                     if (result != null) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             view.showMessage(result.getMessage());
+                            view.back();
                         } else {
                             view.showMessage(result.getMessage());
                         }

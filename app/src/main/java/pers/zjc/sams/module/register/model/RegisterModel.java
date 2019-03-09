@@ -22,7 +22,8 @@ public class RegisterModel implements RegisterContract.Model {
         HttpParam.Factory factory = new HttpParam.Factory()
                 .add("account", user.getAccount())
                 .add("password", user.getPassword())
-                .add("role", String.valueOf(user.getRole()));
-        return apiService.register(factory.create(), Integer.valueOf(deviceId));
+                .add("role", String.valueOf(user.getRole()))
+                .add("deviceId", deviceId);
+        return apiService.register(factory.create());
     }
 }

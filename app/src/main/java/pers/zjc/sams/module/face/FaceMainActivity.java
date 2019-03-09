@@ -274,7 +274,7 @@ public class FaceMainActivity extends Activity implements OnClickListener {
 	 * @param mBitmap
 	 */
 	private void startRegister(Bitmap mBitmap, String file) {
-		Intent it = new Intent(FaceMainActivity.this, RegisterActivity.class);
+		Intent it = new Intent(FaceMainActivity.this, FaceRegisterActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("imagePath", file);
 		it.putExtras(bundle);

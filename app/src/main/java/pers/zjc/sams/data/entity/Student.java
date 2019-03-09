@@ -1,5 +1,7 @@
 package pers.zjc.sams.data.entity;
 
+import com.zp.android.zlib.utils.TimeUtils;
+
 import java.util.Date;
 
 public class Student {
@@ -44,7 +46,7 @@ public class Student {
     }
 
     public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+        this.birthday = birthday == null ? TimeUtils.string2Date("2000-01-01") : birthday;
     }
 
     public String getIdCard() {
@@ -52,7 +54,7 @@ public class Student {
     }
 
     public void setIdCard(String idCard) {
-        this.idCard = idCard == null ? null : idCard.trim();
+        this.idCard = idCard == null ? "未录入" : idCard.trim();
     }
 
     public String getName() {
@@ -60,7 +62,7 @@ public class Student {
     }
 
     public void setName(String name) {
-        this.sName = name == null ? null : name.trim();
+        this.sName = name == null ? "未录入" : name.trim();
     }
 
     public String getEmail() {
@@ -68,7 +70,7 @@ public class Student {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email == null ? "未录入" : email.trim();
     }
 
     public String getTel() {
@@ -76,7 +78,7 @@ public class Student {
     }
 
     public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
+        this.tel = tel == null ? "未录入" : tel.trim();
     }
 
 
@@ -101,6 +103,6 @@ public class Student {
     }
 
     public void setMajor(String major) {
-        this.major = major == null ? null : major.trim();
+        this.major = major == null ? "未录入" : major.trim();
     }
 }

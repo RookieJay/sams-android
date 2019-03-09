@@ -10,12 +10,15 @@ import pers.zjc.sams.data.datawrapper.CoursesWrapper;
 import pers.zjc.sams.data.datawrapper.LeaveWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
+import pers.zjc.sams.data.entity.Course;
 import pers.zjc.sams.data.entity.Result;
+import pers.zjc.sams.data.entity.Student;
+import pers.zjc.sams.data.entity.Teacher;
 
 public interface ApiService {
 
     @POST("/api/mobile/login")
-    Result<UserWrapper> login(@ParamMap HttpParam param, @Param("deviceId") String deviceId);
+    Result<UserWrapper> login(@ParamMap HttpParam param);
 
     @POST("/test/1")
     Result<?> test();
@@ -26,8 +29,14 @@ public interface ApiService {
     @POST("/api/mobile/leaves/askForLeave")
     Result askForLeave(@ParamMap HttpParam param);
 
+    @POST("/api/mobile/courses/today")
+    Result<CoursesWrapper> getTodayCourses();
+
     @POST("/api/mobile/courses/all")
-    Result<CoursesWrapper> getCourses();
+    Result<CoursesWrapper> getAllCourses();
+
+    @POST("/api/mobile/courses/delete")
+    Result deleteCourse(@ParamMap HttpParam httpParam);
 
     @POST("/api/mobile/sign")
     Result sign(@ParamMap HttpParam param);
@@ -42,5 +51,20 @@ public interface ApiService {
     Result modifyPwd(@ParamMap  HttpParam param);
 
     @POST("/api/mobile/users/register")
-    Result register(@ParamMap HttpParam httpParam, @Param("deviceId") String deviceId);
+    Result register(@ParamMap HttpParam httpParam);
+
+    @POST("/api/mobile/users/students/info")
+    Result<Student> stuInfo(@ParamMap HttpParam httpParam);
+
+
+    @POST("/api/mobile/users/teachers/info")
+    Result<Teacher> teacherInfo(@ParamMap HttpParam httpParam);
+
+    @POST("/api/mobile/users/students/info/modify")
+    Result updateStudent(@ParamMap HttpParam httpParam);
+
+    @POST("/api/mobile/users/teachers/info/modify")
+    Result updateTeacher(@ParamMap HttpParam httpParam);
+
+
 }

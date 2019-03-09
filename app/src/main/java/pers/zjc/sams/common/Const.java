@@ -27,6 +27,7 @@ public interface Const {
 
         /*attence*/
         String KEY_ATTENCE_RECORDS = "key_attence_records";
+        String KEY_USER_NAME = "key_user_name";
     }
 
     interface Offline {
@@ -63,6 +64,7 @@ public interface Const {
         String ACTION_AUTH_ERROR = "com.zp.android.scmp.ACTION_AUTH_ERROR";
         String ACTION_MAINT_FILTER = "com.zp.android.scmp.ACTION_MAINT_FILTER";
         String ACTION_LOGOUT = "pers.zjc.android.sams.logout";
+        String ACTION_REFRESH_PERSON_INFO = "pers.zjc.android.sams.refresh_person_info";
     }
 
     interface UrlConst {

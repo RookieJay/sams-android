@@ -22,7 +22,8 @@ public class LoginModel implements LoginContract.Model {
     public Result<UserWrapper> login(String account, String pwd, String imei) {
         HttpParam.Factory factory = new HttpParam.Factory()
                                     .add("account", account)
-                                    .add("password", pwd);
-        return apiService.login(factory.create(), imei);
+                                    .add("password", pwd)
+                                    .add("deviceId", imei);
+        return apiService.login(factory.create());
     }
 }

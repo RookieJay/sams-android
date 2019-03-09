@@ -398,12 +398,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     }
 
     private void switchToSignHistoryFragment() {
-//        FragmentManager fm = getFragmentManager();
-//        FragmentTransaction transaction = fm.beginTransaction();
-//        Fragment fragment = Fragment.instantiate(getActivity(), LeaveListFragment.class.getName());
-//        transaction.add(R.id.fl_container, fragment);
-//        transaction.addToBackStack(LeaveListFragment.class.getSimpleName());
-//        transaction.commitAllowingStateLoss();
         ScmpUtils.startWindow(getContext(), SignListFragment.class.getName());
     }
 
@@ -413,6 +407,10 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (data.size() == 0) {
+                    showShortToast("当前暂无课程");
+                    return;
+                }
                 CoursePopup coursePopup = new CoursePopup(getContext(), context);
                 coursePopup.setData(data);
                 coursePopup.setPopupGravity(Gravity.CENTER).showPopupWindow();
