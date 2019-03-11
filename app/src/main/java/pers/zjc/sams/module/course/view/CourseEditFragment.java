@@ -22,7 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
-import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.entity.Course;
 
 public class CourseEditFragment extends BaseFragment implements View.OnClickListener {
@@ -69,7 +68,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     }
 
     private void initView() {
-        barTitle.setText("课程编辑");
+        barTitle.setText("课程添加");
         barRight.setText("提交");
         barRight.setVisibility(View.VISIBLE);
         initTimePicker();

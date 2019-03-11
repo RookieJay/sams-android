@@ -186,7 +186,7 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
                 back();
                 break;
             case R.id.iv_add:
-
+                ScmpUtils.startWindow(getContext(), CourseEditFragment.class.getName());
                 break;
             default:
                 break;

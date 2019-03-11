@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.personinfo.presenter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import java.util.concurrent.Executor;
@@ -81,7 +82,10 @@ public class PersonInfoPresenter implements PersonInfoContract.Presenter {
                     view.showMessage(result.getMessage());
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                         Intent intent = new Intent(Const.Actions.ACTION_REFRESH_PERSON_INFO);
+                        Log.d("传递的userName", student.getName());
+                        appConfig.setUserName(student.getName());
                         intent.putExtra("userName", student.getName());
+
                         SamsApplication.get().sendBroadcast(intent);
                         view.back();
                     }
@@ -101,6 +105,8 @@ public class PersonInfoPresenter implements PersonInfoContract.Presenter {
                 if (result != null) {
                     view.showMessage(result.getMessage());
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
+                        Log.d("传递的userName", teacher.getName());
+                        appConfig.setUserName(teacher.getName());
                         Intent intent = new Intent(Const.Actions.ACTION_REFRESH_PERSON_INFO);
                         intent.putExtra(Const.Keys.KEY_USER_NAME, teacher.getName());
                         SamsApplication.get().sendBroadcast(intent);

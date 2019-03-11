@@ -129,7 +129,7 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
         rbTeacher.setOnCheckedChangeListener(this);
         btnRegister.setOnClickListener(this);
         rlDeviceNo.setVisibility(View.VISIBLE);
-        rlFace.setVisibility(View.VISIBLE);
+        rlFace.setVisibility(View.GONE);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

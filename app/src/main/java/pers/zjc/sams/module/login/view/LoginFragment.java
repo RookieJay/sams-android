@@ -160,7 +160,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
                 mPresenter.login(account, pwd, isRemember);
                 break;
             case R.id.tv_forget_pwd:
-                showShortToast("请联系辅导员重置密码");
+                showShortToast("请联系管理员重置密码");
                 break;
             case R.id.tv_to_register:
                 ScmpUtils.startWindow(getContext(), RegisterFragment.class.getName());

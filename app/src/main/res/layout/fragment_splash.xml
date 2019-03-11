@@ -5,11 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_splash"
+    <com.ocnyang.contourview.ContourView
+        android:id="@+id/cv_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:contour_style="Sand"
+        app:smoothness="1"
+        app:shader_style="TopToBottom"
+        app:shader_endcolor="@color/colorPrimary"
+        app:shader_mode="RadialGradient" />
+
+
+    <ImageView
+        android:id="@+id/iv_splash"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
         android:src="@drawable/app_logo"/>
 
     <TextView

@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/img_logo"
-        android:scaleType="fitStart"/>
+        android:scaleType="fitStart"
+        android:layout_marginTop="200dp"/>
 
     <View
         android:id="@+id/v_line"
@@ -149,6 +150,19 @@
         android:text="@string/btn_login"
         android:background="@drawable/shape_click_btn"
         android:textColor="@color/cffffff" />
+
+        <com.ocnyang.contourview.ContourView
+            android:id="@+id/cv_top"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:contour_style="Clouds"
+            app:shader_style="RightToBottom"
+            app:shader_endcolor="@color/colorPrimary"
+            app:shader_mode="RadialGradient" />
+
+
+
+
 
   <!--  <Button
         android:id="@+id/offline_login"

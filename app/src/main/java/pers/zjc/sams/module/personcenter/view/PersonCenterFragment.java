@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.StringUtils;
 
 import javax.inject.Inject;
 
@@ -89,7 +91,11 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals(Const.Actions.ACTION_REFRESH_PERSON_INFO)) {
+                    Log.d("修改信息响应", "onReceive: ");
                     userName = intent.getStringExtra(Const.Keys.KEY_USER_NAME);
+                    if (StringUtils.isEmpty(userName)) {
+                        userName = appConfig.getUserName();
+                    }
                     tvUser.setText(userName);
                 }
             }
@@ -195,5 +201,13 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getContext().unregisterReceiver(receiver);
+        getContext().unregisterReceiver(refReceiver);
     }
 }
