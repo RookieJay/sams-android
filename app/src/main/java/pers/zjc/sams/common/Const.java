@@ -28,6 +28,7 @@ public interface Const {
         /*attence*/
         String KEY_ATTENCE_RECORDS = "key_attence_records";
         String KEY_USER_NAME = "key_user_name";
+        String KEY_LEAVE = "key_leave";
     }
 
     interface Offline {

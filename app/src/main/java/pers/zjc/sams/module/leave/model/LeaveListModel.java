@@ -6,7 +6,7 @@ import com.zp.android.zlib.http.HttpParam;
 
 import javax.inject.Inject;
 
-import pers.zjc.sams.data.datawrapper.LeaveWrapper;
+import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.leave.contract.LeaveListContract;
@@ -20,7 +20,7 @@ public class LeaveListModel implements LeaveListContract.Model {
     @Inject
     LeaveListModel(){}
 
-    public Result<LeaveWrapper> getHistory(SignRecord record) {
+    public Result<LeavesWrapper> getHistory(SignRecord record) {
         Log.d("getStuId", String.valueOf(record.getStuId()));
         HttpParam.Factory factory = new HttpParam.Factory()
                 .add("stuId", String.valueOf(record.getStuId()));

@@ -4,7 +4,7 @@ import java.util.List;
 
 import pers.zjc.sams.data.entity.Leave;
 
-public class LeaveWrapper {
+public class LeavesWrapper {
 
     private List<Leave> records;
 

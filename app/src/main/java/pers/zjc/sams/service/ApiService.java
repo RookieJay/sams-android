@@ -7,10 +7,9 @@ import com.zp.android.zlib.http.ParamMap;
 
 import pers.zjc.sams.data.datawrapper.AttenceRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.CoursesWrapper;
-import pers.zjc.sams.data.datawrapper.LeaveWrapper;
+import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
-import pers.zjc.sams.data.entity.Course;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.Student;
 import pers.zjc.sams.data.entity.Teacher;
@@ -29,6 +28,9 @@ public interface ApiService {
     @POST("/api/mobile/leaves/askForLeave")
     Result askForLeave(@ParamMap HttpParam param);
 
+    @POST("/api/mobile/leaves/all")
+    Result<LeavesWrapper> allStuLeaves();
+
     @POST("/api/mobile/courses/today")
     Result<CoursesWrapper> getTodayCourses();
 
@@ -45,7 +47,7 @@ public interface ApiService {
     Result<SignRecordWrapper> signList(@Param("interval") String interval, @ParamMap HttpParam param);
 
     @POST("/api/mobile/leaves/individual")
-    Result<LeaveWrapper> leaveList(@ParamMap HttpParam param);
+    Result<LeavesWrapper> leaveList(@ParamMap HttpParam param);
 
     @POST("/api/mobile/users/modify/pwd")
     Result modifyPwd(@ParamMap  HttpParam param);

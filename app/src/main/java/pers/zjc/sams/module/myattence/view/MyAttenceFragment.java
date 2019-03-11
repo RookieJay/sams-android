@@ -176,12 +176,23 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
 
     @Override
     public void startRefresh() {
-        mRefeshLayout.setRefreshing(true);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefeshLayout.setRefreshing(true);
+            }
+        });
+
     }
 
     @Override
     public void finishRefresh() {
-        mRefeshLayout.setRefreshing(false);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefeshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override

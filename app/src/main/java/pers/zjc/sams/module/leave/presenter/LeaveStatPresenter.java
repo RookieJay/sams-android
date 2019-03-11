@@ -13,37 +13,32 @@ import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.module.leave.contract.LeaveListContract;
-import pers.zjc.sams.module.leave.model.LeaveListModel;
+import pers.zjc.sams.module.leave.contract.LeaveStatContract;
+import pers.zjc.sams.module.leave.model.LeaveStatModel;
 
-public class LeaveListPresenter implements LeaveListContract.Presenter {
+public class LeaveStatPresenter implements LeaveStatContract.Presenter {
 
-    private LeaveListContract.View view;
-    @Inject
-    LeaveListModel model;
+    private LeaveStatContract.View view;
     @Inject
     AppConfig appConfig;
     @Inject
     Executor executor;
+    @Inject
+    LeaveStatModel model;
 
     @Inject
-    LeaveListPresenter(LeaveListContract.View view) {
+    LeaveStatPresenter(LeaveStatContract.View view) {
         this.view = view;
     }
 
-
-
-
     @Override
-    public void loadHistory() {
+    public void loadData() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 view.startRefresh();
                 try {
-                    SignRecord record = new SignRecord();
-                    record.setStuId(Integer.valueOf(appConfig.getUserId()));
-                    Result<LeavesWrapper> result = model.getHistory(record);
+                    Result<LeavesWrapper> result = model.getStuAllLeaves();
                     if (result != null ) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             if (result.getData() != null) {

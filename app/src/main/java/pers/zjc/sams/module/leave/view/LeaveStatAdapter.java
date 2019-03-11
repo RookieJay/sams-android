@@ -1,7 +1,6 @@
 package pers.zjc.sams.module.leave.view;
 
 import android.content.Context;
-import android.renderscript.ScriptC;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,24 +9,21 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
-import com.zp.android.zlib.utils.TimeUtils;
 
 import java.util.List;
 
 import pers.zjc.sams.R;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Leave;
-import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.module.course.view.CourseListAdapter;
 
-public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
+public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
 
 
-    public LeaveListAdapter(Context context) {
+    public LeaveStatAdapter(Context context) {
         super(context);
     }
 
-    public LeaveListAdapter(Context context, List<Leave> data) {
+    public LeaveStatAdapter(Context context, List<Leave> data) {
         super(context, data);
     }
 
@@ -41,7 +37,7 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         holder.setText(R.id.tv_course, data.getCourseName());
         holder.setText(R.id.tv_begin_time, data.getBeginTime());
         holder.setText(R.id.tv_end_time, data.getEndTime());
-        holder.setText(R.id.tv_reason, data.getReason());
+        holder.setText(R.id.tv_leaver, data.getStuName());
         ImageView ivStatus = holder.itemView.findViewById(R.id.iv_status);
         switch (data.getStatus()) {
             case 0:
@@ -61,14 +57,8 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ScmpUtils.startWindow(v.getContext(), LeaveDetailFragment.class.getName());
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return false;
+            public void onClick(View view) {
+                ScmpUtils.startWindow(view.getContext(), LeaveDetailFragment.class.getName());
             }
         });
     }

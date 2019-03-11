@@ -67,7 +67,7 @@ public class CenterPresenter implements CenterContract.Presenter {
                 functions.add(new FunctionInfo("签到统计", R.drawable.icon_function_sign, SignFragment.class.getName()));
                 functions.add(new FunctionInfo("请假统计", R.drawable.icon_function_leaving, LeaveFragment.class.getName()));
                 functions.add(new FunctionInfo("考勤统计", R.drawable.icon_function_attence, MyAttenceFragment.class.getName()));
-                functions.add(new FunctionInfo("课程信息", R.drawable.icon_function_course, LeaveFragment.class.getName()));
+//                functions.add(new FunctionInfo("课程信息", R.drawable.icon_function_course, LeaveFragment.class.getName()));
                 break;
             case "2":
                 functions.add(new FunctionInfo("审批统计", R.drawable.icon_function_approval, ApprovalFragment.class.getName()));
