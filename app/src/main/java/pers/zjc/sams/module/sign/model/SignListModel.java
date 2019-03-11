@@ -6,7 +6,7 @@ import com.zp.android.zlib.http.HttpParam;
 
 import javax.inject.Inject;
 
-import pers.zjc.sams.data.datawrapper.SignRecordWrapper;
+import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.sign.contract.SignListContract;
@@ -20,7 +20,7 @@ public class SignListModel implements SignListContract.Model {
     @Inject
     SignListModel(){}
 
-    public Result<SignRecordWrapper> getHistory(Integer interval, SignRecord record) {
+    public Result<SignRecordsWrapper> getHistory(Integer interval, SignRecord record) {
         Log.d("getStuId", String.valueOf(record.getStuId()));
         HttpParam.Factory factory = new HttpParam.Factory()
                 .add("stuId", String.valueOf(record.getStuId()));

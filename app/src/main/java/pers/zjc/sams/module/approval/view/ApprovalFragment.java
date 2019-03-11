@@ -1,15 +1,13 @@
-package pers.zjc.sams.module.leave.view;
+package pers.zjc.sams.module.approval.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
@@ -24,15 +22,16 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
-import pers.zjc.sams.data.entity.Leave;
-import pers.zjc.sams.module.leave.DaggerLeaveStatComponent;
-import pers.zjc.sams.module.leave.LeaveStatModule;
-import pers.zjc.sams.module.leave.contract.LeaveStatContract;
-import pers.zjc.sams.module.leave.presenter.LeaveStatPresenter;
+import pers.zjc.sams.data.entity.SignRecord;
+import pers.zjc.sams.module.approval.ApprovalModule;
+import pers.zjc.sams.module.approval.DaggerApprovalComponent;
+import pers.zjc.sams.module.approval.contract.ApprovalContract;
+import pers.zjc.sams.module.approval.presenter.ApprovalPresenter;
+import pers.zjc.sams.module.sign.view.SignLitAdapter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
-public class LeaveStatFragment extends BaseFragment implements LeaveStatContract.View, View.OnClickListener, SwipyRefreshLayout.OnRefreshListener {
+public class ApprovalFragment extends BaseFragment implements View.OnClickListener, ApprovalContract.View, SwipyRefreshLayout.OnRefreshListener, SignLitAdapter.OnChangeSignStatusListener {
 
     @BindView(R.id.btn_back)
     ImageView btnBack;
@@ -50,43 +49,24 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     ImageView ivEmpty;
     @BindView(R.id.tv_empty)
     TextView tvEmpty;
-    @BindView(R.id.tv_checking)
-    TextView tvChecking;
-    @BindView(R.id.txt_checking)
-    TextView txtChecking;
-    @BindView(R.id.tv_revoke)
-    TextView tvRevoke;
-    @BindView(R.id.txt_revoke)
-    TextView txtRevoke;
-    @BindView(R.id.rl_top)
-    RelativeLayout rlTop;
-    @BindView(R.id.tv_pass)
-    TextView tvPass;
-    @BindView(R.id.txt_pass)
-    TextView txtPass;
-    @BindView(R.id.tv_refuse)
-    TextView tvRefuse;
-    @BindView(R.id.txt_refuse)
-    TextView txtRefuse;
-    @BindView(R.id.rl_bottom)
-    RelativeLayout rlBottom;
     Unbinder unbinder;
-    private LeaveStatAdapter adapter;
+    private SignLitAdapter adapter;
+
     @Inject
-    LeaveStatPresenter presenter;
+    ApprovalPresenter presenter;
     @Inject
     AppConfig appConfig;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_leave_stat;
+        return R.layout.fragment_approval;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerLeaveStatComponent.builder().appComponent(SamsApplication.getComponent())
-                .leaveStatModule(new LeaveStatModule(this))
+        DaggerApprovalComponent.builder().appComponent(SamsApplication.getComponent())
+                .approvalModule(new ApprovalModule(this))
                 .build()
                 .inject(this);
     }
@@ -96,20 +76,18 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
-        presenter.loadData();
+        presenter.load();
     }
 
     private void initView() {
-        setListener();
-        adapter = new LeaveStatAdapter(getContext());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        mRecyclerView.setAdapter(adapter);
-    }
-
-    private void setListener() {
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        adapter = new SignLitAdapter(getContext());
+        adapter.setOnChangeSignStatusListener(this);
+        adapter.setRole(appConfig.getRole());
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -133,9 +111,8 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                FragmentManager fm = getFragmentManager();
-                if (fm != null) {
-                    fm.popBackStackImmediate();
+                if (getFragmentManager() != null) {
+                    getFragmentManager().popBackStackImmediate();
                 }
             }
         });
@@ -167,7 +144,7 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     }
 
     @Override
-    public void setData(List<Leave> records) {
+    public void setData(List<SignRecord> records) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -208,22 +185,13 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                presenter.loadData();
+                presenter.load();
             }
         });
     }
 
     @Override
-    public void showStats(int checkingNum, int revokeNum, int passNumb, int refusedNumb) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tvChecking.setText(String.valueOf(checkingNum));
-                tvRevoke.setText(String.valueOf(revokeNum));
-                tvPass.setText(String.valueOf(passNumb));
-                tvRefuse.setText(String.valueOf(refusedNumb));
-            }
-        });
+    public void onChange(int attenceStatus) {
+        presenter.attend(attenceStatus);
     }
-
 }

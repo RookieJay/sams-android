@@ -10,7 +10,9 @@ public interface LeaveStatContract {
 
     interface Model {
 
-        Result<LeavesWrapper> getStuAllLeaves();
+        Result<LeavesWrapper> getAllLeaves();
+
+        Result<LeavesWrapper> getStuAllLeaves(String userId);
     }
 
     interface View {
@@ -28,10 +30,13 @@ public interface LeaveStatContract {
         void showNetworkErro();
 
         void startRefresh();
+
+        void showStats(int checkingNum, int revokeNum, int passNumb, int num);
     }
 
     interface Presenter {
 
         void loadData();
+
     }
 }

@@ -12,7 +12,6 @@ import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
-import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.leave.contract.LeaveStatContract;
 import pers.zjc.sams.module.leave.model.LeaveStatModel;
 
@@ -26,6 +25,7 @@ public class LeaveStatPresenter implements LeaveStatContract.Presenter {
     @Inject
     LeaveStatModel model;
 
+
     @Inject
     LeaveStatPresenter(LeaveStatContract.View view) {
         this.view = view;
@@ -33,12 +33,16 @@ public class LeaveStatPresenter implements LeaveStatContract.Presenter {
 
     @Override
     public void loadData() {
+        view.startRefresh();
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                view.startRefresh();
                 try {
-                    Result<LeavesWrapper> result = model.getStuAllLeaves();
+                    int checkingNum = 0, revokeNum = 0, passNumb = 0, refusedNumb = 0;
+                    Result<LeavesWrapper> result = model.getAllLeaves();
+                    if (appConfig.getRole().equals("1")) {
+                        result = model.getStuAllLeaves(appConfig.getUserId());
+                    }
                     if (result != null ) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             if (result.getData() != null) {
@@ -46,6 +50,25 @@ public class LeaveStatPresenter implements LeaveStatContract.Presenter {
                                 if (records.size() == 0) {
                                     view.showEmpty();
                                 } else {
+                                    for (Leave leave: records) {
+                                        switch (leave.getStatus()) {
+                                            case 0:
+                                                checkingNum ++;
+                                                break;
+                                            case 1:
+                                                revokeNum ++;
+                                                break;
+                                            case 2:
+                                                passNumb ++;
+                                                break;
+                                            case 3:
+                                                refusedNumb++;
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    view.showStats(checkingNum, revokeNum, passNumb, refusedNumb);
                                     view.hideEmpty();
                                     view.showMessage("数据加载成功");
                                     view.setData(records);
@@ -69,4 +92,6 @@ public class LeaveStatPresenter implements LeaveStatContract.Presenter {
             }
         });
     }
+
+
 }

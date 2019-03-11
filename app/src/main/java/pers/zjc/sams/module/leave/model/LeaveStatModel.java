@@ -18,7 +18,14 @@ public class LeaveStatModel implements LeaveStatContract.Model {
     LeaveStatModel(){}
 
     @Override
-    public Result<LeavesWrapper> getStuAllLeaves() {
+    public Result<LeavesWrapper> getAllLeaves() {
         return apiService.allStuLeaves();
+    }
+
+    @Override
+    public Result<LeavesWrapper> getStuAllLeaves(String userId) {
+        HttpParam.Factory factory = new HttpParam.Factory()
+                .add("stuId", userId);
+        return apiService.leaveList(factory.create());
     }
 }

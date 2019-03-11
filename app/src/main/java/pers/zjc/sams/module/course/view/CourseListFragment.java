@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.zp.android.zlib.base.BaseFragment;
 
 import java.util.List;
@@ -208,16 +210,27 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
     @Override
     public void onItemLongClick(View view, Course data, int position) {
         mCourse = data;
-        //创建弹出式菜单对象（最低版本11）
-        PopupMenu popup = new PopupMenu(getContext(), view);//第二个参数是绑定的那个view
-        //获取菜单填充器
-        MenuInflater inflater = popup.getMenuInflater();
-        //填充菜单
-        inflater.inflate(R.menu.menu_course_manage, popup.getMenu());
-        //绑定菜单项的点击事件
-        popup.setOnMenuItemClickListener(this);
-        //显示(这一行代码不要忘记了)
-        popup.show();
+//        //创建弹出式菜单对象（最低版本11）
+//        PopupMenu popup = new PopupMenu(getContext(), view);//第二个参数是绑定的那个view
+//        //获取菜单填充器
+//        MenuInflater inflater = popup.getMenuInflater();
+//        //填充菜单
+//        inflater.inflate(R.menu.menu_course_manage, popup.getMenu());
+//        //绑定菜单项的点击事件
+//        popup.setOnMenuItemClickListener(this);
+//        //显示(这一行代码不要忘记了)
+//        popup.show();
+        XPopup.get(getContext()).asCenterList(null, new String[]{"编辑", "删除"}, new OnSelectListener() {
+            @Override
+            public void onSelect(int position, String text) {
+                if (position == 0) {
+                    switchToCourseEditFrag(mCourse);
+                }
+                if (position == 1) {
+                    presenter.deleteCourse(mCourse);
+                }
+            }
+        }).show();
     }
 
     @Override

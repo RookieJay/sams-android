@@ -45,10 +45,10 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void login(String account, String pwd, boolean isRemember) {
+        mView.showProgress();
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                mView.showProgress();
                 appConfig.setRemember(isRemember);
                 String imei = null;
                 try {
@@ -68,9 +68,9 @@ public class LoginPresenter implements LoginContract.Presenter {
                             }
                             EventBus.getDefault().post(records);
                             mView.swithToMainFragment(records, result.getData().getRole());
+                            mView.showMessage(result.getMessage());
                         }
                         mView.showMessage(result.getMessage());
-
                     } else {
                         mView.showMessage(result.getMessage());
                     }

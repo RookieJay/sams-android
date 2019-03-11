@@ -47,7 +47,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/img_camera"
-            android:background="@drawable/shape_task_nav_btn1"
+            android:background="@drawable/shape_task_nav_green"
             android:gravity="center"
             android:text="0"
             android:textColor="@color/cffffff"

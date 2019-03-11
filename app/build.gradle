@@ -125,6 +125,8 @@ dependencies {
     implementation 'com.zhy:okhttputils:2.6.2'
     //贝塞尔曲线
     implementation "com.ocnyang:contourview:1.0.1"
+    //XPopup
+    implementation 'com.lxj:xpopup:1.4.7'
     //ArcFace 虹软人脸
     implementation files('libs/facedetection.jar')
     implementation files('libs/facerecognition.jar')

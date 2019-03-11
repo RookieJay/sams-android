@@ -66,6 +66,8 @@ public class LeaveDetailFragment extends BaseFragment implements View.OnClickLis
             if (leave != null) {
                 fillData(leave);
             }
+        } else {
+            showShortToast("获取请假详情失败");
         }
         initView();
 

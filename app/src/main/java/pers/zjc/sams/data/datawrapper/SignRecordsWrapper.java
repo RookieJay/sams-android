@@ -4,7 +4,7 @@ import java.util.List;
 
 import pers.zjc.sams.data.entity.SignRecord;
 
-public class SignRecordWrapper {
+public class SignRecordsWrapper {
 
     private List<SignRecord> records;
 

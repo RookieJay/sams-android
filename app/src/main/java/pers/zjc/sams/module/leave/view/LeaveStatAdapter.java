@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.leave.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 import java.util.List;
 
 import pers.zjc.sams.R;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Leave;
 
@@ -29,7 +31,7 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
 
     @Override
     protected View genItemView(ViewGroup parent, int viewType) {
-        return LayoutInflater.from(parent.getContext()).inflate(R.layout.item_leave_list, parent, false);
+        return LayoutInflater.from(parent.getContext()).inflate(R.layout.item_leave_stat, parent, false);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
                 Glide.with(ivStatus).load(R.mipmap.icon_pass).into(ivStatus);
                 break;
             case 3:
-                Glide.with(ivStatus).load(R.mipmap.icon_refused).into(ivStatus);
+                Glide.with(ivStatus).load(R.mipmap.icon_not_pass).into(ivStatus);
                 break;
             default:
                 break;
@@ -58,7 +60,9 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScmpUtils.startWindow(view.getContext(), LeaveDetailFragment.class.getName());
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Const.Keys.KEY_LEAVE, data);
+                ScmpUtils.startWindow(view.getContext(), LeaveDetailFragment.class.getName(), bundle);
             }
         });
     }

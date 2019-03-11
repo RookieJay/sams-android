@@ -210,4 +210,9 @@
     <string name="txt_choose_role">请选择角色</string>
 
     <string name="txt_personinfo_instruction">请注意：黑色字体为不可更改项，如需修改，请联系管理员。</string>
+    <!--请假状态-->
+    <string name="txt_checking">审批中</string>
+    <string name="txt_revoke">已撤销</string>
+    <string name="txt_pass">已通过</string>
+    <string name="txt_refuse">已拒绝</string>
 </resources>

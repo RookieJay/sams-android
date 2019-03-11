@@ -1,4 +1,4 @@
-package pers.zjc.sams.module.sign.presenter;
+package pers.zjc.sams.module.approval.presenter;
 
 import android.util.Log;
 
@@ -9,38 +9,40 @@ import javax.inject.Inject;
 
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.common.Const;
+import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
+import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.module.sign.contract.SignListContract;
-import pers.zjc.sams.module.sign.model.SignListModel;
+import pers.zjc.sams.module.approval.contract.ApprovalContract;
+import pers.zjc.sams.module.approval.model.ApprovalModel;
+import pers.zjc.sams.module.leave.model.LeaveListModel;
 
-public class SignListPresenter implements SignListContract.Presenter {
+public class ApprovalPresenter implements ApprovalContract.Presenter {
 
+    private ApprovalContract.View view;
     @Inject
-    Executor executor;
-    @Inject
-    SignListModel model;
+    ApprovalModel model;
     @Inject
     AppConfig appConfig;
+    @Inject
+    Executor executor;
 
-    private SignListContract.View view;
 
     @Inject
-    SignListPresenter(SignListContract.View view) {
+    ApprovalPresenter(ApprovalContract.View view) {
         this.view = view;
     }
 
+
     @Override
-    public void loadHistory(int interval) {
+    public void load() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 view.startRefresh();
                 try {
-                    SignRecord record = new SignRecord();
-                    record.setStuId(Integer.valueOf(appConfig.getUserId()));
-                    Result<SignRecordsWrapper> result = model.getHistory(interval, record);
+                    Result<SignRecordsWrapper> result = model.getAllSign();
                     if (result != null ) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             if (result.getData() != null) {
@@ -55,11 +57,13 @@ public class SignListPresenter implements SignListContract.Presenter {
                                 view.finishRefresh();
                             }
                         } else {
+
                             view.showMessage(result.getCode()+result.getMessage());
                         }
                     } else {
                         view.showNetworkErro();
                     }
+                    view.finishRefresh();
                 } catch (Exception e) {
                     e.printStackTrace();
                     view.finishRefresh();
@@ -68,5 +72,10 @@ public class SignListPresenter implements SignListContract.Presenter {
                 }
             }
         });
+    }
+
+    @Override
+    public void attend(int attenceStatus) {
+        Result result = model.addtend(attenceStatus, appConfig.getUserId(), 2);
     }
 }

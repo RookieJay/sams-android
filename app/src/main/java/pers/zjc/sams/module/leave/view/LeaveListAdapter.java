@@ -54,7 +54,7 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
                 Glide.with(ivStatus).load(R.mipmap.icon_pass).into(ivStatus);
                 break;
             case 3:
-                Glide.with(ivStatus).load(R.mipmap.icon_refused).into(ivStatus);
+                Glide.with(ivStatus).load(R.mipmap.icon_not_pass).into(ivStatus);
                 break;
             default:
                 break;
