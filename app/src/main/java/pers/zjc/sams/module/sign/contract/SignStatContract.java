@@ -1,15 +1,16 @@
-package pers.zjc.sams.module.approval.contract;
+package pers.zjc.sams.module.sign.contract;
 
 import java.util.List;
 
-import pers.zjc.sams.data.datawrapper.LeavesWrapper;
-import pers.zjc.sams.data.entity.Leave;
+import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
 import pers.zjc.sams.data.entity.Result;
+import pers.zjc.sams.data.entity.SignRecord;
 
-public interface ApprovalContract {
+public interface SignStatContract {
+
     interface Model {
 
-        Result<LeavesWrapper> getAllLeaves();
+        Result<SignRecordsWrapper> getAllSign();
     }
 
     interface View {
@@ -19,18 +20,18 @@ public interface ApprovalContract {
 
         void hideEmpty();
 
-        void setData(List<Leave> records);
+        void setData(List<SignRecord> records);
 
         void finishRefresh();
 
         void showNetworkErro();
 
         void startRefresh();
+
+        void showStats(int numSigned, int numUnsigned);
     }
 
     interface Presenter {
         void load();
-
-        void attend(int attenceStatus);
     }
 }

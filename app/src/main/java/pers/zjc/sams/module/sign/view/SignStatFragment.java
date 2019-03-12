@@ -1,13 +1,14 @@
-package pers.zjc.sams.module.leave.view;
+package pers.zjc.sams.module.sign.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,15 +25,18 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
-import pers.zjc.sams.data.entity.Leave;
-import pers.zjc.sams.module.leave.DaggerLeaveStatComponent;
-import pers.zjc.sams.module.leave.LeaveStatModule;
-import pers.zjc.sams.module.leave.contract.LeaveStatContract;
-import pers.zjc.sams.module.leave.presenter.LeaveStatPresenter;
+import pers.zjc.sams.data.entity.SignRecord;
+import pers.zjc.sams.module.sign.DaggerSignListComponent;
+import pers.zjc.sams.module.sign.DaggerSignStatomponent;
+import pers.zjc.sams.module.sign.SignListModule;
+import pers.zjc.sams.module.sign.SignStatModule;
+import pers.zjc.sams.module.sign.contract.SignStatContract;
+import pers.zjc.sams.module.sign.presenter.SignStatPresenter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
-public class LeaveStatFragment extends BaseFragment implements LeaveStatContract.View, View.OnClickListener, SwipyRefreshLayout.OnRefreshListener {
+public class SignStatFragment extends BaseFragment
+        implements SignStatContract.View, View.OnClickListener, SwipyRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.btn_back)
     ImageView btnBack;
@@ -42,6 +46,16 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     TextView barRight;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tv_signed)
+    TextView tvSigned;
+    @BindView(R.id.txt_signed)
+    TextView txtSigned;
+    @BindView(R.id.tv_unsigned)
+    TextView tvUnsigned;
+    @BindView(R.id.txt_unsigned)
+    TextView txtUnsigned;
+    @BindView(R.id.rl_bottom)
+    RelativeLayout rlBottom;
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.mRefeshLayout)
@@ -50,45 +64,26 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     ImageView ivEmpty;
     @BindView(R.id.tv_empty)
     TextView tvEmpty;
-    @BindView(R.id.tv_checking)
-    TextView tvChecking;
-    @BindView(R.id.txt_checking)
-    TextView txtChecking;
-    @BindView(R.id.tv_revoke)
-    TextView tvRevoke;
-    @BindView(R.id.txt_revoke)
-    TextView txtRevoke;
-    @BindView(R.id.rl_top)
-    RelativeLayout rlTop;
-    @BindView(R.id.tv_pass)
-    TextView tvPass;
-    @BindView(R.id.txt_pass)
-    TextView txtPass;
-    @BindView(R.id.tv_refuse)
-    TextView tvRefuse;
-    @BindView(R.id.txt_refuse)
-    TextView txtRefuse;
-    @BindView(R.id.rl_bottom)
-    RelativeLayout rlBottom;
     Unbinder unbinder;
-    private LeaveStatAdapter adapter;
+    private SignLitAdapter adapter;
     @Inject
-    LeaveStatPresenter presenter;
+    SignStatPresenter presenter;
     @Inject
     AppConfig appConfig;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_leave_stat;
+        return R.layout.fragment_sign_stat;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerLeaveStatComponent.builder().appComponent(SamsApplication.getComponent())
-                .leaveStatModule(new LeaveStatModule(this))
-                .build()
-                .inject(this);
+        DaggerSignStatomponent.builder()
+                              .appComponent(SamsApplication.getComponent())
+                              .signStatModule(new SignStatModule(this))
+                              .build()
+                              .inject(this);
     }
 
     @Override
@@ -96,54 +91,16 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
-        presenter.loadData();
+        presenter.load();
     }
 
     private void initView() {
-        setListener();
-        adapter = new LeaveStatAdapter(getContext());
+        adapter = new SignLitAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(adapter);
-    }
-
-    private void setListener() {
-        btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_back:
-                back();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void back() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                FragmentManager fm = getFragmentManager();
-                if (fm != null) {
-                    fm.popBackStackImmediate();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void showMessage(String message) {
-        showShortToast(message);
+        btnBack.setOnClickListener(this);
     }
 
     @Override
@@ -151,8 +108,13 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (adapter.getData() != null && adapter.getData().size() > 0) {
+                    adapter.clear();
+                    adapter.notifyDataSetChanged();
+                }
                 tvEmpty.setVisibility(View.VISIBLE);
                 ivEmpty.setVisibility(View.VISIBLE);
+                showShortToast(getResources().getString(R.string.txt_empty));
             }
         });
     }
@@ -169,15 +131,30 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     }
 
     @Override
-    public void setData(List<Leave> records) {
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        presenter.load();
+    }
+
+    @Override
+    public void setData(List<SignRecord> records) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 adapter.replaceAll(records);
                 adapter.notifyDataSetChanged();
+
             }
         });
+    }
 
+    @Override
+    public void startRefresh() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefeshLayout.setRefreshing(true);
+            }
+        });
     }
 
     @Override
@@ -192,40 +169,56 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
 
     @Override
     public void showNetworkErro() {
-        showShortToast(getResources().getString(R.string.toast_fail_to_connect_server));
-    }
-
-    @Override
-    public void startRefresh() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mRefeshLayout.setRefreshing(true);
+                if (mRefeshLayout.isRefreshing()) {
+                    finishRefresh();
+                }
+                showShortToast(getResources().getString(R.string.toast_fail_to_connect_server));
+            }
+        });
+
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        showShortToast(msg);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_back:
+                back();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void back() {
+        if (getFragmentManager() != null) {
+            getFragmentManager().popBackStackImmediate();
+        }
+    }
+
+    @Override
+    public void showStats(int numSigned, int numUnsigned) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvSigned.setText(String.valueOf(numSigned));
+                tvUnsigned.setText(String.valueOf(numUnsigned));
             }
         });
     }
 
-    @Override
-    public void onRefresh(SwipyRefreshLayoutDirection direction) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                presenter.loadData();
-            }
-        });
-    }
-
-    @Override
-    public void showStats(int checkingNum, int revokeNum, int passNumb, int refusedNumb) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tvChecking.setText(String.valueOf(checkingNum));
-                tvRevoke.setText(String.valueOf(revokeNum));
-                tvPass.setText(String.valueOf(passNumb));
-                tvRefuse.setText(String.valueOf(refusedNumb));
-            }
-        });
-    }
 
 }

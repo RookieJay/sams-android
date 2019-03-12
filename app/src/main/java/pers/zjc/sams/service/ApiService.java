@@ -49,6 +49,9 @@ public interface ApiService {
     @POST("/api/mobile/leaves/individual")
     Result<LeavesWrapper> leaveList(@ParamMap HttpParam param);
 
+    @POST("/api/mobile/leaves/all")
+    Result<LeavesWrapper> leaveListAll();
+
     @POST("/api/mobile/users/modify/pwd")
     Result modifyPwd(@ParamMap  HttpParam param);
 

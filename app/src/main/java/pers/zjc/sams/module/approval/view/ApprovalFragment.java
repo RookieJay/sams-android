@@ -22,16 +22,17 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
-import pers.zjc.sams.data.entity.SignRecord;
+import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.module.approval.ApprovalModule;
 import pers.zjc.sams.module.approval.DaggerApprovalComponent;
 import pers.zjc.sams.module.approval.contract.ApprovalContract;
 import pers.zjc.sams.module.approval.presenter.ApprovalPresenter;
+import pers.zjc.sams.module.leave.view.LeaveListAdapter;
 import pers.zjc.sams.module.sign.view.SignLitAdapter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
-public class ApprovalFragment extends BaseFragment implements View.OnClickListener, ApprovalContract.View, SwipyRefreshLayout.OnRefreshListener, SignLitAdapter.OnChangeSignStatusListener {
+public class ApprovalFragment extends BaseFragment implements View.OnClickListener, ApprovalContract.View, SwipyRefreshLayout.OnRefreshListener, LeaveListAdapter.OnChangeLeaveStatusListener {
 
     @BindView(R.id.btn_back)
     ImageView btnBack;
@@ -50,7 +51,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     @BindView(R.id.tv_empty)
     TextView tvEmpty;
     Unbinder unbinder;
-    private SignLitAdapter adapter;
+    private LeaveListAdapter adapter;
 
     @Inject
     ApprovalPresenter presenter;
@@ -84,8 +85,8 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
         mRefeshLayout.setOnRefreshListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        adapter = new SignLitAdapter(getContext());
-        adapter.setOnChangeSignStatusListener(this);
+        adapter = new LeaveListAdapter(getContext());
+        adapter.setOnChangeLeaveStatusListener(this);
         adapter.setRole(appConfig.getRole());
         mRecyclerView.setAdapter(adapter);
     }
@@ -144,7 +145,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void setData(List<SignRecord> records) {
+    public void setData(List<Leave> records) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -191,7 +192,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void onChange(int attenceStatus) {
-        presenter.attend(attenceStatus);
+    public void onChange(int status) {
+        presenter.attend(status);
     }
 }

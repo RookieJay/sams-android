@@ -52,7 +52,7 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    XPopup.get(view.getContext()).asCenterList("对学生" + data.getStuName() + "操作",
+                    XPopup.get(view.getContext()).asCenterList("---对学生" + data.getStuName() + "标记---",
                             new String[]{"正常行课", "迟到", "请假", "旷课", "早退"}, new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {

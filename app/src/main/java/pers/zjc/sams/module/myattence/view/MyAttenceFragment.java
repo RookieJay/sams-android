@@ -197,10 +197,12 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
 
     @Override
     public void showNetworkErro() {
-        if (mRefeshLayout.isRefreshing()) {
-            finishRefresh();
-        }
-        showShortToast(getResources().getString(R.string.toast_fail_to_connect_server));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefeshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override

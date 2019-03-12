@@ -1,4 +1,4 @@
-package pers.zjc.sams.module.approval.presenter;
+package pers.zjc.sams.module.sign.presenter;
 
 import android.util.Log;
 
@@ -9,19 +9,18 @@ import javax.inject.Inject;
 
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.common.Const;
-import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
-import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.approval.contract.ApprovalContract;
 import pers.zjc.sams.module.approval.model.ApprovalModel;
+import pers.zjc.sams.module.sign.contract.SignStatContract;
+import pers.zjc.sams.module.sign.model.SignStatModel;
 
-public class ApprovalPresenter implements ApprovalContract.Presenter {
-
-    private ApprovalContract.View view;
+public class SignStatPresenter implements SignStatContract.Presenter {
+    private SignStatContract.View view;
     @Inject
-    ApprovalModel model;
+    SignStatModel model;
     @Inject
     AppConfig appConfig;
     @Inject
@@ -29,7 +28,7 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
 
 
     @Inject
-    ApprovalPresenter(ApprovalContract.View view) {
+    SignStatPresenter(SignStatContract.View view) {
         this.view = view;
     }
 
@@ -41,14 +40,24 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
             public void run() {
                 view.startRefresh();
                 try {
-                    Result<LeavesWrapper> result = model.getAllLeaves();
+                    Result<SignRecordsWrapper> result = model.getAllSign();
                     if (result != null ) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             if (result.getData() != null) {
-                                List<Leave> records = result.getData().getRecords();
+                                List<SignRecord> records = result.getData().getRecords();
                                 if (records.size() == 0) {
                                     view.showEmpty();
                                 } else {
+                                    int numSigned = 0, numUnsigned = 0;
+                                    for (SignRecord record : records) {
+                                        if (record.getSignStatus() == 0) {
+                                            numUnsigned ++;
+                                        }
+                                        if (record.getSignStatus() == 1) {
+                                            numSigned ++;
+                                        }
+                                        view.showStats(numSigned, numUnsigned);
+                                    }
                                     view.hideEmpty();
                                     view.showMessage("数据加载成功");
                                     view.setData(records);
@@ -71,10 +80,5 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
                 }
             }
         });
-    }
-
-    @Override
-    public void attend(int attenceStatus) {
-        Result result = model.addtend(attenceStatus, appConfig.getUserId(), 2);
     }
 }

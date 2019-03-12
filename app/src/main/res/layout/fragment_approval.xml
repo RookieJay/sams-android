@@ -68,7 +68,7 @@
 
         </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
 
-        <include layout="@layout/include_empty_data"/>
+        <include layout="@layout/include_empty_data" />
 
     </FrameLayout>
 

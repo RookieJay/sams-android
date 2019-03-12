@@ -2,6 +2,7 @@ package pers.zjc.sams.module.leave.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,8 @@ public class LeaveDetailFragment extends BaseFragment implements View.OnClickLis
     TextView txtReason;
     @BindView(R.id.et_reason)
     EditText etReason;
+    @BindView(R.id.tv_status)
+    TextView tvStatus;
     Unbinder unbinder;
     private Leave leave;
 
@@ -84,6 +87,28 @@ public class LeaveDetailFragment extends BaseFragment implements View.OnClickLis
         tvEndTime.setText(leave.getEndTime());
         tvCourse.setText(leave.getCourseName());
         etReason.setText(leave.getReason());
+        switch (leave.getStatus()) {
+            case 0:
+                tvStatus.setText("审批中");
+                tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.blue_color_picker));
+                break;
+            case 1:
+                tvStatus.setText("已撤回");
+                tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.yellow_color_picker));
+                break;
+            case 2:
+                tvStatus.setText("已通过");
+                tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.green_color_picker));
+                break;
+            case 3:
+                tvStatus.setText("未通过");
+                tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.red_color_picker));
+                break;
+            default:
+                tvStatus.setText("未知");
+                tvStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                break;
+        }
 
     }
 

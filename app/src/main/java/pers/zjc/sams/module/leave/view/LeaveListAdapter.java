@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 import com.zp.android.zlib.utils.TimeUtils;
@@ -22,6 +24,13 @@ import pers.zjc.sams.module.course.view.CourseListAdapter;
 
 public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
 
+    private OnChangeLeaveStatusListener onChangeLeaveStatusListener;
+    private String role = "";
+    private int leaveStatus;
+
+    public void setOnChangeLeaveStatusListener(OnChangeLeaveStatusListener onChangeLeaveStatusListener) {
+        this.onChangeLeaveStatusListener = onChangeLeaveStatusListener;
+    }
 
     public LeaveListAdapter(Context context) {
         super(context);
@@ -68,8 +77,33 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                return false;
+                XPopup.get(v.getContext()).asCenterList("---请假审批操作---",
+                        new String[]{"通过", "不通过"}, new OnSelectListener() {
+                            @Override
+                            public void onSelect(int position, String text) {
+                                switch (position) {
+                                    case 0:
+                                        leaveStatus = 0;
+                                        break;
+                                    case 1:
+                                        leaveStatus = 1;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                onChangeLeaveStatusListener.onChange(leaveStatus);
+                            }
+                        }).show();
+                return true;
             }
         });
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public interface OnChangeLeaveStatusListener {
+        void onChange(int leaveStatus);
     }
 }

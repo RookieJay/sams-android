@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/gray"
-    tools:ignore="HardcodedText">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="请假统计"
+            android:text="考勤统计"
             android:textColor="#FFFFFFFF"
             android:textSize="17sp" />
 
@@ -64,13 +63,13 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView
-                android:id="@+id/tv_checking"
+                android:id="@+id/tv_late"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/shape_task_nav_blue"
+                android:background="@drawable/shape_circle_late"
                 android:gravity="center"
                 tools:text="15"
                 android:textColor="@color/cffffff"
@@ -79,30 +78,59 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"/>
             <TextView
-                android:id="@+id/txt_checking"
+                android:id="@+id/txt_late"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="审批中"
+                android:text="迟到"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/tv_checking"/>
+                android:layout_toEndOf="@+id/tv_late"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tv_normal"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/shape_circle_normal"
+                    android:gravity="center"
+                    tools:text="15"
+                    android:textColor="@color/cffffff"
+                    android:textSize="14sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
+                <TextView
+                    android:id="@+id/txt_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正常行课"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/tv_normal"/>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_revoke"
+                android:id="@+id/tv_leaving"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_task_nav_yellow"
+                android:background="@drawable/shape_circle_leaving"
                 android:gravity="center"
                 tools:text="15"
                 android:textColor="@color/cffffff"
                 android:textSize="14sp"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txt_revoke"/>
+                android:layout_toStartOf="@id/txt_leaving"/>
             <TextView
-                android:id="@+id/txt_revoke"
+                android:id="@+id/txt_leaving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已撤销"
+                android:text="请假"
                 android:layout_marginEnd="8dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"/>
@@ -118,11 +146,11 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp">
             <TextView
-                android:id="@+id/tv_pass"
+                android:id="@+id/tv_absent"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_task_nav_green"
+                android:background="@drawable/shape_circle_absent"
                 android:gravity="center"
                 tools:text="15"
                 android:textColor="@color/cffffff"
@@ -131,30 +159,30 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"/>
             <TextView
-                android:id="@+id/txt_pass"
+                android:id="@+id/txt_absent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已通过"
+                android:text="缺课"
                 android:layout_centerVertical="true"
                 android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/tv_pass"/>
+                android:layout_toEndOf="@+id/tv_absent"/>
             <TextView
-                android:id="@+id/tv_refuse"
+                android:id="@+id/tv_earlier_leave"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_task_nav_red"
+                android:background="@drawable/shape_circle_earlier_leave"
                 android:gravity="center"
                 tools:text="15"
                 android:layout_centerVertical="true"
                 android:textColor="@color/cffffff"
                 android:textSize="14sp"
-                android:layout_toStartOf="@+id/txt_refuse"/>
+                android:layout_toStartOf="@+id/txt_earlier_leave"/>
             <TextView
-                android:id="@+id/txt_refuse"
+                android:id="@+id/txt_earlier_leave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="未通过"
+                android:text="早退"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true" />
 
@@ -163,12 +191,15 @@
     </RelativeLayout>
 
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="@color/colorPrimary"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="请假统计"
+            android:text="签到统计"
             android:textColor="#FFFFFFFF"
             android:textSize="17sp" />
 
@@ -56,58 +56,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:paddingTop="5dp">
-        <RelativeLayout
-            android:id="@+id/rl_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/tv_checking"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/shape_task_nav_blue"
-                android:gravity="center"
-                tools:text="15"
-                android:textColor="@color/cffffff"
-                android:textSize="14sp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
-            <TextView
-                android:id="@+id/txt_checking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="审批中"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/tv_checking"/>
-
-            <TextView
-                android:id="@+id/tv_revoke"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_task_nav_yellow"
-                android:gravity="center"
-                tools:text="15"
-                android:textColor="@color/cffffff"
-                android:textSize="14sp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txt_revoke"/>
-            <TextView
-                android:id="@+id/txt_revoke"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="已撤销"
-                android:layout_marginEnd="8dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/rl_bottom"
@@ -118,7 +68,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp">
             <TextView
-                android:id="@+id/tv_pass"
+                android:id="@+id/tv_signed"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
@@ -131,15 +81,15 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"/>
             <TextView
-                android:id="@+id/txt_pass"
+                android:id="@+id/txt_signed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已通过"
+                android:text="已签到"
                 android:layout_centerVertical="true"
                 android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/tv_pass"/>
+                android:layout_toEndOf="@+id/tv_signed"/>
             <TextView
-                android:id="@+id/tv_refuse"
+                android:id="@+id/tv_unsigned"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center_vertical"
@@ -149,12 +99,12 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/cffffff"
                 android:textSize="14sp"
-                android:layout_toStartOf="@+id/txt_refuse"/>
+                android:layout_toStartOf="@+id/txt_unsigned"/>
             <TextView
-                android:id="@+id/txt_refuse"
+                android:id="@+id/txt_unsigned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="未通过"
+                android:text="未签到"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true" />
 
@@ -162,13 +112,12 @@
 
     </RelativeLayout>
 
-
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="@color/colorPrimary"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
