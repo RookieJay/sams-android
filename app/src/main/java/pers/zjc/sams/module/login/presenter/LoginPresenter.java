@@ -1,7 +1,9 @@
 package pers.zjc.sams.module.login.presenter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
+import com.zp.android.zlib.utils.DeviceUtils;
 import com.zp.android.zlib.utils.PhoneUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,6 +59,11 @@ public class LoginPresenter implements LoginContract.Presenter {
                 catch (SecurityException e) {
                     e.printStackTrace();
                 }
+                String phoneModel = DeviceUtils.getModel();
+                String androidVersion = DeviceUtils.getSDKVersionName();
+                Log.d("phoneModel+AndroidId", phoneModel+" :"+androidVersion);
+
+
                 Result<UserWrapper> result = model.login(account, pwd, imei);
                 if (result != null ) {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {

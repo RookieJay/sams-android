@@ -3,10 +3,14 @@ package pers.zjc.sams.module.sign.view;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -43,6 +48,7 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.model.LatLng;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.PermissionUtils;
 import com.zp.android.zlib.utils.StringUtils;
 import com.zp.android.zlib.utils.TimeUtils;
 
@@ -127,6 +133,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     private boolean isSigned;
     private String curTime;
     TimeHandler handler = new TimeHandler(this);
+    private int MANUAL_GRANT_CODE = 1;
 
     @Override
     protected int getLayoutId() {
@@ -207,12 +214,14 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(Manifest.permission.READ_PHONE_STATE);
         }
-        if (!permissionList.isEmpty()) {
+        if (permissionList.size() > 0) {
             String []permissions = permissionList.toArray(new String[permissionList.size()]);
-            ActivityCompat.requestPermissions(curActivity, permissions, 1);
+            requestPermissions(permissions, 1);
         } else {
             requestLocation();
         }
+
+
     }
 
     private void requestLocation() {
@@ -241,7 +250,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
     }
 
     private void navigateTo(BDLocation location, boolean isForce) {
-        if (isFirstLocate) {
+//        if (isFirstLocate) {
             Log.d("isFirstLocate", "自动定位");
             LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
             //在地图中央的地方画圆：颜色0x2201A4F1
@@ -255,7 +264,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
             update = MapStatusUpdateFactory.zoomTo(17f);
             baiduMap.animateMapStatus(update);
             isFirstLocate = false;
-        }
+//        }
         MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
         locationBuilder.latitude(location.getLatitude());
         locationBuilder.longitude(location.getLongitude());
@@ -282,16 +291,22 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d("授权结果数", String.valueOf(grantResults.length));
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0) {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
                             showShortToast("必须同意所有权限才能使用本程序");
-                            back();
+//                            back();
+                            Log.d(" BBB ", "未通过");
+                            showPermissionDialog();
                             return;
+                        } else {
+                            Log.d(" A ", "通过一个");
                         }
                     }
+                    Log.d(" AAA ", "全部通过");
                     requestLocation();
                 } else {
                     showShortToast("发生未知错误");
@@ -299,6 +314,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 }
                 break;
             default:
+                break;
         }
     }
 
@@ -313,6 +329,59 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
             }
         });
     }
+
+    /**
+     * 不再提示权限时的展示对话框
+     */
+    AlertDialog mPermissionDialog;
+    String mPackName = "";
+
+
+    private void showPermissionDialog() {
+        mPackName =  getContext().getPackageName();
+        if (mPermissionDialog == null) {
+            mPermissionDialog = new AlertDialog.Builder(getContext())
+                    .setMessage("已禁用权限，请手动授予")
+                    .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            cancelPermissionDialog();
+                            Uri packageURI = Uri.parse("package:" + mPackName);
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                            startActivityForResult(intent, MANUAL_GRANT_CODE);
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //关闭页面或者做其他操作
+                            cancelPermissionDialog();
+                            back();
+                        }
+                    })
+                    .create();
+        }
+        mPermissionDialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                initPermission();
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    //关闭对话框
+    private void cancelPermissionDialog() {
+        mPermissionDialog.cancel();
+    }
+
 
     @Override
     public void onResume() {
@@ -502,7 +571,7 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
                 showShortToast("网络不通导致定位失败，请检查网络是否通畅");
 
             } else if (bdLocation.getLocType() == BDLocation.TypeCriteriaException) {
-                showShortToast("\"法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
+                showShortToast("\"无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
             }
             runOnUiThread(new Runnable() {
                 @Override
@@ -562,7 +631,6 @@ public class SignFragment extends BaseFragment implements SignContract.View, Vie
         @Override
         public void run() {
             super.run();
-            // do-while  一 什么什么 就
             do {
                 try {
                     //每隔一秒 发送一次消息

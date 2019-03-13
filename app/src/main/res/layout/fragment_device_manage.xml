@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:background="@drawable/shape_ctl_bg">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="设备管理"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/bar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:text="查询"
+            android:textColor="#FFFFFFFF"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout
+            android:id="@+id/mRefeshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:direction="both">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
+
+        <include layout="@layout/include_empty_data"/>
+
+    </FrameLayout>
+
+</LinearLayout>

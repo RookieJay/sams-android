@@ -42,6 +42,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import pers.zjc.sams.BuildConfig;
 import pers.zjc.sams.app.AppConfig;
 
 /**
@@ -282,7 +283,7 @@ public class FaceDB {
             OkHttpUtils
                     .post()
                     .addFile("faceFile", file.getName(), file)
-                    .url("http://192.168.0.108:8080/sams/api/mobile/face/upload")
+                    .url(BuildConfig.BASE_URL+"/api/mobile/face/upload")
                     .params(map)
                     .build()
                     .execute(new StringCallback() {
@@ -294,7 +295,7 @@ public class FaceDB {
 
                         @Override
                         public void onResponse(String response, int id) {
-                            Log.d("ojbk", response);
+                            Log.d(TAG, response);
     //                                Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_SHORT).show();
                         }
                     });

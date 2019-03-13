@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
@@ -147,7 +148,40 @@ public class MainActivity extends BaseActivity<MainComponent> {
         return true;
     }
 
-//    class NetworkChangeReceiver extends BroadcastReceiver {
+    /**
+     * Fragment中无法回调onRequestPermissionsResult，需要在Activity中重写此方法，传递到fragment中去
+     * 还有一种方法：直接调用fragment的requestPermissions()方法
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // 获取到Activity下的Fragment
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+//        if (fragments == null) {
+//            return;
+//        }
+//        // 查找在Fragment中onRequestPermissionsResult方法并调用
+//        for (Fragment fragment : fragments) {
+//            if (fragment != null) {
+//                // 这里就会调用我们Fragment中的onRequestPermissionsResult方法
+//                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//            }
+//        }
+//        List<Fragment> fragments = getChildFragmentManager().getFragments();
+//        if (fragments != null) {
+//            for (Fragment fragment : fragments) {
+//                if (fragment != null) {
+//                    fragment.onRequestPermissionsResult(requestCode,permissions,grantResults);
+//                }
+//            }
+//        }
+
+    }
+
+
+
+    //    class NetworkChangeReceiver extends BroadcastReceiver {
 //
 //        @Override
 //        public void onReceive(Context context, Intent intent) {

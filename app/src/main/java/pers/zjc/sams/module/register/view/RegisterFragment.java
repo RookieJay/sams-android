@@ -1,9 +1,13 @@
 package pers.zjc.sams.module.register.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +22,8 @@ import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.StringUtils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -117,9 +123,7 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
 
     private void initData() {
         user.setRole(1);
-        if (user.getRole() == 1) {
-            presenter.loadImei();
-        }
+        initPermission();
     }
 
     private void initView() {
@@ -170,6 +174,36 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
                 break;
             default:
                 break;
+        }
+    }
+
+    private void initPermission() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.
+                permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        } else {
+            presenter.loadImei();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        showShortToast("您拒绝了权限授权, 将无法正常使用本功能");
+                    } else {
+                        if (user.getRole() == 1) {
+                            presenter.loadImei();
+                        }
+                    }
+                }
+            } else {
+                showShortToast("您拒绝了权限授权, 将无法正常使用本功能");
+            }
         }
     }
 

@@ -1,18 +1,25 @@
 package pers.zjc.sams.data.entity;
 
 public class Device {
+
     private String deviceId;
 
     private Integer deviceStatus;
 
     private Integer stuId;
 
+    private String stuName;
+
+    private String deviceModel;
+
+    private String deviceVersion;
+
     public String getDeviceId() {
         return deviceId;
     }
 
     public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId == null ? null : deviceId.trim();
+        this.deviceId = deviceId;
     }
 
     public Integer getDeviceStatus() {
@@ -29,5 +36,29 @@ public class Device {
 
     public void setStuId(Integer stuId) {
         this.stuId = stuId;
+    }
+
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName;
+    }
+
+    public String getDeviceModel() {
+        return deviceModel;
+    }
+
+    public void setDeviceModel(String deviceModel) {
+        this.deviceModel = deviceModel;
+    }
+
+    public String getDeviceVersion() {
+        return deviceVersion;
+    }
+
+    public void setDeviceVersion(String deviceVersion) {
+        this.deviceVersion = deviceVersion;
     }
 }

@@ -10,6 +10,7 @@ import pers.zjc.sams.data.datawrapper.CoursesWrapper;
 import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
+import pers.zjc.sams.data.entity.Device;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.Student;
 import pers.zjc.sams.data.entity.Teacher;
@@ -74,4 +75,7 @@ public interface ApiService {
 
     @POST("/api/mobile/update")
     Result attend(@ParamMap HttpParam httpParam);
+
+    @POST("/api/mobile/device/all")
+    Result<Device> allDevices();
 }
