@@ -46,7 +46,6 @@ public class UserWrapper {
     private String userName;
     private String role;
     private String token;
-    private List<AttenceRecord> records;
 
     public Student getStudent() {
         return student;
@@ -104,11 +103,4 @@ public class UserWrapper {
         this.token = token;
     }
 
-    public List<AttenceRecord> getRecords() {
-        return records;
-    }
-
-    public void setRecords(List<AttenceRecord> records) {
-        this.records = records;
-    }
 }

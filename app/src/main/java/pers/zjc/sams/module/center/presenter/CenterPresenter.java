@@ -42,7 +42,7 @@ public class CenterPresenter implements CenterContract.Presenter {
         switch (appConfig.getRole()) {
             case "0":
                 functions.add(new FunctionInfo("用户管理", R.drawable.icon_function_user_manage, SignFragment.class.getName()));
-                functions.add(new FunctionInfo("设备管理", R.drawable.icon_function_device_manage, SignFragment.class.getName()));
+                functions.add(new FunctionInfo("设备管理", R.drawable.icon_function_device_manage, DeviceManageFragment.class.getName()));
                 functions.add(new FunctionInfo("课程管理", R.drawable.icon_function_sign, CourseListFragment.class.getName()));
                 break;
             case "1":

@@ -1,5 +1,8 @@
 package pers.zjc.sams.module.devicemanage.contract;
 
+import java.util.List;
+
+import pers.zjc.sams.data.datawrapper.DevicesWrapper;
 import pers.zjc.sams.data.entity.Device;
 import pers.zjc.sams.data.entity.Result;
 
@@ -7,10 +10,24 @@ public interface DeviceManageContract {
 
     interface Model {
 
-        Result<Device> getAllDevices();
+        Result<DevicesWrapper> getAllDevices();
     }
 
-    interface View { }
+    interface View {
+        void setData(List<Device> data);
+
+        void startRefresh();
+
+        void showEmpty();
+
+        void hideEmpty();
+
+        void showMessage(String msg);
+
+        void finishRefresh();
+
+        void showNetworkErro();
+    }
 
     interface Presenter {
 

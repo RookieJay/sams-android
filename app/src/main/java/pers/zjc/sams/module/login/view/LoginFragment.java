@@ -15,9 +15,6 @@ import android.widget.TextView;
 import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.KeyboardUtils;
 import com.zp.android.zlib.utils.StringUtils;
-import com.zp.android.zlib.utils.ToastUtils;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -28,7 +25,6 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.common.ScmpUtils;
-import pers.zjc.sams.data.entity.AttenceRecord;
 import pers.zjc.sams.module.login.DaggerLoginComponent;
 import pers.zjc.sams.module.login.LoginModule;
 import pers.zjc.sams.module.login.contract.LoginContract;
@@ -176,14 +172,14 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     }
 
     @Override
-    public void swithToMainFragment(List<AttenceRecord> records, String role) {
+    public void swithToMainFragment(String role) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (isAdded()) {
                     MainActivity activity;
                     if (null != (activity = (MainActivity)getActivity())) {
-                        activity.switchToMainFragment(records, role);
+                        activity.switchToMainFragment(role);
                     }
                 }
             }

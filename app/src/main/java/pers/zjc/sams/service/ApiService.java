@@ -7,10 +7,10 @@ import com.zp.android.zlib.http.ParamMap;
 
 import pers.zjc.sams.data.datawrapper.AttenceRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.CoursesWrapper;
+import pers.zjc.sams.data.datawrapper.DevicesWrapper;
 import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
-import pers.zjc.sams.data.entity.Device;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.Student;
 import pers.zjc.sams.data.entity.Teacher;
@@ -77,5 +77,5 @@ public interface ApiService {
     Result attend(@ParamMap HttpParam httpParam);
 
     @POST("/api/mobile/device/all")
-    Result<Device> allDevices();
+    Result<DevicesWrapper> allDevices();
 }

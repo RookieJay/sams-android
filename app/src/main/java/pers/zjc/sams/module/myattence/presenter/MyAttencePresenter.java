@@ -30,6 +30,7 @@ public class MyAttencePresenter implements MyAttenceContract.Presenter {
 
     @Override
     public void load() {
+        view.startRefresh();
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -45,7 +46,6 @@ public class MyAttencePresenter implements MyAttenceContract.Presenter {
                             view.showMessage("数据加载成功");
                             view.resetData(records);
                         }
-
                         view.finishRefresh();
                     }
                 } else {

@@ -44,8 +44,8 @@ public class MainFragment extends BaseFragment implements MainContract.View {
         super.onActivityCreated(savedInstanceState);
         mTabLayout = (CommonTabLayout)findViewById( R.id.ctl);
         Bundle args = new Bundle();
-        List<AttenceRecord> records = getArguments().getParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS);
-        args.putParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS, (ArrayList<? extends Parcelable>) records);
+//        List<AttenceRecord> records = getArguments().getParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS);
+//        args.putParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS, (ArrayList<? extends Parcelable>) records);
         String role = getArguments().getString("role");
         switch (role) {
             case "0":

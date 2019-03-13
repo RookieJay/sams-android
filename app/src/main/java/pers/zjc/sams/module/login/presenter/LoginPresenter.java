@@ -62,19 +62,12 @@ public class LoginPresenter implements LoginContract.Presenter {
                 String phoneModel = DeviceUtils.getModel();
                 String androidVersion = DeviceUtils.getSDKVersionName();
                 Log.d("phoneModel+AndroidId", phoneModel+" :"+androidVersion);
-
-
                 Result<UserWrapper> result = model.login(account, pwd, imei);
                 if (result != null ) {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                         saveToLocal(result);
                         if (result.getData() != null) {
-                            List<AttenceRecord> records = result.getData().getRecords();
-                            if (records == null) {
-                                records = new ArrayList<>();
-                            }
-                            EventBus.getDefault().post(records);
-                            mView.swithToMainFragment(records, result.getData().getRole());
+                            mView.swithToMainFragment(result.getData().getRole());
                             mView.showMessage(result.getMessage());
                         }
                         mView.showMessage(result.getMessage());

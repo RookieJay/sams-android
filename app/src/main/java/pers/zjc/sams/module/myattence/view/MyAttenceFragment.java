@@ -77,16 +77,12 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
-//        EventBusUtil.register(this);
         initView();
         loadData();
 
     }
 
     private void initView() {
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
-//        tvEmpty = (TextView) findViewById(R.id.tv_empty);
         barTitle.setText("我的考勤");
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         attenceAdapter = new MyAttenceAdapter(getContext(), new ArrayList<>());
@@ -96,15 +92,16 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     }
 
     private void loadData() {
-        Log.d("loadData", "loadData");
-        if (getArguments() != null) {
-            Log.d("getArguments", "getArguments");
-            records = getArguments().getParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS);
-        }
-        attenceAdapter.addAll(records);
-        if (records == null || records.size() == 0) {
-            presenter.load();
-        }
+//        Log.d("loadData", "loadData");
+//        if (getArguments() != null) {
+//            Log.d("getArguments", "getArguments");
+//            records = getArguments().getParcelableArrayList(Const.Keys.KEY_ATTENCE_RECORDS);
+//        }
+//        attenceAdapter.addAll(records);
+//        if (records == null || records.size() == 0) {
+//            presenter.load();
+//        }
+        presenter.load();
     }
 
     @Override
@@ -138,17 +135,6 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     public void onClick(View view) {
 
     }
-
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onLoadData(List<AttenceRecord> records) {
-//        Log.d("onLoadData", "EventBus生效");
-//        if (records != null && records.size() > 0) {
-//            Log.d("records", records.toString());
-//            attenceAdapter.addAll(records);
-//        } else {
-//            showEmpty();
-//        }
-//    }
 
     @Override
     public void onDestroyView() {

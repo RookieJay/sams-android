@@ -4,9 +4,6 @@ import com.zp.android.zlib.base.BaseModel;
 import com.zp.android.zlib.base.BasePresenter;
 import com.zp.android.zlib.base.BaseView;
 
-import java.util.List;
-
-import pers.zjc.sams.data.entity.AttenceRecord;
 import pers.zjc.sams.data.entity.Result;
 
 public interface LoginContract {
@@ -23,7 +20,7 @@ public interface LoginContract {
 
         void showMessage(String msg);
 
-        void swithToMainFragment(List<AttenceRecord> records, String role);
+        void swithToMainFragment(String role);
 
         void showNetWorkErroMessage();
 
