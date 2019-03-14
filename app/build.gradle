@@ -78,7 +78,6 @@ dependencies {
     implementation project(':zlib')
     implementation project(':scannerlibrary')
     implementation project(':calendarLib')
-    implementation project(':facelibrary')
     implementation project(':FlycoTabLayout_Lib')
     //okhttp
     implementation rootProject.ext.dependencies.okhttp

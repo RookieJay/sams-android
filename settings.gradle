@@ -1,1 +1,1 @@
-include ':app', ':zlib', ':scannerlibrary', ':calendarLib', ':facelibrary', ':FlycoTabLayout_Lib'
+include ':app', ':zlib', ':scannerlibrary', ':calendarLib', ':FlycoTabLayout_Lib'
