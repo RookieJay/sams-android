@@ -78,4 +78,7 @@ public interface ApiService {
 
     @POST("/api/mobile/device/all")
     Result<DevicesWrapper> allDevices();
+
+    @POST("/api/mobile/device/update")
+    Result update(@ParamMap HttpParam httpParam);
 }

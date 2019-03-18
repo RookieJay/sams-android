@@ -53,6 +53,21 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
         });
     }
 
+    public void cancel(Device data) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result = model.updateStatus(data);
+                if (result != null) {
+                    view.showMessage(result.getMessage());
+                } else {
+                    view.showNetworkErro();
+                }
+            }
+        });
+    }
 
-
+    public void activate(Device data) {
+        cancel(data);
+    }
 }

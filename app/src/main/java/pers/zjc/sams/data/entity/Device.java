@@ -26,6 +26,17 @@ public class Device {
         return deviceStatus;
     }
 
+    public String getDeviceStatusStr() {
+        switch (deviceStatus) {
+            case 0:
+                return "已开通";
+            case 1:
+                return "已注销";
+            default:
+                return "未知";
+        }
+    }
+
     public void setDeviceStatus(Integer deviceStatus) {
         this.deviceStatus = deviceStatus;
     }
