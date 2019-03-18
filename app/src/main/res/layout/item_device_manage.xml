@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--报警主机Group-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -46,7 +45,17 @@
         android:layout_height="wrap_content"
         tools:text="周俊材"
         android:textSize="14sp"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/tv_device_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="开通"
+        android:textSize="14sp"
+        android:layout_below="@+id/tv_stu_name"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
