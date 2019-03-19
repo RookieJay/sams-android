@@ -66,7 +66,7 @@ public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
                                         break;
                                 }
                           }
-                      });
+                      }).show();
             }
         });
     }

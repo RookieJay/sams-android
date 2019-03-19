@@ -24,5 +24,8 @@ public interface UserManageContract {
         void startRefresh();
     }
 
-    interface Presenter { }
+    interface Presenter {
+
+        void init();
+    }
 }

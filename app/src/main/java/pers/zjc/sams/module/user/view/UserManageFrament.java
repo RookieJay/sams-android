@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,7 @@ import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Student;
 import pers.zjc.sams.module.leave.view.LeaveListAdapter;
 import pers.zjc.sams.module.user.contract.UserManageContract;
+import pers.zjc.sams.module.user.presenter.UserManagePresenter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
@@ -45,8 +49,15 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
     ImageView ivEmpty;
     @BindView(R.id.tv_empty)
     TextView tvEmpty;
+    @BindView(R.id.rb_student)
+    RadioButton rbStudent;
+    @BindView(R.id.rb_teacher)
+    RadioButton rbTeacher;
     Unbinder unbinder;
-    private UserListAdapter adapter;
+    private StudentListAdapter studentListAdapter;
+    private TeacherListAdapter teacherListAdapter;
+    @Inject
+    UserManagePresenter presenter;
 
     @Override
     protected int getLayoutId() {
@@ -57,15 +68,15 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
+        initView();
+        presenter.init();
     }
 
     private void initView() {
-        adapter = new UserListAdapter(getContext());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        mRecyclerView.setAdapter(adapter);
+        rbStudent.setChecked(true);
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
+
     }
 
 
@@ -74,10 +85,10 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (adapter.getData() != null && adapter.getData().size() > 0) {
-                    adapter.clear();
-                    adapter.notifyDataSetChanged();
-                }
+//                if (adapter.getData() != null && adapter.getData().size() > 0) {
+//                    adapter.clear();
+//                    adapter.notifyDataSetChanged();
+//                }
                 tvEmpty.setVisibility(View.VISIBLE);
                 ivEmpty.setVisibility(View.VISIBLE);
                 showShortToast(getResources().getString(R.string.txt_empty));
