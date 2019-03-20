@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pers.zjc.sams.R;
@@ -65,5 +66,16 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
                 ScmpUtils.startWindow(view.getContext(), LeaveDetailFragment.class.getName(), bundle);
             }
         });
+    }
+
+    public void filter(int i) {
+        List<Leave> leaves = new ArrayList<>();
+        for (Leave leave : mData) {
+            if (leave.getStatus() == i) {
+                leaves.add(leave);
+            }
+        }
+        replaceAll(leaves);
+        notifyDataSetChanged();
     }
 }

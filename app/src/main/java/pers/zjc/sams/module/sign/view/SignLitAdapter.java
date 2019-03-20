@@ -11,6 +11,7 @@ import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 import com.zp.android.zlib.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pers.zjc.sams.R;
@@ -45,7 +46,7 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
         holder.setText(R.id.tv_course, data.getCourseName());
         holder.setText(R.id.tv_time, TimeUtils.date2String(data.getSignTime()));
         holder.setText(R.id.tv_location, data.getLocation());
-        holder.setText(R.id.tv_ip, data.getSignIp());
+        holder.setText(R.id.tv_ip, data.getStuName());
         //教师审批
         if (role.equals("2")) {
             holder.setText(R.id.tv_ip, data.getStuName());
@@ -86,6 +87,17 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void filter(int i) {
+        List<SignRecord> records = new ArrayList<>();
+        for (SignRecord record : mData) {
+            if (record.getSignStatus() == i) {
+                records.add(record);
+            }
+        }
+        replaceAll(records);
+        notifyDataSetChanged();
     }
 
     public interface OnChangeSignStatusListener {

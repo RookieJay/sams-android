@@ -101,6 +101,9 @@ public class SignStatFragment extends BaseFragment
         mRecyclerView.setAdapter(adapter);
         mRefeshLayout.setOnRefreshListener(this);
         btnBack.setOnClickListener(this);
+        tvSigned.setOnClickListener(this);
+        tvUnsigned.setOnClickListener(this);
+
     }
 
     @Override
@@ -197,6 +200,12 @@ public class SignStatFragment extends BaseFragment
         switch (view.getId()) {
             case R.id.btn_back:
                 back();
+                break;
+            case R.id.tv_signed:
+                adapter.filter(1);
+                break;
+            case R.id.tv_unsigned:
+                adapter.filter(0);
                 break;
             default:
                 break;

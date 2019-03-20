@@ -110,6 +110,11 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
     private void setListener() {
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
+        tvChecking.setOnClickListener(this);
+        tvRevoke.setOnClickListener(this);
+        tvPass.setOnClickListener(this);
+        tvRefuse.setOnClickListener(this);
+
     }
 
     @Override
@@ -123,6 +128,18 @@ public class LeaveStatFragment extends BaseFragment implements LeaveStatContract
         switch (v.getId()) {
             case R.id.btn_back:
                 back();
+                break;
+            case R.id.tv_checking:
+                adapter.filter(0);
+                break;
+            case R.id.tv_revoke:
+                adapter.filter(1);
+                break;
+            case R.id.tv_pass:
+                adapter.filter(2);
+                break;
+            case R.id.tv_refuse:
+                adapter.filter(3);
                 break;
             default:
                 break;
