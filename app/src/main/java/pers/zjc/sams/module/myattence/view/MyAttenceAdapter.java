@@ -11,6 +11,7 @@ import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 import com.zp.android.zlib.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pers.zjc.sams.R;
@@ -78,5 +79,14 @@ public class MyAttenceAdapter extends AbsRecyclerAdapter<AttenceRecord> {
         holder.setText(R.id.tv_course, data.getCourseName());
     }
 
-
+    public void filter(int i) {
+        List<AttenceRecord> records = new ArrayList<>();
+        for (AttenceRecord record : mData) {
+            if (record.getStatus() == i) {
+                records.add(record);
+            }
+        }
+        replaceAll(records);
+        notifyDataSetChanged();
+    }
 }

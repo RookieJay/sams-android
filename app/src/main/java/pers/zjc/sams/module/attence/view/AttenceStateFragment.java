@@ -103,6 +103,11 @@ public class AttenceStateFragment extends BaseFragment implements AttenceStatCon
     private void initView() {
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
+        tvLate.setOnClickListener(this);
+        tvAbsent.setOnClickListener(this);
+        tvEarlierLeave.setOnClickListener(this);
+        tvLeaving.setOnClickListener(this);
+        tvNormal.setOnClickListener(this);
         adapter = new MyAttenceAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -125,6 +130,21 @@ public class AttenceStateFragment extends BaseFragment implements AttenceStatCon
         switch (v.getId()) {
             case R.id.btn_back:
                 back();
+                break;
+            case R.id.tv_normal:
+                adapter.filter(0);
+                break;
+            case R.id.tv_late:
+                adapter.filter(1);
+                break;
+            case R.id.tv_leaving:
+                adapter.filter(2);
+                break;
+            case R.id.tv_absent:
+                adapter.filter(3);
+                break;
+            case R.id.tv_earlier_leave:
+                adapter.filter(4);
                 break;
             default:
                 break;

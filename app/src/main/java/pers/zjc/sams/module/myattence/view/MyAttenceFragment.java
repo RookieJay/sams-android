@@ -115,7 +115,7 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
                 }
                 tvEmpty.setVisibility(View.VISIBLE);
                 ivEmpty.setVisibility(View.VISIBLE);
-                showShortToast(getResources().getString(R.string.txt_empty));
+//                showShortToast(getResources().getString(R.string.txt_empty));
             }
         });
     }
