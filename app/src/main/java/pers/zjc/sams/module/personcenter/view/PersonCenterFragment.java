@@ -162,7 +162,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 presenter.exit();
                 break;
             case R.id.rl_user_info:
-                if (appConfig.getRole() == "0") {
+                if (appConfig.getRole().equals("0")) {
                     return;
                 }
                 ScmpUtils.startWindow(getContext(), PersonInfoFragment.class.getName());

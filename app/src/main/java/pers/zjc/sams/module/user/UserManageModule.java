@@ -16,7 +16,7 @@ public class UserManageModule {
     private UserManageContract.View view;
 
     @Inject
-    UserManageModule(UserManageContract.View view) {
+    public UserManageModule(UserManageContract.View view) {
         this.view = view;
     }
 

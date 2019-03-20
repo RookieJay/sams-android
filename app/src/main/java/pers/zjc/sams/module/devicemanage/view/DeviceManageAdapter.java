@@ -33,13 +33,13 @@ public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
     @Override
     protected void onBindDataToViewHolder(RecyclerViewHolderHelper holder, Device data, int position) {
         holder.setText(R.id.tv_device_model, data.getDeviceModel());
-        holder.setText(R.id.tv_version, data.getDeviceVersion());
+        holder.setText(R.id.tv_android_version, data.getDeviceVersion());
         holder.setText(R.id.tv_stu_name, data.getStuName());
-        holder.setText(R.id.tv_status, data.getDeviceStatusStr());
+        holder.setText(R.id.tv_device_status, data.getDeviceStatusStr());
         String[] options = new String[1];
         switch (data.getDeviceStatus()) {
             case 0:
-                holder.setTextColor(R.id.tv_status, R.color.black);
+                holder.setTextColor(R.id.tv_device_status, R.color.black);
                 options[0] = "注销";
                 break;
             case 1:

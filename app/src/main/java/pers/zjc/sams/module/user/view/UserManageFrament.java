@@ -23,9 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Student;
+import pers.zjc.sams.module.devicemanage.DaggerDeviceManageComponent;
+import pers.zjc.sams.module.devicemanage.DeviceManageModule;
 import pers.zjc.sams.module.leave.view.LeaveListAdapter;
+import pers.zjc.sams.module.user.DaggerUserManageComponent;
+import pers.zjc.sams.module.user.UserManageModule;
 import pers.zjc.sams.module.user.contract.UserManageContract;
 import pers.zjc.sams.module.user.presenter.UserManagePresenter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
@@ -62,6 +67,16 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_user_manage;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerUserManageComponent.builder()
+                                 .appComponent(SamsApplication.getComponent())
+                                 .userManageModule(new UserManageModule(this))
+                                 .build()
+                                 .inject(this);
     }
 
     @Override
