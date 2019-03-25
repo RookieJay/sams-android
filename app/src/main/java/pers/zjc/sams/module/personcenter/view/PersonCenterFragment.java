@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.SPUtils;
 import com.zp.android.zlib.utils.StringUtils;
 
 import javax.inject.Inject;
@@ -56,6 +57,8 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     TextView tvRole;
     @BindView(R.id.txt_major)
     TextView txt_major;
+    @BindView(R.id.rlClearCache)
+    RelativeLayout rlClearCache;
     @BindView(R.id.tvCacheSize)
     TextView tvCacheSize;
     @BindView(R.id.rlModifyPwd)
@@ -69,6 +72,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     private BroadcastReceiver receiver;
     private BroadcastReceiver refReceiver;
     private String userName;
+    private MainActivity mainActivity;
 
 
     @Override
@@ -79,6 +83,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mainActivity = (MainActivity)context;
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -125,11 +130,11 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
 
     private void initView() {
         barTitle.setText("个人中心");
-        tvCacheSize.setOnClickListener(this);
         tvUser.setText(appConfig.getUserName());
         btExit.setOnClickListener(this);
         rlModifyPwd.setOnClickListener(this);
         rlUserInfo.setOnClickListener(this);
+        rlClearCache.setOnClickListener(this);
     }
 
     private void initData() {
@@ -166,6 +171,11 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                     return;
                 }
                 ScmpUtils.startWindow(getContext(), PersonInfoFragment.class.getName());
+                break;
+            case R.id.rlClearCache:
+                SPUtils.getInstance().clear();
+                showShortToast("清除数据缓存成功，请重新登录");
+                mainActivity.switchToLoginFragment();
                 break;
             default:
                 break;

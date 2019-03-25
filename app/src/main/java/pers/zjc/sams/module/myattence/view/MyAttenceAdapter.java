@@ -21,12 +21,18 @@ import pers.zjc.sams.widget.roundedimageview.RoundedImageView;
 
 public class MyAttenceAdapter extends AbsRecyclerAdapter<AttenceRecord> {
 
+    private List<AttenceRecord> allRecords = new ArrayList<>();
+
     public MyAttenceAdapter(Context context) {
         super(context);
     }
 
     public MyAttenceAdapter(Context context, List<AttenceRecord> data) {
         super(context, data);
+    }
+
+    public void setAllRecords(List<AttenceRecord> allRecords) {
+        this.allRecords = allRecords;
     }
 
     @Override
@@ -81,7 +87,7 @@ public class MyAttenceAdapter extends AbsRecyclerAdapter<AttenceRecord> {
 
     public void filter(int i) {
         List<AttenceRecord> records = new ArrayList<>();
-        for (AttenceRecord record : mData) {
+        for (AttenceRecord record : allRecords) {
             if (record.getStatus() == i) {
                 records.add(record);
             }

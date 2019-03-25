@@ -30,7 +30,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:text="1秒"
+        tools:text="1秒"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:alpha="1"

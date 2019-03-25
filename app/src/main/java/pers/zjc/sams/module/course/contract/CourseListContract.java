@@ -32,6 +32,7 @@ public interface CourseListContract {
         void showNetworkErro();
 
         void update(Course mCourse);
+
     }
 
     interface Presenter extends BasePresenter<View, Model> {

@@ -188,7 +188,9 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
                 back();
                 break;
             case R.id.iv_add:
-                ScmpUtils.startWindow(getContext(), CourseEditFragment.class.getName());
+                Bundle bundle = new Bundle();
+                bundle.putInt(CourseEditFragment.START_TYPE, 2);
+                ScmpUtils.startWindow(getContext(), CourseEditFragment.class.getName(), bundle);
                 break;
             default:
                 break;
@@ -252,6 +254,7 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
     private void switchToCourseEditFrag(Course course) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("course", course);
+        bundle.putInt(CourseEditFragment.START_TYPE, 1);
         ScmpUtils.startWindow(getContext(), CourseEditFragment.class.getName(), bundle);
     }
 

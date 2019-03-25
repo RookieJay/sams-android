@@ -81,6 +81,7 @@ public class AttenceStateFragment extends BaseFragment implements AttenceStatCon
     Unbinder unbinder;
 
     private MyAttenceAdapter adapter;
+    private List<AttenceRecord> mData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -167,6 +168,8 @@ public class AttenceStateFragment extends BaseFragment implements AttenceStatCon
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                mData = records;
+                adapter.setAllRecords(records);
                 adapter.replaceAll(records);
                 adapter.notifyDataSetChanged();
 

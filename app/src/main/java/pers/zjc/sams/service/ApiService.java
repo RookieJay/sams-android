@@ -5,6 +5,8 @@ import com.zp.android.zlib.http.POST;
 import com.zp.android.zlib.http.Param;
 import com.zp.android.zlib.http.ParamMap;
 
+import java.util.Map;
+
 import pers.zjc.sams.data.datawrapper.AttenceRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.CoursesWrapper;
 import pers.zjc.sams.data.datawrapper.DevicesWrapper;
@@ -85,4 +87,9 @@ public interface ApiService {
 
     @POST("api/mobile/users/students/all")
     Result<StudentsWrapper> getStudents();
+
+    @POST("api/mobile/courses/add")
+    Result addCourse(Map<String, Object> map);
+
+    Result updateCourse();
 }

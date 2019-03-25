@@ -6,26 +6,31 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.StringUtils;
 import com.zp.android.zlib.utils.TimeUtils;
 import com.zp.android.zlib.utils.ToastUtils;
 
 import java.util.Date;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.data.entity.Course;
+import pers.zjc.sams.module.course.contract.CourseEditContract;
+import pers.zjc.sams.module.course.presenter.CourseEditPresenter;
 
-public class CourseEditFragment extends BaseFragment implements View.OnClickListener {
+public class CourseEditFragment extends BaseFragment implements View.OnClickListener, CourseEditContract.View {
 
+    public static final String START_TYPE = "start_type";
 
     @BindView(R.id.bar_title)
     TextView barTitle;
@@ -43,10 +48,13 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     EditText etClassroom;
     Unbinder unbinder;
 
-    Course course;
     private TimePickerView pvTime;
     private Date beginTime;
     private Date endTime;
+    @Inject
+    CourseEditPresenter presenter;
+    Course course;
+    int type;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +69,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         Bundle bundle = getArguments();
         if (bundle != null) {
             course = bundle.getParcelable("course");
+            type = bundle.getInt(START_TYPE, 0);
         }
 
         initView();
@@ -68,7 +77,18 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     }
 
     private void initView() {
-        barTitle.setText("课程添加");
+        switch (type) {
+            case 0:
+                break;
+            case 1:
+                barTitle.setText("课程编辑");
+                break;
+            case 2:
+                barTitle.setText("课程添加");
+                break;
+            default:
+                break;
+        }
         barRight.setText("提交");
         barRight.setVisibility(View.VISIBLE);
         initTimePicker();
@@ -87,6 +107,10 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         tvBeginTime.setOnClickListener(this);
         tvCourseEndTime.setOnClickListener(this);
 
+    }
+
+    public int getType() {
+        return type;
     }
 
     private void initTimePicker() {
@@ -128,7 +152,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         return false;
     }
 
-    private void back() {
+    public void back() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -149,7 +173,19 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bar_right:
-
+                String courseName = etCourseName.getText().toString();
+                String beginTime = tvBeginTime.getText().toString();
+                String endTime = tvCourseEndTime.getText().toString();
+                String classRoom = etClassroom.getText().toString();
+                if (StringUtils.isEmpty(courseName) || StringUtils.isEmpty(beginTime) || StringUtils.isEmpty(endTime) || StringUtils.isEmpty(classRoom)) {
+                    showShortToast("请完善课程信息");
+                    return;
+                }
+                course.setName(courseName);
+                course.setBeginTime(TimeUtils.string2Date(beginTime));
+                course.setEndTime(TimeUtils.string2Date(endTime));
+                course.setClassroom(classRoom);
+                presenter.commit(course);
                 break;
             case R.id.tv_begin_time:
                 pvTime.show(tvBeginTime);
@@ -160,5 +196,15 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
             default:
                 break;
         }
+    }
+
+    @Override
+    public void showMessage(String message) {
+        showShortToast(message);
+    }
+
+    @Override
+    public void showError() {
+        showShortToast(getResources().getString(R.string.toast_fail_to_connect_server));
     }
 }

@@ -5,13 +5,16 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -52,7 +55,22 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
 
     MainActivity mainActivity;
 
-    Thread thread;
+    Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            for (int i = 5; i >= 0; i--) {
+                Message msg = handler.obtainMessage();
+                msg.arg1 = i;
+                handler.sendMessage(msg);
+                try {
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    });
 
     @Override
     public void onAttach(Activity activity) {
@@ -67,6 +85,11 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
 //        statusBarHide(mainActivity);
+        initView();
+        initPermission();
+    }
+
+    private void initView() {
         mTvCountDownTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,23 +97,6 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
             }
         });
         mIvSplash.setImageResource(R.drawable.app_logo);
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 5; i >= 0; i--) {
-                    Message msg = handler.obtainMessage();
-                    msg.arg1 = i;
-                    handler.sendMessage(msg);
-                    try {
-                        Thread.sleep(1000);
-                    }
-                    catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
     }
 
     private void finish() {
@@ -133,11 +139,37 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    @OnPermissionDenied(
-            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
-    @OnNeverAskAgain(
-            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
+//    @OnPermissionDenied(
+//            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
+//    @OnNeverAskAgain(
+//            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })
 
+
+    private void initPermission() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.
+                permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        } else {
+            thread.start();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        showShortToast("您拒绝了权限授权, 将无法正常使用部分功能");
+                    }
+                }
+            }
+
+            thread.start();
+        }
+    }
 
     @Override
     public void onDestroyView() {
