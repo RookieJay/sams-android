@@ -1,11 +1,7 @@
 package pers.zjc.sams.module.course.model;
 
 import com.zp.android.zlib.http.HttpParam;
-
-import org.json.JSONObject;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+import com.zp.android.zlib.utils.TimeUtils;
 
 import javax.inject.Inject;
 
@@ -24,14 +20,24 @@ public class CourseEditModel implements CourseEditContract.Model {
 
     @Override
     public Result edit(Course course) {
-        return apiService.updateCourse();
+        HttpParam param = createParam(course);
+        return apiService.updateCourse(param);
     }
 
     @Override
     public Result add(Course course) {
-
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("course", course);
-        return apiService.addCourse(map);
+        HttpParam param = createParam(course);
+        return apiService.addCourse(param);
     }
+
+    private HttpParam createParam(Course course) {
+        HttpParam.Factory factory = new HttpParam.Factory()
+                .add("id", String.valueOf(course.getId()))
+                .add("name", course.getName())
+                .add("classroom", course.getClassroom())
+                .add("beginTime", TimeUtils.date2String(course.getBeginTime()))
+                .add("endTime", TimeUtils.date2String(course.getEndTime()));
+        return factory.create();
+    }
+
 }

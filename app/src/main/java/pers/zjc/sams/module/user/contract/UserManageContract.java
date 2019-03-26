@@ -3,6 +3,7 @@ package pers.zjc.sams.module.user.contract;
 import java.util.List;
 
 import pers.zjc.sams.data.entity.Student;
+import pers.zjc.sams.data.entity.Teacher;
 
 public interface UserManageContract {
 
@@ -15,13 +16,17 @@ public interface UserManageContract {
 
         void hideEmpty();
 
-        void setData(List<Student> records);
+        void setStuData(List<Student> records);
+
+        void setTeaData(List<Teacher> teachers);
 
         void finishRefresh();
 
         void showNetworkErro();
 
         void startRefresh();
+
+
     }
 
     interface Presenter {

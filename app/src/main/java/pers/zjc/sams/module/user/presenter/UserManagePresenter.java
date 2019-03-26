@@ -8,8 +8,10 @@ import javax.inject.Inject;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.datawrapper.StudentsWrapper;
+import pers.zjc.sams.data.datawrapper.TeachersWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.Student;
+import pers.zjc.sams.data.entity.Teacher;
 import pers.zjc.sams.module.user.contract.UserManageContract;
 import pers.zjc.sams.module.user.model.UserManageModel;
 
@@ -39,7 +41,7 @@ public class UserManagePresenter implements UserManageContract.Presenter {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                         List<Student> students = result.getData().getStudents();
                         if (students.size() > 0) {
-                            view.setData(students);
+                            view.setStuData(students);
                         } else {
                             view.showEmpty();
                         }
@@ -52,4 +54,34 @@ public class UserManagePresenter implements UserManageContract.Presenter {
             }
         });
     }
+
+    public void load(boolean isStu) {
+        if (isStu) {
+            init();
+        } else {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    Result<TeachersWrapper> result = model.getTeachers();
+                    if (result != null) {
+                        if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
+                            List<Teacher> teachers = result.getData().getTeachers();
+                            if (teachers.size() > 0) {
+                                view.setTeaData(teachers);
+                            } else {
+                                view.showEmpty();
+                            }
+                            view.finishRefresh();
+                        }
+                    } else {
+                        view.showNetworkErro();
+                        view.finishRefresh();
+                    }
+                }
+            });
+        }
+
+    }
+
+
 }

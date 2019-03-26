@@ -13,6 +13,7 @@ import pers.zjc.sams.data.datawrapper.DevicesWrapper;
 import pers.zjc.sams.data.datawrapper.LeavesWrapper;
 import pers.zjc.sams.data.datawrapper.SignRecordsWrapper;
 import pers.zjc.sams.data.datawrapper.StudentsWrapper;
+import pers.zjc.sams.data.datawrapper.TeachersWrapper;
 import pers.zjc.sams.data.datawrapper.UserWrapper;
 import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.Student;
@@ -65,7 +66,6 @@ public interface ApiService {
     @POST("/api/mobile/users/students/info")
     Result<Student> stuInfo(@ParamMap HttpParam httpParam);
 
-
     @POST("/api/mobile/users/teachers/info")
     Result<Teacher> teacherInfo(@ParamMap HttpParam httpParam);
 
@@ -74,7 +74,6 @@ public interface ApiService {
 
     @POST("/api/mobile/users/teachers/info/modify")
     Result updateTeacher(@ParamMap HttpParam httpParam);
-
 
     @POST("/api/mobile/update")
     Result attend(@ParamMap HttpParam httpParam);
@@ -88,8 +87,14 @@ public interface ApiService {
     @POST("api/mobile/users/students/all")
     Result<StudentsWrapper> getStudents();
 
-    @POST("api/mobile/courses/add")
-    Result addCourse(Map<String, Object> map);
+    @POST("api/mobile/users/teachers/all")
+    Result<TeachersWrapper> getTeachers();
 
-    Result updateCourse();
+    @POST("api/mobile/courses/add")
+    Result addCourse(@ParamMap HttpParam map);
+
+    @POST("api/mobile/courses/update")
+    Result updateCourse(@ParamMap HttpParam map);
+
+
 }

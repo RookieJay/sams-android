@@ -26,6 +26,7 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Student;
+import pers.zjc.sams.data.entity.Teacher;
 import pers.zjc.sams.module.devicemanage.DaggerDeviceManageComponent;
 import pers.zjc.sams.module.devicemanage.DeviceManageModule;
 import pers.zjc.sams.module.leave.view.LeaveListAdapter;
@@ -91,7 +92,8 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
         rbStudent.setChecked(true);
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
-
+        studentListAdapter = new StudentListAdapter(getContext());
+        teacherListAdapter = new TeacherListAdapter(getContext());
     }
 
 
@@ -123,17 +125,37 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
     }
 
     @Override
-    public void setData(List<Student> records) {
+    public void setStuData(List<Student> records) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                mRecyclerView.setAdapter(studentListAdapter);
+                studentListAdapter.replaceAll(records);
+                studentListAdapter.notifyDataSetChanged();
+            }
+        });
+    }
 
+    @Override
+    public void setTeaData(List<Teacher> records) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mRecyclerView.setAdapter(teacherListAdapter);
+                teacherListAdapter.replaceAll(records);
+                teacherListAdapter.notifyDataSetChanged();
             }
         });
     }
 
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        if (rbStudent.isChecked()) {
+            presenter.load(true);
+        }
+        if (rbTeacher.isChecked()) {
+            presenter.load(false);
+        }
 
     }
 
@@ -186,6 +208,15 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.rb_student:
+                presenter.load(true);
+                break;
+            case R.id.rb_teacher:
+                presenter.load(false);
+                break;
+            default:
+                break;
+        }
     }
 }

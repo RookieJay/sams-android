@@ -64,7 +64,7 @@ public class CenterPresenter implements CenterContract.Presenter {
     public void loadSatisticsData() {
         switch (appConfig.getRole()) {
             case "0":
-                functions.add(new FunctionInfo("用户信息", R.drawable.icon_function_user_manage, PersonInfoFragment.class.getName()));
+                functions.add(new FunctionInfo("用户信息", R.drawable.icon_function_user_manage, UserManageFrament.class.getName()));
                 functions.add(new FunctionInfo("设备信息", R.drawable.icon_function_device_manage, DeviceManageFragment.class.getName()));
 //                functions.add(new FunctionInfo("公告管理", R.drawable.icon_function_sign, SignFragment.class.getName()));
                 break;
