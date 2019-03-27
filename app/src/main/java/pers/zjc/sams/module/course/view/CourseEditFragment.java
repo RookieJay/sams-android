@@ -91,6 +91,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         }
         barRight.setText("提交");
         barRight.setVisibility(View.VISIBLE);
+        barRight.setOnClickListener(this);
         initTimePicker();
         if (null != course) {
             etCourseName.setText(course.getName());

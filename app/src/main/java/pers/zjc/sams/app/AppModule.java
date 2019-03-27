@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.zp.android.zlib.common.MainThread;
 import com.zp.android.zlib.common.ThreadExecutor;
 import com.zp.android.zlib.db.DaoManager;
+import com.zp.android.zlib.http.HttpClient;
 
 import java.util.Date;
 import java.util.concurrent.Executor;
@@ -16,6 +17,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pers.zjc.sams.service.ApiService;
 
 @Module
 public class AppModule {
@@ -56,6 +58,12 @@ public class AppModule {
     @Provides
     AppConfig provideAppConfig() {
         return new AppConfig(application.getSharedPreferences("user_settings", Context.MODE_PRIVATE));
+    }
+
+    @Singleton
+    @Provides
+    ApiService provideApiService(HttpClient client) {
+        return client.create(ApiService.class);
     }
 
     @Provides

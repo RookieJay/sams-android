@@ -1,6 +1,7 @@
 package pers.zjc.sams.common;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 
 import java.text.SimpleDateFormat;
 
@@ -66,6 +67,7 @@ public interface Const {
         String ACTION_MAINT_FILTER = "com.zp.android.scmp.ACTION_MAINT_FILTER";
         String ACTION_LOGOUT = "pers.zjc.android.sams.logout";
         String ACTION_REFRESH_PERSON_INFO = "pers.zjc.android.sams.refresh_person_info";
+        String ACTION_REVOKE_LEAVE = "ers.zjc.android.sams.ACTION_REVOKE_LEAVE";
     }
 
     interface UrlConst {

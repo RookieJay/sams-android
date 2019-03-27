@@ -1,5 +1,9 @@
 package pers.zjc.sams.module.leave.view;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.module.leave.DaggerLeaveListComponent;
 import pers.zjc.sams.module.leave.LeaveListModule;
@@ -45,18 +50,33 @@ public class LeaveListFragment extends BaseFragment implements LeaveListContract
     SwipyRefreshLayout mRefeshLayout;
     @BindView(R.id.tv_empty)
     TextView tvEmpty;
-    Unbinder unbinder;
-
-    @Inject
-    LeaveListPresenter presenter;
     @BindView(R.id.iv_empty)
     ImageView ivEmpty;
-
+    Unbinder unbinder;
+    @Inject
+    LeaveListPresenter presenter;
     private LeaveListAdapter adapter;
+    private BroadcastReceiver mReceiver;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_leave_list;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                refresh();
+            }
+        };
+        context.registerReceiver(mReceiver, new IntentFilter(Const.Actions.ACTION_REVOKE_LEAVE));
+    }
+
+    private void refresh() {
+        presenter.loadHistory();
     }
 
     @Override

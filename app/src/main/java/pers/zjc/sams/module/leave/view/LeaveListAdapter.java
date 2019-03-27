@@ -27,7 +27,7 @@ import pers.zjc.sams.module.course.view.CourseListAdapter;
 public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
 
     private OnChangeLeaveStatusListener onChangeLeaveStatusListener;
-    private String role = "";
+    private String role = "1";
     private int leaveStatus;
 
     public void setOnChangeLeaveStatusListener(OnChangeLeaveStatusListener onChangeLeaveStatusListener) {
@@ -81,23 +81,25 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                XPopup.get(v.getContext()).asCenterList("---请假审批操作---",
-                        new String[]{"通过", "不通过"}, new OnSelectListener() {
-                            @Override
-                            public void onSelect(int position, String text) {
-                                switch (position) {
-                                    case 0:
-                                        leaveStatus = 0;
-                                        break;
-                                    case 1:
-                                        leaveStatus = 1;
-                                        break;
-                                    default:
-                                        break;
+                if (getRole().equals("2")) {
+                    XPopup.get(v.getContext()).asCenterList("---请假审批操作---",
+                            new String[]{"通过", "不通过"}, new OnSelectListener() {
+                                @Override
+                                public void onSelect(int position, String text) {
+                                    switch (position) {
+                                        case 0:
+                                            leaveStatus = 0;
+                                            break;
+                                        case 1:
+                                            leaveStatus = 1;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    onChangeLeaveStatusListener.onChange(leaveStatus);
                                 }
-                                onChangeLeaveStatusListener.onChange(leaveStatus);
-                            }
-                        }).show();
+                            }).show();
+                }
                 return true;
             }
         });
@@ -105,6 +107,10 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public interface OnChangeLeaveStatusListener {

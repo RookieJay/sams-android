@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import okhttp3.OkHttpClient;
+import pers.zjc.sams.service.ApiService;
 
 @Singleton
 @Component(modules = { AppModule.class, HttpModule.class })
@@ -28,6 +29,7 @@ public interface AppComponent {
 
     Gson getGson();
 
+    ApiService getApiService();
 
     DaoManager getDaoManager();
 

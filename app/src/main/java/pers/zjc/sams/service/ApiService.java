@@ -57,6 +57,9 @@ public interface ApiService {
     @POST("/api/mobile/leaves/all")
     Result<LeavesWrapper> leaveListAll();
 
+    @POST("/api/mobile/leaves/revoke")
+    Result revoke(@ParamMap HttpParam param);
+
     @POST("/api/mobile/users/modify/pwd")
     Result modifyPwd(@ParamMap  HttpParam param);
 
@@ -95,6 +98,7 @@ public interface ApiService {
 
     @POST("api/mobile/courses/update")
     Result updateCourse(@ParamMap HttpParam map);
+
 
 
 }
