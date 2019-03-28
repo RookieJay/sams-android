@@ -2,7 +2,6 @@ package pers.zjc.sams.module.leave.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.renderscript.ScriptC;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
-import com.zp.android.zlib.utils.TimeUtils;
 
 import java.util.List;
 
@@ -21,8 +19,6 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Leave;
-import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.module.course.view.CourseListAdapter;
 
 public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
 
@@ -81,22 +77,22 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (getRole().equals("2")) {
+                if (getRole().equals("2") && data.getStatus() == 0) {
                     XPopup.get(v.getContext()).asCenterList("---请假审批操作---",
                             new String[]{"通过", "不通过"}, new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {
                                     switch (position) {
                                         case 0:
-                                            leaveStatus = 0;
+                                            leaveStatus = 2;
                                             break;
                                         case 1:
-                                            leaveStatus = 1;
+                                            leaveStatus = 3;
                                             break;
                                         default:
                                             break;
                                     }
-                                    onChangeLeaveStatusListener.onChange(leaveStatus);
+                                    onChangeLeaveStatusListener.onLeaveStatusChange(data.getId(), leaveStatus);
                                 }
                             }).show();
                 }
@@ -114,6 +110,6 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
     }
 
     public interface OnChangeLeaveStatusListener {
-        void onChange(int leaveStatus);
+        void onLeaveStatusChange(String id, int leaveStatus);
     }
 }

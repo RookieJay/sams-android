@@ -81,7 +81,7 @@ public class LeaveDetailFragment extends BaseFragment implements View.OnClickLis
         unbinder = ButterKnife.bind(this, getView());
         appConfig = SamsApplication.getComponent().getAppConfig();
         executor = SamsApplication.getComponent().getExecutor();
-        apiService = SamsApplication.getComponent().getApiService();
+        apiService = SamsApplication.getComponent().getHttpClient().create(ApiService.class);
         Bundle bundle = getArguments();
         if (bundle != null) {
             leave = bundle.getParcelable(Const.Keys.KEY_LEAVE);

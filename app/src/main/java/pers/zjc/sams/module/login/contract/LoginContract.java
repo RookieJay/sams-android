@@ -30,6 +30,6 @@ public interface LoginContract {
 
         void login(String account, String pwd, boolean isRemember);
 
-        void init();
+        void init(boolean isLogout);
     }
 }

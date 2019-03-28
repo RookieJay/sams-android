@@ -45,7 +45,7 @@ public class ModifyPwdPresenter implements ModifyPwdContract.Presenter {
                     if (result != null) {
                         if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                             view.showMessage("密码修改成功,请重新登录");
-                            Intent intent = new Intent(Const.Actions.ACTION_LOGOUT);
+                            Intent intent = new Intent(Const.Actions.ACTION_MODIFY_PWD);
                             SamsApplication.get().sendBroadcast(intent);
                             view.back();
                         } else if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_403)) {  //临时增加用403表示已经提交

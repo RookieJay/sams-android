@@ -60,12 +60,6 @@ public class AppModule {
         return new AppConfig(application.getSharedPreferences("user_settings", Context.MODE_PRIVATE));
     }
 
-    @Singleton
-    @Provides
-    ApiService provideApiService(HttpClient client) {
-        return client.create(ApiService.class);
-    }
-
     @Provides
     @Singleton
     Gson provideGson() {
@@ -81,4 +75,5 @@ public class AppModule {
         DaoManager dm = new DaoManager(AppDatabase.NAME);
         return dm;
     }
+
 }

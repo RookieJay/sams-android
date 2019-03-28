@@ -29,8 +29,6 @@ public interface AppComponent {
 
     Gson getGson();
 
-    ApiService getApiService();
-
     DaoManager getDaoManager();
 
     NetworkInterceptor getNetworkInterceptor();

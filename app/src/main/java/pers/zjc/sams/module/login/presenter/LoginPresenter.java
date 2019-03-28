@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.zp.android.zlib.utils.DeviceUtils;
 import com.zp.android.zlib.utils.PhoneUtils;
-
+import com.zp.android.zlib.utils.StringUtils;
 
 import java.util.concurrent.Executor;
 
@@ -26,6 +26,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     Executor executor;
     @Inject
     AppConfig appConfig;
+    private String imei;
 
     @Inject
     LoginPresenter(LoginContract.View mView) {
@@ -33,7 +34,16 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void init() {
+    public void init(boolean isLogout) {
+        if (isLogout) {
+            return;
+        }
+        try {
+            imei = PhoneUtils.getIMEI();
+        }
+        catch (SecurityException e) {
+            e.printStackTrace();
+        }
         if (appConfig.isRemember()) {
             login(appConfig.getAccount(), appConfig.getPassWord(), true);
         }
@@ -46,16 +56,13 @@ public class LoginPresenter implements LoginContract.Presenter {
             @Override
             public void run() {
                 appConfig.setRemember(isRemember);
-                String imei = null;
-                try {
-                    imei = PhoneUtils.getIMEI();
-                }
-                catch (SecurityException e) {
-                    e.printStackTrace();
-                }
                 String phoneModel = DeviceUtils.getModel();
                 String androidVersion = DeviceUtils.getSDKVersionName();
                 Log.d("phoneModel+AndroidId", phoneModel+" :"+androidVersion);
+                if (StringUtils.isEmpty(imei)) {
+                    mView.showMessage("请开启电话权限以获取手机识别码");
+                    return;
+                }
                 Result<UserWrapper> result = model.login(account, pwd, imei);
                 if (result != null ) {
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {

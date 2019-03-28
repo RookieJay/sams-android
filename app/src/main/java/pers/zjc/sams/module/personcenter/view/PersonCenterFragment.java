@@ -69,7 +69,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     RelativeLayout rlUserInfo;
 
     private Unbinder unbinder;
-    private BroadcastReceiver receiver;
+    private BroadcastReceiver modifyPwdReceiver;
     private BroadcastReceiver refReceiver;
     private String userName;
     private MainActivity mainActivity;
@@ -84,10 +84,11 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     public void onAttach(Context context) {
         super.onAttach(context);
         mainActivity = (MainActivity)context;
-        receiver = new BroadcastReceiver() {
+        modifyPwdReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equals(Const.Actions.ACTION_LOGOUT)) {
+                if (intent.getAction().equals(Const.Actions.ACTION_MODIFY_PWD)) {
+                    sendLogoutBroadCastReceiver();
                     switchToLoginFragment();
                 }
             }
@@ -105,9 +106,8 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 }
             }
         };
-        context.registerReceiver(receiver, new IntentFilter(Const.Actions.ACTION_LOGOUT));
         context.registerReceiver(refReceiver, new IntentFilter(Const.Actions.ACTION_REFRESH_PERSON_INFO));
-
+        context.registerReceiver(modifyPwdReceiver, new IntentFilter(Const.Actions.ACTION_MODIFY_PWD));
     }
 
     @Override
@@ -175,6 +175,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
             case R.id.rlClearCache:
                 SPUtils.getInstance().clear();
                 showShortToast("清除数据缓存成功，请重新登录");
+                sendLogoutBroadCastReceiver();
                 mainActivity.switchToLoginFragment();
                 break;
             default:
@@ -192,6 +193,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 getString(R.string.dialog_title),
                 getString(R.string.dialog_exit_login), ContextCompat.getColor(getContext(),R.color.c32d6af),
                 (dialog, which) -> {
+                    sendLogoutBroadCastReceiver();
                     switchToLoginFragment();
                 }, null);
         builder.show();
@@ -207,6 +209,11 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         }
     }
 
+    private void sendLogoutBroadCastReceiver() {
+        SamsApplication.get().sendBroadcast(new Intent(Const.Actions.ACTION_LOGOUT));
+    }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -217,7 +224,10 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     @Override
     public void onDetach() {
         super.onDetach();
-        getContext().unregisterReceiver(receiver);
-        getContext().unregisterReceiver(refReceiver);
+        if (null != getContext() && null != refReceiver && null != modifyPwdReceiver) {
+            getContext().unregisterReceiver(refReceiver);
+            getContext().unregisterReceiver(modifyPwdReceiver);
+        }
+
     }
 }

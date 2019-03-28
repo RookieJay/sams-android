@@ -75,6 +75,40 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
 
     @Override
     public void attend(int attenceStatus) {
-        Result result = model.addtend(attenceStatus, appConfig.getUserId(), 2);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result = model.addtend(attenceStatus, appConfig.getUserId(), 2);
+                if (result != null) {
+                    if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
+                    }
+                } else {
+                    view.showNetworkErro();
+                }
+            }
+        });
+
+    }
+
+    public void changeLeaveStatus(String id, int status) {
+        executor.execute(new Runnable() {
+            Result result = null;
+            @Override
+            public void run() {
+                switch (status) {
+                    case 0:
+                        break;
+                    case 2:
+                        result = model.pass(id);
+                        break;
+                    case 3:
+                        result = model.refuse(id);
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        });
     }
 }

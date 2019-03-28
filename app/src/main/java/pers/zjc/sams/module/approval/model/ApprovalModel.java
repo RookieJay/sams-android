@@ -30,4 +30,16 @@ public class ApprovalModel implements ApprovalContract.Model {
                 .add("courseId", String.valueOf(courseId));
         return apiService.attend(factory.create());
     }
+
+    public Result pass(String id) {
+        HttpParam.Factory factory = new HttpParam.Factory()
+                .add("id", id);
+        return apiService.pass(factory.create());
+    }
+
+    public Result refuse(String id) {
+        HttpParam.Factory factory = new HttpParam.Factory()
+                .add("id", id);
+        return apiService.refuse(factory.create());
+    }
 }

@@ -52,7 +52,6 @@ public class LeaveListPresenter implements LeaveListContract.Presenter {
                                     view.showEmpty();
                                 } else {
                                     view.hideEmpty();
-                                    view.showMessage("数据加载成功");
                                     view.setData(records);
                                 }
                                 view.finishRefresh();

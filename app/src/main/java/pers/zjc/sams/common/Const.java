@@ -68,6 +68,7 @@ public interface Const {
         String ACTION_LOGOUT = "pers.zjc.android.sams.logout";
         String ACTION_REFRESH_PERSON_INFO = "pers.zjc.android.sams.refresh_person_info";
         String ACTION_REVOKE_LEAVE = "ers.zjc.android.sams.ACTION_REVOKE_LEAVE";
+        String ACTION_MODIFY_PWD = "pers.zjc.android.sams.ACTION_MODIFY_PWD";
     }
 
     interface UrlConst {

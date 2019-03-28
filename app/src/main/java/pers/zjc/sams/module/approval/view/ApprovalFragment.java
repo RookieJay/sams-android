@@ -28,7 +28,6 @@ import pers.zjc.sams.module.approval.DaggerApprovalComponent;
 import pers.zjc.sams.module.approval.contract.ApprovalContract;
 import pers.zjc.sams.module.approval.presenter.ApprovalPresenter;
 import pers.zjc.sams.module.leave.view.LeaveListAdapter;
-import pers.zjc.sams.module.sign.view.SignLitAdapter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
@@ -192,7 +191,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void onChange(int status) {
-        presenter.attend(status);
+    public void onLeaveStatusChange(String id, int status) {
+        presenter.changeLeaveStatus(id, status);
     }
 }

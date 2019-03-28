@@ -1,5 +1,9 @@
 package pers.zjc.sams.module.login.view;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -24,6 +28,7 @@ import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.module.login.DaggerLoginComponent;
 import pers.zjc.sams.module.login.LoginModule;
@@ -33,6 +38,7 @@ import pers.zjc.sams.module.main.MainActivity;
 import pers.zjc.sams.module.register.view.RegisterFragment;
 
 public class LoginFragment extends BaseFragment implements LoginContract.View, View.OnClickListener {
+
 
     @BindView(R.id.et_account)
     EditText mEtAccount;
@@ -59,10 +65,27 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     private String account;
     private String pwd;
     private boolean isRemember;
+    private boolean isLogout;
+    private Context mContext;
+    private BroadcastReceiver logoutReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            isLogout = true;
+        }
+    };
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+        if (null != mContext) {
+            mContext.registerReceiver(logoutReceiver, new IntentFilter(Const.Actions.ACTION_LOGOUT));
+        }
     }
 
     @Override
@@ -79,6 +102,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
+        mPresenter.init(isLogout);
     }
 
     private void initView() {
@@ -197,4 +221,13 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (mContext != null && logoutReceiver != null) {
+            mContext.unregisterReceiver(logoutReceiver);
+        }
+    }
+
 }
