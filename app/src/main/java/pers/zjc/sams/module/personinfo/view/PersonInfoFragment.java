@@ -199,6 +199,7 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
             public void run() {
                 etUserName.setText(data.getName());
                 etEmail.setText(data.getEmail() == null ? "未录入" : data.getEmail());
+                etTel.setText(data.getTel());
             }
         });
 
@@ -213,6 +214,7 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
                 etEmail.setText(data.getEmail() == null ? "未录入" : data.getEmail());
                 tvIdcard.setText(data.getIdCard() == null ? "未录入": data.getIdCard());
                 tvBirth.setText(data.getBirthday() == null ? "2000-01-01" : TimeUtils.date2String(data.getBirthday(), Const.DateFormat.WITHOUT_HMS));
+                etTel.setText(data.getTel());
             }
         });
 

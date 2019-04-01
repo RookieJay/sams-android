@@ -253,4 +253,19 @@ public class ScmpUtils {
         // 保存压缩后的文件
         ImageUtils.save(src, compressFile, Bitmap.CompressFormat.JPEG);
     }
+
+    /**
+     * 删除SharedPreferences数据文件
+     * @param files
+     */
+    public static boolean deleteCache(File[] files){
+        boolean isDel = false;
+        for(File itemFile : files){
+            isDel = itemFile.delete();
+            if (!isDel) {
+                deleteCache(itemFile.listFiles());
+            }
+        }
+        return isDel;
+    }
 }

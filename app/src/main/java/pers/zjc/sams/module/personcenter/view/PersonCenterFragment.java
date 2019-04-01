@@ -1,10 +1,14 @@
 package pers.zjc.sams.module.personcenter.view;
 
 
+import android.annotation.SuppressLint;
+import android.app.usage.NetworkStats;
+import android.app.usage.NetworkStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,10 +22,17 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.ConvertUtils;
+import com.zp.android.zlib.utils.PhoneUtils;
 import com.zp.android.zlib.utils.SPUtils;
 import com.zp.android.zlib.utils.StringUtils;
+import com.zp.android.zlib.utils.Utils;
+
+import java.io.File;
+import java.util.Calendar;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +49,7 @@ import pers.zjc.sams.module.personcenter.contract.PersonCenterContract;
 import pers.zjc.sams.module.personcenter.presenter.PersonCenterPresenter;
 import pers.zjc.sams.module.personinfo.view.PersonInfoFragment;
 
+import static android.content.Context.NETWORK_STATS_SERVICE;
 import static pers.zjc.sams.common.Const.Keys.KEY_USER_NAME;
 
 public class PersonCenterFragment extends BaseFragment implements PersonCenterContract.View, View.OnClickListener {
@@ -67,12 +79,15 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
     TextView btExit;
     @BindView(R.id.rl_user_info)
     RelativeLayout rlUserInfo;
+    @BindView(R.id.txtTraffic)
+    TextView txtTraffic;
 
     private Unbinder unbinder;
     private BroadcastReceiver modifyPwdReceiver;
     private BroadcastReceiver refReceiver;
     private String userName;
     private MainActivity mainActivity;
+    private File[] files;
 
 
     @Override
@@ -88,7 +103,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals(Const.Actions.ACTION_MODIFY_PWD)) {
-                    sendLogoutBroadCastReceiver();
+                    appConfig.setLogin(false);
                     switchToLoginFragment();
                 }
             }
@@ -137,8 +152,20 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         rlClearCache.setOnClickListener(this);
     }
 
+    @SuppressLint("SdCardPath")
     private void initData() {
-
+        //缓存数据
+        long length = 0L;
+        files = new File(String.format("/data/data/%s/cache", Utils.getApp().getPackageName())).listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                length += file.length();
+            }
+        }
+        String cacheSize = ConvertUtils.byte2FitMemorySize(length);
+        tvCacheSize.setText(cacheSize);
+        //流量统计
+        statsTraffic();
         switch (appConfig.getRole()) {
             case "0":
                 tvRole.setText("管理员");
@@ -173,10 +200,10 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 ScmpUtils.startWindow(getContext(), PersonInfoFragment.class.getName());
                 break;
             case R.id.rlClearCache:
-                SPUtils.getInstance().clear();
-                showShortToast("清除数据缓存成功，请重新登录");
-                sendLogoutBroadCastReceiver();
-                mainActivity.switchToLoginFragment();
+                if (null != files && ScmpUtils.deleteCache(files)) {
+                    tvCacheSize.setText("0KB");
+                    showShortToast("清除缓存数据成功");
+            }
                 break;
             default:
                 break;
@@ -193,7 +220,7 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
                 getString(R.string.dialog_title),
                 getString(R.string.dialog_exit_login), ContextCompat.getColor(getContext(),R.color.c32d6af),
                 (dialog, which) -> {
-                    sendLogoutBroadCastReceiver();
+                    appConfig.setLogin(false);
                     switchToLoginFragment();
                 }, null);
         builder.show();
@@ -213,6 +240,31 @@ public class PersonCenterFragment extends BaseFragment implements PersonCenterCo
         SamsApplication.get().sendBroadcast(new Intent(Const.Actions.ACTION_LOGOUT));
     }
 
+
+    private void statsTraffic() {
+        NetworkStatsManager nsm = (NetworkStatsManager)getActivity().getSystemService(NETWORK_STATS_SERVICE);
+        // 获取到目前为止设备的移动流量统计
+        try {
+            @SuppressLint("MissingPermission") String subId = PhoneUtils.getIMSI();
+            NetworkStats.Bucket bucket = nsm.querySummaryForDevice(ConnectivityManager.TYPE_MOBILE, subId,
+                    getTimesMonthMorning(), System.currentTimeMillis());
+            long bt = bucket.getRxBytes() + bucket.getTxBytes();
+            if (bt >= 0) {
+                txtTraffic.setText(ConvertUtils.byte2FitMemorySize(bt));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 获取本月开始日期时间戳
+    private long getTimesMonthMorning() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.getActualMinimum(Calendar.DAY_OF_MONTH), //
+                0, 0, 0);
+        return cal.getTimeInMillis();
+    }
 
     @Override
     public void onDestroyView() {

@@ -65,8 +65,10 @@ public class LeavePresenter implements LeaveContract.Presenter {
                 try {
                     Result<CoursesWrapper> result = model.getCourses();
                     if (result != null) {
-                        if (result.getData() != null) {
+                        if (result.getData() != null && result.getData().getCourses() != null) {
                             view.showCoursePopupWindow(result.getData().getCourses());
+                        } else {
+                            view.showMessage("当前暂无课程");
                         }
                     } else {
                         view.showNetWorkErro();

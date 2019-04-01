@@ -134,6 +134,7 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
         btnRegister.setOnClickListener(this);
         rlDeviceNo.setVisibility(View.VISIBLE);
         rlFace.setVisibility(View.GONE);
+        viewLineLast.setVisibility(View.GONE);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,7 +233,6 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
                     case R.id.rb_student:
                         rlDeviceNo.setVisibility(View.VISIBLE);
 //                        rlFace.setVisibility(View.VISIBLE);
-                        viewLineLast.setVisibility(View.VISIBLE);
                         viewLine.setVisibility(View.VISIBLE);
                         user.setRole(1);
                         break;
@@ -240,7 +240,6 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
                         rlDeviceNo.setVisibility(View.GONE);
                         rlFace.setVisibility(View.GONE);
                         viewLineLast.setVisibility(View.GONE);
-                        viewLine.setVisibility(View.GONE);
                         user.setRole(2);
                         break;
                     default:

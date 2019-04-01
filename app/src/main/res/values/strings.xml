@@ -74,7 +74,7 @@
     <string name="xxxxxxxxxxxxxxxxx_branch">xxxxxxxxxxxxxxxxx支行</string>
     <string name="Mr_wangxx">王某某</string>
     <string name="Security_specialist">保安专干</string>
-    <string name="data_clc_cache">清空数据缓存</string>
+    <string name="data_clc_cache">清空缓存数据</string>
     <string name="modify_secret">修改密码</string>
     <string name="total_check_webpot">对网点进行全面安全检查</string>
     <string name="surplus_10_hours">剩余10小时</string>

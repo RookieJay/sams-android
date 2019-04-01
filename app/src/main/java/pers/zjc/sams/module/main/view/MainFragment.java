@@ -68,7 +68,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
         args = new Bundle();
         args.putString("type", "2");
         mFragments.add(Fragment.instantiate(getActivity(), ContainerFragment.class.getName(), args));
-        mFragments.add(new PersonCenterFragment());
+        mFragments.add(Fragment.instantiate(getActivity(), PersonCenterFragment.class.getName()));
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }

@@ -6,16 +6,21 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.KeyboardUtils;
 import com.zp.android.zlib.utils.StringUtils;
@@ -54,6 +59,10 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
 //    Button mBtOfflineLogin;
     @BindView(R.id.tv_to_register)
     TextView tvToRegister;
+    @BindView(R.id.img_clear)
+    ImageView ivClear;
+    @BindView(R.id.img_switch_mode)
+    ImageView ivSwithMode;
 
     @Inject
     LoginPresenter mPresenter;
@@ -66,27 +75,13 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     private String pwd;
     private boolean isRemember;
     private boolean isLogout;
-    private Context mContext;
-    private BroadcastReceiver logoutReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            isLogout = true;
-        }
-    };
+    private boolean showPwd;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-        if (null != mContext) {
-            mContext.registerReceiver(logoutReceiver, new IntentFilter(Const.Actions.ACTION_LOGOUT));
-        }
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,6 +114,11 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
             @Override
             public void afterTextChanged(Editable editable) {
                 account = mEtAccount.getText().toString();
+                if (!StringUtils.isEmpty(account)) {
+                    ivClear.setVisibility(View.VISIBLE);
+                } else {
+                    ivClear.setVisibility(View.GONE);
+                }
             }
         });
         mEtUserPwd.addTextChangedListener(new TextWatcher() {
@@ -152,6 +152,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         });
         mTvForgetPwd.setOnClickListener(this);
         tvToRegister.setOnClickListener(this);
+        ivClear.setOnClickListener(this);
+        ivSwithMode.setOnClickListener(this);
     }
 
     @Override
@@ -184,6 +186,21 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
                 break;
             case R.id.tv_to_register:
                 ScmpUtils.startWindow(getContext(), RegisterFragment.class.getName());
+                break;
+            case R.id.img_clear:
+                ivClear.setVisibility(View.GONE);
+                mEtAccount.setText("");
+                break;
+            case R.id.img_switch_mode:
+                if (!showPwd) {
+                    showPwd = true;
+                    mEtUserPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    ivSwithMode.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.icon_public_pwd_show));
+                } else {
+                    showPwd = false;
+                    mEtUserPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    ivSwithMode.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.icon_public_pwd_hide));
+                }
                 break;
             default:
                 break;
@@ -222,12 +239,12 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         unbinder.unbind();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if (mContext != null && logoutReceiver != null) {
-            mContext.unregisterReceiver(logoutReceiver);
-        }
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        if (mContext != null && logoutReceiver != null) {
+//            mContext.unregisterReceiver(logoutReceiver);
+//        }
+//    }
 
 }

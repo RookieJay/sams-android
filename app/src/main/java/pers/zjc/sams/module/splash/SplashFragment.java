@@ -5,12 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import com.zp.android.zlib.base.BaseFragment;
 import com.zp.android.zlib.utils.EncryptUtils;
 import com.zp.android.zlib.utils.PhoneUtils;
+import com.zp.android.zlib.utils.ToastUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -36,10 +39,14 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.module.main.MainActivity;
 
 //@RuntimePermissions
 public class SplashFragment extends BaseFragment implements View.OnClickListener {
+
+    private static final int REQUEST_CODE_USAGE = 1;
+    private static final int REQUEST_CODE_OTHER = 2;
 
     @Override
     protected int getLayoutId() {
@@ -146,11 +153,12 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
 
 
     private void initPermission() {
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.
-                permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        //流量统计需要用到查看设备使用情况权限
+        if (!ScmpUtils.checkUsagePermission(getActivity())) {
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivityForResult(intent, REQUEST_CODE_USAGE);
         } else {
-            thread.start();
+            checkOtherPermissions();
         }
     }
 
@@ -158,15 +166,45 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1) {
-            if (grantResults.length > 0) {
-                for (int result : grantResults) {
-                    if (result != PackageManager.PERMISSION_GRANTED) {
-                        showShortToast("您拒绝了权限授权, 将无法正常使用部分功能");
+        switch (requestCode) {
+            case REQUEST_CODE_OTHER:
+                if (grantResults.length > 0) {
+                    for (int result : grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            showShortToast("您拒绝了权限授权, 将无法正常使用部分功能");
+                        }
                     }
                 }
-            }
+                thread.start();
+                break;
+            default:
+                break;
+        }
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_USAGE:
+                if (!ScmpUtils.checkUsagePermission(getActivity())) {
+                    ToastUtils.showShort("请开启智勤查看使用情况权限，否则无法统计设备使用流量。");
+                    Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                    startActivityForResult(intent, REQUEST_CODE_USAGE);
+                } else {
+                    checkOtherPermissions();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void checkOtherPermissions() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.
+                permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE_OTHER);
+        } else {
             thread.start();
         }
     }
