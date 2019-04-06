@@ -141,6 +141,8 @@ public class RegisterFragment extends BaseFragment implements RegisterContract.V
                 back();
             }
         });
+        hideKeyboardWhenLostFocus(etAccount);
+        hideKeyboardWhenLostFocus(etPassword);
     }
 
 

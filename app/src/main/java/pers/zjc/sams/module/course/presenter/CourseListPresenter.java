@@ -43,10 +43,8 @@ public class CourseListPresenter implements CourseListContract.Presenter {
                             view.showEmpty();
                         } else {
                             view.hideEmpty();
-                            view.showMessage("数据加载成功");
                             view.loadData(courses);
                         }
-
                         view.finishRefresh();
                     }
                 } else {

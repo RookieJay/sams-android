@@ -1,5 +1,9 @@
 package pers.zjc.sams.module.course.view;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.StringUtils;
 
 import java.util.List;
 
@@ -25,7 +30,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
+import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.ScmpUtils;
 import pers.zjc.sams.data.entity.Course;
 import pers.zjc.sams.module.course.CourseListModule;
@@ -37,6 +44,10 @@ import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
 public class CourseListFragment extends BaseFragment implements CourseListContract.View, View.OnClickListener, SwipyRefreshLayout.OnRefreshListener, CourseListAdapter.OnItemLongCLickListener, PopupMenu.OnMenuItemClickListener {
 
+    @Inject
+    AppConfig appConfig;
+    @Inject
+    CourseListPresenter presenter;
     @BindView(R.id.btn_back)
     ImageView btnBack;
     @BindView(R.id.bar_title)
@@ -54,16 +65,25 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
     @BindView(R.id.iv_add)
     ImageView ivAdd;
     Unbinder unbinder;
-
     private CourseListAdapter adapter;
-
-    @Inject
-    CourseListPresenter presenter;
     private Course mCourse;
+    private BroadcastReceiver receiver;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_course_list;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                presenter.load();
+            }
+        };
+        context.registerReceiver(receiver, new IntentFilter(Const.Actions.ACTION_REFRESH_COURSES));
     }
 
     @Override
@@ -84,6 +104,9 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
     }
 
     private void initView() {
+        if (StringUtils.equals(appConfig.getRole(), "1")) {
+            ivAdd.setVisibility(View.GONE);
+        }
         barTitle.setText("课程列表");
         mRefeshLayout.setOnRefreshListener(this);
         btnBack.setOnClickListener(this);
@@ -211,6 +234,9 @@ public class CourseListFragment extends BaseFragment implements CourseListContra
 
     @Override
     public void onItemLongClick(View view, Course data, int position) {
+        if (StringUtils.equals(appConfig.getRole(), "1")) {
+            return;
+        }
         mCourse = data;
 //        //创建弹出式菜单对象（最低版本11）
 //        PopupMenu popup = new PopupMenu(getContext(), view);//第二个参数是绑定的那个view

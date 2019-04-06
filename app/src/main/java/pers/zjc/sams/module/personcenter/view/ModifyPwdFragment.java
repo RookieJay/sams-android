@@ -80,6 +80,9 @@ public class ModifyPwdFragment extends BaseFragment implements ModifyPwdContract
                 }
             }
         });
+        hideKeyboardWhenLostFocus(etOldPwd);
+        hideKeyboardWhenLostFocus(etNewPwd);
+        hideKeyboardWhenLostFocus(etConfirmNewPwd);
     }
 
     @Override

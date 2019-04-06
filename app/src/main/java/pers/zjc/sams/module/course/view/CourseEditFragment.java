@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.KeyboardUtils;
 import com.zp.android.zlib.utils.StringUtils;
 import com.zp.android.zlib.utils.TimeUtils;
 import com.zp.android.zlib.utils.ToastUtils;
@@ -24,13 +25,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.data.entity.Course;
+import pers.zjc.sams.module.center.DaggerCenterComponent;
+import pers.zjc.sams.module.course.CourseEditModule;
+import pers.zjc.sams.module.course.DaggerCourseEditComponent;
 import pers.zjc.sams.module.course.contract.CourseEditContract;
 import pers.zjc.sams.module.course.presenter.CourseEditPresenter;
 
 public class CourseEditFragment extends BaseFragment implements View.OnClickListener, CourseEditContract.View {
 
-    public static final String START_TYPE = "start_type";
+    public static final String START_TYPE = "startType";
 
     @BindView(R.id.bar_title)
     TextView barTitle;
@@ -54,13 +59,22 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     @Inject
     CourseEditPresenter presenter;
     Course course;
-    int type;
+    int startType;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_edit_course;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerCourseEditComponent.builder()
+                                 .appComponent(SamsApplication.getComponent())
+                                 .courseEditModule(new CourseEditModule(this))
+                                 .build()
+                                 .inject(this);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -69,7 +83,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         Bundle bundle = getArguments();
         if (bundle != null) {
             course = bundle.getParcelable("course");
-            type = bundle.getInt(START_TYPE, 0);
+            startType = bundle.getInt(START_TYPE, 0);
         }
 
         initView();
@@ -77,7 +91,7 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
     }
 
     private void initView() {
-        switch (type) {
+        switch (startType) {
             case 0:
                 break;
             case 1:
@@ -107,11 +121,12 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
         });
         tvBeginTime.setOnClickListener(this);
         tvCourseEndTime.setOnClickListener(this);
-
+        hideKeyboardWhenLostFocus(etCourseName);
+        hideKeyboardWhenLostFocus(etClassroom);
     }
 
-    public int getType() {
-        return type;
+    public int getStartType() {
+        return startType;
     }
 
     private void initTimePicker() {
@@ -181,6 +196,9 @@ public class CourseEditFragment extends BaseFragment implements View.OnClickList
                 if (StringUtils.isEmpty(courseName) || StringUtils.isEmpty(beginTime) || StringUtils.isEmpty(endTime) || StringUtils.isEmpty(classRoom)) {
                     showShortToast("请完善课程信息");
                     return;
+                }
+                if (course == null) {
+                    course = new Course();
                 }
                 course.setName(courseName);
                 course.setBeginTime(TimeUtils.string2Date(beginTime));

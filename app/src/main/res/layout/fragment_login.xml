@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:background="#ffffff">
 
     <ImageView
@@ -58,6 +59,10 @@
             android:layout_toRightOf="@+id/img_user"
             android:layout_toEndOf="@+id/img_user"
             android:hint="@string/hint_user_name"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:nextFocusForward="@+id/et_userpwd"
             android:textColor="@color/black"
             android:background="@null"/>
 

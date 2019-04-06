@@ -45,6 +45,12 @@ public interface ApiService {
     @POST("/api/mobile/courses/delete")
     Result deleteCourse(@ParamMap HttpParam httpParam);
 
+    @POST("/api/mobile/courses/add")
+    Result addCourse(@ParamMap HttpParam map);
+
+    @POST("/api/mobile/courses/update")
+    Result updateCourse(@ParamMap HttpParam map);
+
     @POST("/api/mobile/sign")
     Result sign(@ParamMap HttpParam param);
 
@@ -93,17 +99,10 @@ public interface ApiService {
     @POST("/api/mobile/device/update")
     Result update(@ParamMap HttpParam httpParam);
 
-    @POST("api/mobile/users/students/all")
+    @POST("/api/mobile/users/students/all")
     Result<StudentsWrapper> getStudents();
 
-    @POST("api/mobile/users/teachers/all")
+    @POST("/api/mobile/users/teachers/all")
     Result<TeachersWrapper> getTeachers();
-
-    @POST("api/mobile/courses/add")
-    Result addCourse(@ParamMap HttpParam map);
-
-    @POST("api/mobile/courses/update")
-    Result updateCourse(@ParamMap HttpParam map);
-
 
 }

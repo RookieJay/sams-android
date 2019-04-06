@@ -117,6 +117,7 @@ public class HttpClient {
         }
 
         private Object request(Annotation[][] parameterAnnotations, Method method, Object[] objects, String action) {
+            Log.d("请求Url", url + action);
             Request.Builder rb = new Request.Builder().url(url + action);
             Map<String, String> map = new LinkedHashMap<>();
             for (int i = 0; i < parameterAnnotations.length; i++) {

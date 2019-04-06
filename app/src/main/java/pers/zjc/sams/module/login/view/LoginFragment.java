@@ -154,6 +154,8 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
         tvToRegister.setOnClickListener(this);
         ivClear.setOnClickListener(this);
         ivSwithMode.setOnClickListener(this);
+        hideKeyboardWhenLostFocus(mEtAccount);
+        hideKeyboardWhenLostFocus(mEtUserPwd);
     }
 
     @Override
@@ -170,7 +172,6 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_login:
-                KeyboardUtils.hideSoftInput(getView());
                 if (StringUtils.isEmpty(account)) {
                     showShortToast(getResources().getString(R.string.toast_username_can_not_be_empty));
                     return;

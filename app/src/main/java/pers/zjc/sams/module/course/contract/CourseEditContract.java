@@ -18,7 +18,7 @@ public interface CourseEditContract {
 
     interface View extends BaseView<Presenter> {
 
-        int getType();
+        int getStartType();
 
         void back();
 

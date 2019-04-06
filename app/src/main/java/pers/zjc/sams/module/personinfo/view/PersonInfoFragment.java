@@ -128,7 +128,6 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
         barRight.setText("提交");
         barRight.setVisibility(View.VISIBLE);
         barRight.setOnClickListener(this);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,6 +161,10 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
             default:
                 break;
         }
+        hideKeyboardWhenLostFocus(etAccount);
+        hideKeyboardWhenLostFocus(etEmail);
+        hideKeyboardWhenLostFocus(etTel);
+        hideKeyboardWhenLostFocus(etUserName);
     }
 
     private void initTimePicker() {

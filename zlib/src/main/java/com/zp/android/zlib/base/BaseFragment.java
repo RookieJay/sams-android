@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.zp.android.zlib.utils.KeyboardUtils;
 import com.zp.android.zlib.utils.ToastUtils;
 
 import java.util.List;
@@ -331,6 +332,17 @@ public abstract class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
+    }
+
+    protected final void hideKeyboardWhenLostFocus(View view) {
+        view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    KeyboardUtils.hideSoftInput(getView());
+                }
+            }
+        });
     }
 
     @Override

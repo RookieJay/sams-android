@@ -124,6 +124,7 @@ public class LeaveFragment extends BaseFragment implements LeaveContract.View, V
         tvSubmit.setOnClickListener(this);
         ivHistory.setOnClickListener(this);
         initTimePicker();
+        hideKeyboardWhenLostFocus(etReason);
     }
 
     @Override
