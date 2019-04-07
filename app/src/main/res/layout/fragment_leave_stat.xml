@@ -52,12 +52,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/colorPrimary"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
         <RelativeLayout
             android:id="@+id/rl_top"
             android:layout_width="match_parent"
@@ -115,8 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp">
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp">
             <TextView
                 android:id="@+id/tv_pass"
                 android:layout_width="26dp"
@@ -168,6 +172,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/colorPrimary"/>
     <FrameLayout
         android:layout_width="match_parent"
@@ -182,7 +188,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
 
         </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
 

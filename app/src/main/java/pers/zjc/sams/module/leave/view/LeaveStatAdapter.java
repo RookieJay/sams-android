@@ -21,6 +21,7 @@ import pers.zjc.sams.data.entity.Leave;
 
 public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
 
+    private List<Leave> allData = new ArrayList<>();
 
     public LeaveStatAdapter(Context context) {
         super(context);
@@ -28,6 +29,10 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
 
     public LeaveStatAdapter(Context context, List<Leave> data) {
         super(context, data);
+    }
+
+    public void setAllData(List<Leave> allData) {
+        this.allData = allData;
     }
 
     @Override
@@ -70,7 +75,7 @@ public class LeaveStatAdapter extends AbsRecyclerAdapter<Leave> {
 
     public void filter(int i) {
         List<Leave> leaves = new ArrayList<>();
-        for (Leave leave : mData) {
+        for (Leave leave : allData) {
             if (leave.getStatus() == i) {
                 leaves.add(leave);
             }

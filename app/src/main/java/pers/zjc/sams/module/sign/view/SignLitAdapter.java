@@ -21,8 +21,8 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
 
     private String role = "";
     private int attenceStatus;
-
     private OnChangeSignStatusListener onChangeSignStatusListener;
+    private List<SignRecord> allData = new ArrayList<>();
 
     public void setOnChangeSignStatusListener(OnChangeSignStatusListener onChangeSignStatusListener) {
         this.onChangeSignStatusListener = onChangeSignStatusListener;
@@ -89,9 +89,13 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
         this.role = role;
     }
 
+    public void setAllData(List<SignRecord> allData) {
+        this.allData = allData;
+    }
+
     public void filter(int i) {
         List<SignRecord> records = new ArrayList<>();
-        for (SignRecord record : mData) {
+        for (SignRecord record : allData) {
             if (record.getSignStatus() == i) {
                 records.add(record);
             }

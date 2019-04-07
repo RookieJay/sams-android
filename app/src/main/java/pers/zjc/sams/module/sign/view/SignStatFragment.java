@@ -143,6 +143,7 @@ public class SignStatFragment extends BaseFragment
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                adapter.setAllData(records);
                 adapter.replaceAll(records);
                 adapter.notifyDataSetChanged();
 
