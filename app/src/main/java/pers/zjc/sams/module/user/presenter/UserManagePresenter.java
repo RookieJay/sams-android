@@ -1,5 +1,7 @@
 package pers.zjc.sams.module.user.presenter;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -43,7 +45,7 @@ public class UserManagePresenter implements UserManageContract.Presenter {
                         if (students.size() > 0) {
                             view.setStuData(students);
                         } else {
-                            view.showEmpty();
+                            view.showEmpty(true);
                         }
                         view.finishRefresh();
                     }
@@ -69,7 +71,7 @@ public class UserManagePresenter implements UserManageContract.Presenter {
                             if (teachers.size() > 0) {
                                 view.setTeaData(teachers);
                             } else {
-                                view.showEmpty();
+                                view.showEmpty(false);
                             }
                             view.finishRefresh();
                         }
@@ -83,5 +85,44 @@ public class UserManagePresenter implements UserManageContract.Presenter {
 
     }
 
+    @Override
+    public void update(Student data, int vPosition, boolean isCancel) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result;
+                if (isCancel) {
+                    result = model.cancelStu(data);
+                } else {
+                    result = model.activate(data);
+                }
+                if (null != result) {
+                    view.showMessage(result.getMessage());
+                    if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
+                        view.notifyStuDataChanged(vPosition, isCancel);
+                    }
+                } else {
+                    view.showNetworkErro();
+                }
+            }
+        });
+    }
 
+    @Override
+    public void delete(Teacher data, int vPosition) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result = model.delete(data);
+                if (null != result) {
+                    view.showMessage(result.getMessage());
+                    if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
+                        view.notifyTeaDataChanged(vPosition);
+                    }
+                } else {
+                    view.showNetworkErro();
+                }
+            }
+        });
+    }
 }

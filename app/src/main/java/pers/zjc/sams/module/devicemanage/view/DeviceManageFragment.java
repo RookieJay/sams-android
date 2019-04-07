@@ -80,7 +80,7 @@ public class DeviceManageFragment extends BaseFragment implements DeviceManageCo
     private void initView() {
         mRefeshLayout.setOnRefreshListener(this);
         btnBack.setOnClickListener(this);
-        adapter = new DeviceManageAdapter(getContext());
+        adapter = new DeviceManageAdapter(getContext(), presenter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(adapter);

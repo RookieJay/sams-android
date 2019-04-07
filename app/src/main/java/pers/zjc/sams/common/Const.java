@@ -30,6 +30,8 @@ public interface Const {
         String KEY_ATTENCE_RECORDS = "key_attence_records";
         String KEY_USER_NAME = "key_user_name";
         String KEY_LEAVE = "key_leave";
+        String KEY_STUDENT = "key_student";
+        String KEY_TEACHER = "key_teacher";
     }
 
     interface Offline {

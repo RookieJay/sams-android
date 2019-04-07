@@ -50,6 +50,8 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
     TextView barRight;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tv_instruction)
+    TextView tvInstruction;
     @BindView(R.id.lbl_org)
     TextView lblOrg;
     @BindView(R.id.tv_role)
@@ -124,16 +126,49 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
     }
 
     private void initView() {
-        barTitle.setText("个人信息");
-        barRight.setText("提交");
-        barRight.setVisibility(View.VISIBLE);
-        barRight.setOnClickListener(this);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 back();
             }
         });
+        Bundle bundle = getArguments();
+        if (null != bundle) {
+            barTitle.setText("用户信息");
+            tvInstruction.setVisibility(View.GONE);
+            barRight.setVisibility(View.GONE);
+            lblAcoount.setVisibility(View.GONE);
+            etAccount.setVisibility(View.GONE);
+            Student student = bundle.getParcelable(Const.Keys.KEY_STUDENT);
+            Teacher teacher = bundle.getParcelable(Const.Keys.KEY_TEACHER);
+            if (null != student) {
+                tvRole.setText("学生");
+                etUserName.setText(student.getName());
+                tvMajor.setText(student.getMajor());
+                etTel.setText(student.getTel());
+                tvSex.setText(student.getSexStr());
+                etEmail.setText(student.getEmail());
+                tvBirth.setText(TimeUtils.date2String(student.getBirthday()));
+                tvIdcard.setText(student.getIdCard());
+            }
+            if (null != teacher) {
+                tvRole.setText("教师");
+                etAccount.setVisibility(View.GONE);
+                etUserName.setText(teacher.getName());
+                tvMajor.setText(teacher.getMajor());
+                etTel.setText(teacher.getTel());
+                tvSex.setText(teacher.getSexStr());
+                etEmail.setText(teacher.getEmail());
+                rlIdcard.setVisibility(View.GONE);
+                rlBirth.setVisibility(View.GONE);
+                rlFace.setVisibility(View.GONE);
+            }
+            return;
+        }
+        barTitle.setText("个人信息");
+        barRight.setText("提交");
+        barRight.setVisibility(View.VISIBLE);
+        barRight.setOnClickListener(this);
         initTimePicker();
         switch (appConfig.getRole()) {
             case "0":

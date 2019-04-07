@@ -105,4 +105,12 @@ public interface ApiService {
     @POST("/api/mobile/users/teachers/all")
     Result<TeachersWrapper> getTeachers();
 
+    @POST("/api/mobile/users/students/update")
+    Result cancelStu(@ParamMap HttpParam param);
+
+    @POST("/api/mobile/users/teachers/update")
+    Result cancelTeac(@ParamMap HttpParam param);
+
+    @POST("/api/mobile/users/students/activate")
+    Result activateStu(@ParamMap HttpParam param);
 }

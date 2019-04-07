@@ -53,11 +53,13 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
         });
     }
 
-    public void cancel(Device data) {
+    public void update(Device data, boolean isCancel) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                Result result = model.updateStatus(data);
+                Result result;
+                data.setDeviceStatus(isCancel ? 1 : 0);
+                result = model.updateStatus(data);
                 if (result != null) {
                     view.showMessage(result.getMessage());
                 } else {
@@ -68,6 +70,6 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
     }
 
     public void activate(Device data) {
-        cancel(data);
+        update(data, false);
     }
 }

@@ -4,24 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/tvAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textColor="@color/c333333"
-        android:textSize="13sp"
-        tools:text="@string/app_name" />
+    <pers.zjc.sams.widget.roundedimageview.RoundedImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/icon_base_avatar"/>
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:singleLine="true"
-        android:textColor="@color/c333333"
-        android:textSize="13sp"
-        tools:text="@string/app_name" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="@string/app_name" />
+        <TextView
+            android:id="@+id/tv_user_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:layout_below="@+id/tv_user_name"
+            tools:hint="@string/app_name" />
+        <TextView
+            android:id="@+id/tv_user_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorPrimary"
+            tools:text="@string/app_name" />
+        <TextView
+            android:id="@+id/tv_user_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@+id/tv_user_tel"
+            tools:hint="@string/app_name" />
+    </RelativeLayout>
+
 </LinearLayout>

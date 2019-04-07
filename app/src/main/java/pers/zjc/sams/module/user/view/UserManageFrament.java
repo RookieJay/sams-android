@@ -2,13 +2,13 @@ package pers.zjc.sams.module.user.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -24,12 +24,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
 import pers.zjc.sams.app.SamsApplication;
-import pers.zjc.sams.data.entity.Leave;
 import pers.zjc.sams.data.entity.Student;
 import pers.zjc.sams.data.entity.Teacher;
-import pers.zjc.sams.module.devicemanage.DaggerDeviceManageComponent;
-import pers.zjc.sams.module.devicemanage.DeviceManageModule;
-import pers.zjc.sams.module.leave.view.LeaveListAdapter;
 import pers.zjc.sams.module.user.DaggerUserManageComponent;
 import pers.zjc.sams.module.user.UserManageModule;
 import pers.zjc.sams.module.user.contract.UserManageContract;
@@ -38,6 +34,9 @@ import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
 
 public class UserManageFrament extends BaseFragment implements UserManageContract.View, View.OnClickListener, SwipyRefreshLayout.OnRefreshListener {
+
+    @Inject
+    UserManagePresenter presenter;
 
     @BindView(R.id.btn_back)
     ImageView btnBack;
@@ -62,8 +61,7 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
     Unbinder unbinder;
     private StudentListAdapter studentListAdapter;
     private TeacherListAdapter teacherListAdapter;
-    @Inject
-    UserManagePresenter presenter;
+
 
     @Override
     protected int getLayoutId() {
@@ -85,6 +83,7 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
+        setListener();
         presenter.init();
     }
 
@@ -92,23 +91,54 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
         rbStudent.setChecked(true);
         btnBack.setOnClickListener(this);
         mRefeshLayout.setOnRefreshListener(this);
-        studentListAdapter = new StudentListAdapter(getContext());
-        teacherListAdapter = new TeacherListAdapter(getContext());
+        studentListAdapter = new StudentListAdapter(getContext(), presenter);
+        teacherListAdapter = new TeacherListAdapter(getContext(), presenter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+    }
+
+    private void setListener() {
+        rbStudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isPressed() && isChecked) {
+                    presenter.load(true);
+                }
+            }
+        });
+        rbTeacher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isPressed() && isChecked) {
+                    presenter.load(false);
+                }
+            }
+        });
     }
 
 
     @Override
-    public void showEmpty() {
+    public void showEmpty(boolean isStu) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                if (adapter.getData() != null && adapter.getData().size() > 0) {
-//                    adapter.clear();
-//                    adapter.notifyDataSetChanged();
-//                }
-                tvEmpty.setVisibility(View.VISIBLE);
-                ivEmpty.setVisibility(View.VISIBLE);
-                showShortToast(getResources().getString(R.string.txt_empty));
+                if (isStu && studentListAdapter.getAll().size() > 0) {
+                    studentListAdapter.clear();
+                    studentListAdapter.notifyDataSetChanged();
+                    tvEmpty.setVisibility(View.VISIBLE);
+                    ivEmpty.setVisibility(View.VISIBLE);
+                    showShortToast(getResources().getString(R.string.txt_empty));
+                } else if (teacherListAdapter.getAll().size() > 0) {
+                    teacherListAdapter.clear();
+                    teacherListAdapter.notifyDataSetChanged();
+                    tvEmpty.setVisibility(View.VISIBLE);
+                    ivEmpty.setVisibility(View.VISIBLE);
+                    showShortToast(getResources().getString(R.string.txt_empty));
+                }
+                else {
+                    showShortToast("发生未知错误，请重新打开页面");
+                }
+
             }
         });
     }
@@ -215,8 +245,59 @@ public class UserManageFrament extends BaseFragment implements UserManageContrac
             case R.id.rb_teacher:
                 presenter.load(false);
                 break;
+            case R.id.btn_back:
+                back();
             default:
                 break;
         }
+    }
+
+    private void back() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                FragmentManager fm = getFragmentManager();
+                if (null != fm) {
+                    fm.popBackStackImmediate();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void notifyStuDataChanged(int position, boolean isCancel) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (null != studentListAdapter) {
+                    if (studentListAdapter.getData().size() == 0) {
+                        return;
+                    }
+                    if (isCancel) {
+                        studentListAdapter.getData().get(position).setStatus(1);
+                    } else {
+                        studentListAdapter.getData().get(position).setStatus(0);
+                    }
+
+                    studentListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void notifyTeaDataChanged(int position) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (null != teacherListAdapter) {
+                    if (teacherListAdapter.getData().size() == 0) {
+                        return;
+                    }
+                    teacherListAdapter.getData().remove(teacherListAdapter.getData().get(position));
+                    teacherListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 }

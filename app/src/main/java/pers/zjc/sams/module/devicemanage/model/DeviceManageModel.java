@@ -25,7 +25,8 @@ public class DeviceManageModel implements DeviceManageContract.Model {
 
     public Result updateStatus(Device data) {
         HttpParam.Factory factory = new HttpParam.Factory()
-                .add("deviceId", data.getDeviceId());
+                .add("deviceId", data.getDeviceId())
+                .add("deviceStatus", String.valueOf(data.getDeviceStatus()));
         return apiService.update(factory.create());
     }
 }

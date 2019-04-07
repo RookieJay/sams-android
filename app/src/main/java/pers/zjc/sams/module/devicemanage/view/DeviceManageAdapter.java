@@ -9,8 +9,7 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.zp.android.zlib.base.AbsRecyclerAdapter;
 import com.zp.android.zlib.base.RecyclerViewHolderHelper;
-
-import javax.inject.Inject;
+import com.zp.android.zlib.utils.StringUtils;
 
 import pers.zjc.sams.R;
 import pers.zjc.sams.data.entity.Device;
@@ -18,11 +17,11 @@ import pers.zjc.sams.module.devicemanage.presenter.DeviceManagePresenter;
 
 public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
 
-    @Inject
-    DeviceManagePresenter presenter;
+    private DeviceManagePresenter presenter;
 
-    public DeviceManageAdapter(Context context) {
+    public DeviceManageAdapter(Context context, DeviceManagePresenter presenter) {
         super(context);
+        this.presenter = presenter;
     }
 
     @Override
@@ -57,10 +56,14 @@ public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
                           public void onSelect(int position, String text) {
                                 switch (position) {
                                     case 0:
-                                        presenter.cancel(data);
-                                        break;
-                                    case 1:
-                                        presenter.activate(data);
+                                        if (StringUtils.equals(text, "注销")) {
+                                            presenter.update(data, true);
+
+                                        }
+                                        if (StringUtils.equals(text, "开通")) {
+                                            presenter.activate(data);
+
+                                        }
                                         break;
                                     default:
                                         break;

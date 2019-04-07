@@ -12,7 +12,7 @@ public interface UserManageContract {
     interface View {
         void showMessage(String message);
 
-        void showEmpty();
+        void showEmpty(boolean isStu);
 
         void hideEmpty();
 
@@ -26,11 +26,17 @@ public interface UserManageContract {
 
         void startRefresh();
 
+        void notifyStuDataChanged(int data, boolean isCancel);
 
+        void notifyTeaDataChanged(int vPosition);
     }
 
     interface Presenter {
 
         void init();
+
+        void update(Student data, int vPosition, boolean isCancel);
+
+        void delete(Teacher data, int vPosition);
     }
 }
