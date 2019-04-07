@@ -2,6 +2,8 @@ package pers.zjc.sams.module.face.presenter;
 
 import android.util.Log;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -66,6 +68,23 @@ public class CheckPresenter implements CheckContract.Presenter {
                     view.finishRefresh();
                     Log.d("捕获异常", e.getMessage());
                     view.showMessage(e.getMessage());
+                }
+            }
+        });
+    }
+
+    public void check(int attenceStatus, SignRecord data) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Result result = model.update(attenceStatus, data);
+                if (result != null) {
+                    view.showMessage(result.getMessage());
+                    if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
+
+                    }
+                } else {
+                    view.showNetworkErro();
                 }
             }
         });

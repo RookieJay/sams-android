@@ -2,6 +2,7 @@ package pers.zjc.sams.module.myattence.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,10 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.common.Const;
 import pers.zjc.sams.common.EventBusUtil;
 import pers.zjc.sams.data.entity.AttenceRecord;
+import pers.zjc.sams.module.leave.view.LeaveListAdapter;
 import pers.zjc.sams.module.myattence.DaggerMyAttenceComponent;
 import pers.zjc.sams.module.myattence.MyAttenceModule;
 import pers.zjc.sams.module.myattence.contract.MyAttenceContract;
@@ -40,6 +43,8 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
 
     @Inject
     MyAttencePresenter presenter;
+    @Inject
+    AppConfig appConfig;
 
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
@@ -57,6 +62,7 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
     private Unbinder unbinder;
 
     private MyAttenceAdapter attenceAdapter;
+    private LeaveListAdapter leaveListAdapter;
     List<AttenceRecord> records = new ArrayList<>();
 
     @Override
@@ -78,16 +84,33 @@ public class MyAttenceFragment extends BaseFragment implements MyAttenceContract
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
-        loadData();
+
 
     }
 
     private void initView() {
-        barTitle.setText("我的考勤");
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
         attenceAdapter = new MyAttenceAdapter(getContext(), new ArrayList<>());
+        leaveListAdapter = new LeaveListAdapter(getContext(), new ArrayList<>());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(attenceAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        switch (appConfig.getRole()) {
+            case "0":
+                barTitle.setText("我的职责");
+                break;
+            case "1":
+                barTitle.setText("我的考勤");
+                mRecyclerView.setAdapter(attenceAdapter);
+                loadData();
+                break;
+            case "2":
+                barTitle.setText("我的审批");
+                mRecyclerView.setAdapter(leaveListAdapter);
+                loadData();
+                break;
+            default:
+                break;
+        }
         mRefeshLayout.setOnRefreshListener(this);
     }
 

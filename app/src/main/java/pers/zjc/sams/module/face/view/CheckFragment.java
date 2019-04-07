@@ -7,9 +7,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,14 +24,11 @@ import pers.zjc.sams.R;
 import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.data.entity.SignRecord;
-import pers.zjc.sams.module.approval.ApprovalModule;
-import pers.zjc.sams.module.approval.DaggerApprovalComponent;
 import pers.zjc.sams.module.face.CheckModule;
 import pers.zjc.sams.module.face.DaggerCheckComponent;
 import pers.zjc.sams.module.face.contract.CheckContract;
 import pers.zjc.sams.module.face.presenter.CheckPresenter;
 import pers.zjc.sams.module.main.MainActivity;
-import pers.zjc.sams.module.myattence.view.MyAttenceAdapter;
 import pers.zjc.sams.module.sign.view.SignLitAdapter;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout;
 import pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayoutDirection;
@@ -212,8 +207,8 @@ public class CheckFragment extends BaseFragment implements View.OnClickListener,
     }
 
     @Override
-    public void onChange(int attenceStatus) {
-        showShortToast(String.valueOf(attenceStatus));
+    public void onChange(int attenceStatus, SignRecord data) {
+        presenter.check(attenceStatus, data);
     }
 
 }

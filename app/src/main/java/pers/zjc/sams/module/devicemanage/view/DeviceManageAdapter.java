@@ -30,7 +30,7 @@ public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
     }
 
     @Override
-    protected void onBindDataToViewHolder(RecyclerViewHolderHelper holder, Device data, int position) {
+    protected void onBindDataToViewHolder(RecyclerViewHolderHelper holder, Device data, int vPosition) {
         holder.setText(R.id.tv_device_model, data.getDeviceModel());
         holder.setText(R.id.tv_android_version, data.getDeviceVersion());
         holder.setText(R.id.tv_stu_name, data.getStuName());
@@ -57,12 +57,11 @@ public class DeviceManageAdapter extends AbsRecyclerAdapter<Device> {
                                 switch (position) {
                                     case 0:
                                         if (StringUtils.equals(text, "注销")) {
-                                            presenter.update(data, true);
+                                            presenter.update(vPosition, data, true);
 
                                         }
                                         if (StringUtils.equals(text, "开通")) {
-                                            presenter.activate(data);
-
+                                            presenter.activate(vPosition, data);
                                         }
                                         break;
                                     default:

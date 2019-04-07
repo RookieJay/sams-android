@@ -219,7 +219,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener {
             mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             mPopupWindow.setOutsideTouchable(mIsOutside);
         }
-        // update
+        // updateDevice
         mPopupWindow.update();
 
         return mPopupWindow;

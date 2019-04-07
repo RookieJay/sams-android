@@ -76,7 +76,7 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
                                         default:
                                             break;
                                     }
-                                    onChangeSignStatusListener.onChange(attenceStatus);
+                                    onChangeSignStatusListener.onChange(attenceStatus, data);
                                 }
                             }).show();
                     return true;
@@ -101,6 +101,6 @@ public class SignLitAdapter extends AbsRecyclerAdapter<SignRecord> {
     }
 
     public interface OnChangeSignStatusListener {
-        void onChange(int attenceStatus);
+        void onChange(int attenceStatus, SignRecord data);
     }
 }

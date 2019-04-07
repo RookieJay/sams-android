@@ -6,9 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -176,6 +174,19 @@ public class DeviceManageFragment extends BaseFragment implements DeviceManageCo
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
         presenter.load();
+    }
+
+    @Override
+    public void notifyDataChanged(int vPosition, boolean isCancel) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (adapter.getData() != null && adapter.getData().size() > 0) {
+                    adapter.getData().get(vPosition).setDeviceStatus(isCancel ? 1 : 0);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override

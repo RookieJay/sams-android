@@ -27,6 +27,8 @@ public interface DeviceManageContract {
         void finishRefresh();
 
         void showNetworkErro();
+
+        void notifyDataChanged(int vPosition, boolean isCancel);
     }
 
     interface Presenter {

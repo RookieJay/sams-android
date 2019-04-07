@@ -1,5 +1,7 @@
 package pers.zjc.sams.module.devicemanage.presenter;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -53,7 +55,7 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
         });
     }
 
-    public void update(Device data, boolean isCancel) {
+    public void update(int vPosition, Device data, boolean isCancel) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -62,6 +64,9 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
                 result = model.updateStatus(data);
                 if (result != null) {
                     view.showMessage(result.getMessage());
+                    if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
+                        view.notifyDataChanged(vPosition, isCancel);
+                    }
                 } else {
                     view.showNetworkErro();
                 }
@@ -69,7 +74,7 @@ public class DeviceManagePresenter implements DeviceManageContract.Presenter {
         });
     }
 
-    public void activate(Device data) {
-        update(data, false);
+    public void activate(int vPosition, Device data) {
+        update(vPosition, data, false);
     }
 }

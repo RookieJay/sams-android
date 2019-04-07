@@ -56,6 +56,8 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
     TextView lblOrg;
     @BindView(R.id.tv_role)
     TextView tvRole;
+    @BindView(R.id.rl_account)
+    RelativeLayout rlAccount;
     @BindView(R.id.lbl_acoount)
     TextView lblAcoount;
     @BindView(R.id.et_account)
@@ -134,14 +136,14 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
         });
         Bundle bundle = getArguments();
         if (null != bundle) {
-            barTitle.setText("用户信息");
-            tvInstruction.setVisibility(View.GONE);
-            barRight.setVisibility(View.GONE);
-            lblAcoount.setVisibility(View.GONE);
-            etAccount.setVisibility(View.GONE);
             Student student = bundle.getParcelable(Const.Keys.KEY_STUDENT);
             Teacher teacher = bundle.getParcelable(Const.Keys.KEY_TEACHER);
             if (null != student) {
+                barTitle.setText("用户信息");
+                tvInstruction.setVisibility(View.GONE);
+                barRight.setVisibility(View.GONE);
+                rlAccount.setVisibility(View.GONE);
+                rlFace.setVisibility(View.GONE);
                 tvRole.setText("学生");
                 etUserName.setText(student.getName());
                 tvMajor.setText(student.getMajor());
@@ -150,8 +152,13 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
                 etEmail.setText(student.getEmail());
                 tvBirth.setText(TimeUtils.date2String(student.getBirthday()));
                 tvIdcard.setText(student.getIdCard());
+                return;
             }
             if (null != teacher) {
+                barTitle.setText("用户信息");
+                tvInstruction.setVisibility(View.GONE);
+                barRight.setVisibility(View.GONE);
+                rlAccount.setVisibility(View.GONE);
                 tvRole.setText("教师");
                 etAccount.setVisibility(View.GONE);
                 etUserName.setText(teacher.getName());
@@ -162,8 +169,9 @@ public class PersonInfoFragment extends BaseFragment implements PersonInfoContra
                 rlIdcard.setVisibility(View.GONE);
                 rlBirth.setVisibility(View.GONE);
                 rlFace.setVisibility(View.GONE);
+                return;
             }
-            return;
+
         }
         barTitle.setText("个人信息");
         barRight.setText("提交");
