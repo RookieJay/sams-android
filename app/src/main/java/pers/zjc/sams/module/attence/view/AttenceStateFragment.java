@@ -24,6 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pers.zjc.sams.R;
+import pers.zjc.sams.app.AppConfig;
 import pers.zjc.sams.app.SamsApplication;
 import pers.zjc.sams.data.entity.AttenceRecord;
 import pers.zjc.sams.module.attence.AttenceStatModule;
@@ -38,6 +39,8 @@ public class AttenceStateFragment extends BaseFragment implements AttenceStatCon
 
     @Inject
     AttenceStatPresenter presenter;
+    @Inject
+    AppConfig appConfig;
     @BindView(R.id.btn_back)
     ImageView btnBack;
     @BindView(R.id.bar_title)

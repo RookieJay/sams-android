@@ -191,7 +191,18 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void onLeaveStatusChange(String id, int status) {
-        presenter.changeLeaveStatus(id, status);
+    public void onLeaveStatusChange(String id, int status, int position) {
+        presenter.changeLeaveStatus(id, status, position);
+    }
+
+    @Override
+    public void notifyDataChanged(int status, int position) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.getData().get(position).setStatus(status);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

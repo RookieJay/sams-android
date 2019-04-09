@@ -2,6 +2,8 @@ package pers.zjc.sams.module.approval.presenter;
 
 import android.util.Log;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -90,11 +92,11 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
 
     }
 
-    public void changeLeaveStatus(String id, int status) {
+    public void changeLeaveStatus(String id, int status, int position) {
         executor.execute(new Runnable() {
-            Result result = null;
             @Override
             public void run() {
+                Result result = null;
                 switch (status) {
                     case 0:
                         break;
@@ -107,7 +109,14 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
                     default:
                         break;
                 }
-
+                if (result != null) {
+                    view.showMessage(result.getMessage());
+                    if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
+                        view.notifyDataChanged(status, position);
+                    }
+                } else {
+                    view.showNetworkErro();
+                }
             }
         });
     }

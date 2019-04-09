@@ -26,6 +26,8 @@ public interface ApprovalContract {
         void showNetworkErro();
 
         void startRefresh();
+
+        void notifyDataChanged(int status, int position);
     }
 
     interface Presenter {

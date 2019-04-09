@@ -43,7 +43,7 @@ import pers.zjc.sams.R;
  * will notify the listener each and every time the gesture is completed again;
  * the listener is responsible for correctly determining when to actually
  * initiate a refresh of its content. If the listener determines there should
- * not be a refresh, it must call setRefreshing(false) to cancel any visual
+ * not be a refresh, it must call setRefreshing(false) to updateDevice any visual
  * indication of a refresh. If an activity wishes to show just the progress
  * animation, it should call setRefreshing(true). To disable the gesture and
  * progress animation, call setEnabled(false) on the view.
@@ -178,7 +178,7 @@ public class SwipyRefreshLayout extends ViewGroup {
                     setAnimationProgress(0 /* animation complete and view is hidden */);
                 } else {
                     setTargetOffsetTopAndBottom(mOriginalOffsetTop - mCurrentTargetOffsetTop,
-                            true /* requires update */);
+                            true /* requires updateDevice */);
                 }
             }
             mCurrentTargetOffsetTop = mCircleView.getTop();
@@ -247,7 +247,7 @@ public class SwipyRefreshLayout extends ViewGroup {
             mCircleHeight = mCircleWidth = (int) (CIRCLE_DIAMETER * metrics.density);
         }
         // force the bounds of the progress circle inside the circle view to
-        // update by setting it to null before updating its size and then
+        // updateDevice by setting it to null before updating its size and then
         // re-setting it
         mCircleView.setImageDrawable(null);
         mProgress.updateSizes(size);
@@ -364,7 +364,7 @@ public class SwipyRefreshLayout extends ViewGroup {
                 endTarget = (int) mSpinnerFinalOffset;
             }
             setTargetOffsetTopAndBottom(endTarget - mCurrentTargetOffsetTop,
-                    true /* requires update */);
+                    true /* requires updateDevice */);
             mNotify = false;
             startScaleUpAnimation(mRefreshListener);
         } else {
@@ -872,7 +872,7 @@ public class SwipyRefreshLayout extends ViewGroup {
                     float rotation = (-0.25f + .4f * adjustedPercent + tensionPercent * 2) * .5f;
                     mProgress.setProgressRotation(rotation);
                     setTargetOffsetTopAndBottom(targetY - mCurrentTargetOffsetTop,
-                            true /* requires update */);
+                            true /* requires updateDevice */);
                 }
                 break;
             }
@@ -910,7 +910,7 @@ public class SwipyRefreshLayout extends ViewGroup {
                 if (overscrollTop > mTotalDragDistance) {
                     setRefreshing(true, true /* notify */);
                 } else {
-                    // cancel refresh
+                    // updateDevice refresh
                     mRefreshing = false;
                     mProgress.setStartEndTrim(0f, 0f);
                     AnimationListener listener = null;
@@ -994,7 +994,7 @@ public class SwipyRefreshLayout extends ViewGroup {
             }
             targetTop = (mFrom + (int) ((endTarget - mFrom) * interpolatedTime));
             int offset = targetTop - mCircleView.getTop();
-            setTargetOffsetTopAndBottom(offset, false /* requires update */);
+            setTargetOffsetTopAndBottom(offset, false /* requires updateDevice */);
         }
     };
 
@@ -1002,7 +1002,7 @@ public class SwipyRefreshLayout extends ViewGroup {
         int targetTop = 0;
         targetTop = (mFrom + (int) ((mOriginalOffsetTop - mFrom) * interpolatedTime));
         int offset = targetTop - mCircleView.getTop();
-        setTargetOffsetTopAndBottom(offset, false /* requires update */);
+        setTargetOffsetTopAndBottom(offset, false /* requires updateDevice */);
     }
 
     private final Animation mAnimateToStartPosition = new Animation() {

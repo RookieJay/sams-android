@@ -38,7 +38,20 @@ public class AttenceStatPresenter implements AttenceStatContract.Presenter {
             @Override
             public void run() {
                 view.startRefresh();
-                Result<AttenceRecordsWrapper> result = model.getAllRecords();
+                Result<AttenceRecordsWrapper> result = null;
+                switch (appConfig.getRole()) {
+                    case "0":
+                        break;
+                    case "1":
+                        result = model.getStuRecords(appConfig.getUserId());
+                        break;
+                    case "2":
+                        result = model.getAllRecords();
+                        break;
+                    default:
+                        break;
+
+                }
                 if (result != null && result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                     if (result.getData() != null) {
                         List<AttenceRecord> records = result.getData().getRecords();

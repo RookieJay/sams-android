@@ -23,4 +23,10 @@ public class AttenceStatModel implements AttenceStatContract.Model {
     public Result<AttenceRecordsWrapper> getAllRecords() {
         return apiService.getMultiCondRecord(new HttpParam.Factory().create());
     }
+
+    public Result<AttenceRecordsWrapper> getStuRecords(String userId) {
+        HttpParam.Factory factory = new HttpParam.Factory()
+                .add("stuId", userId);
+        return apiService.getMultiCondRecord(factory.create());
+    }
 }
