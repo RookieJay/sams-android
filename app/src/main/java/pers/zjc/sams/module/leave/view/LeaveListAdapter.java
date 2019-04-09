@@ -92,7 +92,7 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
                                         default:
                                             break;
                                     }
-                                    onChangeLeaveStatusListener.onLeaveStatusChange(data.getId(), leaveStatus, position);
+                                    onChangeLeaveStatusListener.onLeaveStatusChange(data.getId(), leaveStatus, position, holder);
                                 }
                             }).show();
                 }
@@ -109,7 +109,11 @@ public class LeaveListAdapter extends AbsRecyclerAdapter<Leave> {
         return role;
     }
 
+    public void notifyChanged(int status, int position) {
+
+    }
+
     public interface OnChangeLeaveStatusListener {
-        void onLeaveStatusChange(String id, int leaveStatus, int position);
+        void onLeaveStatusChange(String id, int leaveStatus, int position, RecyclerViewHolderHelper holder);
     }
 }

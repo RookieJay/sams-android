@@ -91,7 +91,6 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
-//        statusBarHide(mainActivity);
         initView();
         initPermission();
     }
@@ -120,31 +119,7 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
 
     }
 
-    /**
-     * 设置Activity的statusBar隐藏
-     * @param
-     */
-    public static void statusBarHide(Activity activity){
-        // 代表 5.0 及以上
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            View decorView = activity.getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE //两个FLAG一起用表示会让应用的主体内容占用系统状态栏的空间
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;    //让应用的主体内容占用系统导航栏的空间
-            decorView.setSystemUiVisibility(option);
-            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);   //设置导航栏透明
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            ActionBar actionBar = activity.getActionBar();
-            if (actionBar != null) {
-                actionBar.hide();
-            }
-            return;
-        }
-        // versionCode > 4.4 and versionCode < 5.0
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-    }
+
 
 //    @OnPermissionDenied(
 //            { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA })

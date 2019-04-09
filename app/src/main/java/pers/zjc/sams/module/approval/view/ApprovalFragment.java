@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 
 import java.util.List;
 
@@ -76,6 +77,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
         super.onActivityCreated(savedInstanceState);
         unbinder = ButterKnife.bind(this, getView());
         initView();
+        presenter.init(adapter);
         presenter.load();
     }
 
@@ -191,8 +193,8 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void onLeaveStatusChange(String id, int status, int position) {
-        presenter.changeLeaveStatus(id, status, position);
+    public void onLeaveStatusChange(String id, int status, int position, RecyclerViewHolderHelper holder) {
+        presenter.changeLeaveStatus(id, status, position, holder);
     }
 
     @Override
@@ -200,8 +202,7 @@ public class ApprovalFragment extends BaseFragment implements View.OnClickListen
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adapter.getData().get(position).setStatus(status);
-                adapter.notifyDataSetChanged();
+                adapter.notifyChanged(status, position);
             }
         });
     }

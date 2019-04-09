@@ -2,6 +2,7 @@ package pers.zjc.sams.module.approval.presenter;
 
 import android.util.Log;
 
+import com.zp.android.zlib.base.RecyclerViewHolderHelper;
 import com.zp.android.zlib.utils.StringUtils;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import pers.zjc.sams.data.entity.Result;
 import pers.zjc.sams.data.entity.SignRecord;
 import pers.zjc.sams.module.approval.contract.ApprovalContract;
 import pers.zjc.sams.module.approval.model.ApprovalModel;
+import pers.zjc.sams.module.leave.view.LeaveListAdapter;
 
 public class ApprovalPresenter implements ApprovalContract.Presenter {
 
@@ -28,7 +30,7 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
     AppConfig appConfig;
     @Inject
     Executor executor;
-
+    private LeaveListAdapter adapter;
 
     @Inject
     ApprovalPresenter(ApprovalContract.View view) {
@@ -82,6 +84,7 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
             public void run() {
                 Result result = model.addtend(attenceStatus, appConfig.getUserId(), 2);
                 if (result != null) {
+                    view.showMessage(result.getMessage());
                     if (result.getCode().equals(Const.HttpStatusCode.HttpStatus_200)) {
                     }
                 } else {
@@ -92,7 +95,7 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
 
     }
 
-    public void changeLeaveStatus(String id, int status, int position) {
+    public void changeLeaveStatus(String id, int status, int position, RecyclerViewHolderHelper holder) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -112,12 +115,16 @@ public class ApprovalPresenter implements ApprovalContract.Presenter {
                 if (result != null) {
                     view.showMessage(result.getMessage());
                     if (StringUtils.equals(result.getCode(), Const.HttpStatusCode.HttpStatus_200)) {
-                        view.notifyDataChanged(status, position);
+                        load();
                     }
                 } else {
                     view.showNetworkErro();
                 }
             }
         });
+    }
+
+    public void init(LeaveListAdapter adapter) {
+        this.adapter = adapter;
     }
 }

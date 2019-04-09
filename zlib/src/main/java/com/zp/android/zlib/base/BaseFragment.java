@@ -1,16 +1,20 @@
 package com.zp.android.zlib.base;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,9 +22,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.zp.android.zlib.R;
 import com.zp.android.zlib.utils.KeyboardUtils;
+import com.zp.android.zlib.utils.StringUtils;
 import com.zp.android.zlib.utils.ToastUtils;
 
 import java.util.List;
@@ -39,11 +46,18 @@ public abstract class BaseFragment extends Fragment {
     private Unbinder unbinder;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
+    private Activity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach: ");
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
     }
 
     @Override
@@ -54,7 +68,38 @@ public abstract class BaseFragment extends Fragment {
         initNetWorkStatus();
     }
 
-    
+
+    /**
+     * 设置Activity的statusBar隐藏
+     * @param
+     * @param b
+     */
+    public static void statusBarHide(Activity activity, boolean isSplash){
+        // 代表 5.0 及以上
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = activity.getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE //两个FLAG一起用表示会让应用的主体内容占用系统状态栏的空间
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION    //让应用的主体内容占用系统导航栏的空间
+//                    | View.SYSTEM_UI_FLAG_FULLSCREEN;     //隐藏状态栏
+            if (isSplash) {
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);    //隐藏状态栏
+            } else {
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_VISIBLE);   //恢复非全屏
+//                activity.getWindow().setStatusBarColor(Color.TRANSPARENT); //ContextCompat.getColor(activity.getApplicationContext(), R.color.colorPrimary)
+            }
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);   //设置导航栏透明
+            android.app.ActionBar actionBar = activity.getActionBar();
+            if (actionBar != null) {
+                actionBar.hide();
+            }
+            return;
+        }
+        // versionCode > 4.4 and versionCode < 5.0
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
     
     private void initNetWorkStatus() {
         intentFilter = new IntentFilter();
@@ -96,6 +141,12 @@ public abstract class BaseFragment extends Fragment {
                 onFragmentVisibleChange(true);
                 isFragmentVisible = true;
             }
+        }
+        String fragName = this.getClass().getSimpleName();
+        if (StringUtils.equals(fragName, "SplashFragment")) {
+            statusBarHide(mActivity, true);
+        } else {
+            statusBarHide(mActivity, false);
         }
         super.onViewCreated(view, savedInstanceState);
     }
