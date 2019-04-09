@@ -214,14 +214,15 @@
             android:id="@+id/mRefeshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:direction="both">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"/>
+                />
 
         </pers.zjc.sams.widget.swipyrefreshlayout.SwipyRefreshLayout>
 

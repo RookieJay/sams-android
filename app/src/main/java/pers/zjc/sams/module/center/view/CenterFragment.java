@@ -1,6 +1,7 @@
 package pers.zjc.sams.module.center.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zp.android.zlib.base.BaseFragment;
+import com.zp.android.zlib.utils.StringUtils;
 
 import java.util.List;
 
@@ -28,6 +30,8 @@ import pers.zjc.sams.module.center.CenterModule;
 import pers.zjc.sams.module.center.DaggerCenterComponent;
 import pers.zjc.sams.module.center.contract.CenterContract;
 import pers.zjc.sams.module.center.presenter.CenterPresenter;
+import pers.zjc.sams.module.face.LabFragment;
+import pers.zjc.sams.module.face.PermissionAcitivity;
 
 public class CenterFragment extends BaseFragment implements CenterContract.View, CenterAdapter.OnItemClickListener {
 
@@ -102,6 +106,10 @@ public class CenterFragment extends BaseFragment implements CenterContract.View,
 
     @Override
     public void onItemClick(View view, FunctionInfo data) {
+        if (null != getContext() && StringUtils.equals(data.getClazz() ,LabFragment.class.getName())) {
+            getContext().startActivity(new Intent(getContext(), PermissionAcitivity.class));
+            return;
+        }
         FragmentManager fm = getFragmentManager();
         if (fm != null) {
             FragmentTransaction trans = fm.beginTransaction();
@@ -110,5 +118,6 @@ public class CenterFragment extends BaseFragment implements CenterContract.View,
             trans.addToBackStack(data.getClazz());
             trans.commitAllowingStateLoss();
         }
+
     }
 }

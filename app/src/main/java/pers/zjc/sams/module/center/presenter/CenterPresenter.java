@@ -13,6 +13,7 @@ import pers.zjc.sams.module.attence.view.AttenceStateFragment;
 import pers.zjc.sams.module.center.contract.CenterContract;
 import pers.zjc.sams.module.course.view.CourseListFragment;
 import pers.zjc.sams.module.devicemanage.view.DeviceManageFragment;
+import pers.zjc.sams.module.face.LabFragment;
 import pers.zjc.sams.module.face.view.CheckFragment;
 import pers.zjc.sams.module.leave.view.LeaveFragment;
 import pers.zjc.sams.module.leave.view.LeaveStatFragment;
@@ -45,6 +46,7 @@ public class CenterPresenter implements CenterContract.Presenter {
                 functions.add(new FunctionInfo("用户管理", R.drawable.icon_function_user_manage, UserManageFrament.class.getName()));
                 functions.add(new FunctionInfo("设备管理", R.drawable.icon_function_device_manage, DeviceManageFragment.class.getName()));
                 functions.add(new FunctionInfo("课程管理", R.drawable.icon_function_sign, CourseListFragment.class.getName()));
+                functions.add(new FunctionInfo("实验中心", R.drawable.icon_function_lab, LabFragment.class.getName()));
                 break;
             case "1":
                 functions.add(new FunctionInfo("签到", R.drawable.icon_function_sign, SignFragment.class.getName()));
