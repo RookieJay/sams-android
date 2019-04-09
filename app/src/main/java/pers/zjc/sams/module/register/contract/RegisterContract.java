@@ -11,7 +11,7 @@ public interface RegisterContract {
 
     interface Model extends BaseModel {
 
-        Result register(User user, String deviceId);
+        Result register(String userJson, String deviceJson, String json);
     }
 
     interface View extends BaseView<Presenter> {

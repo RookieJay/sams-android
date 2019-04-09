@@ -123,7 +123,7 @@ public class DeviceManageFragment extends BaseFragment implements DeviceManageCo
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mRefeshLayout.setRefreshing(true);
+                presenter.load();
             }
         });
 

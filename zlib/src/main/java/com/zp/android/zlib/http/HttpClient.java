@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.io.File;
 import java.io.Reader;
 import java.lang.annotation.Annotation;
@@ -35,6 +37,7 @@ public class HttpClient {
     private final Interceptor interceptor;
     private final List<String> skips = new ArrayList<>();
     private final Map<Class<?>, Object> serviceMap = new HashMap<>();
+    private String json;
 
     @SuppressWarnings("ConstantConditions")
     private final InvocationHandler invocationHandler = new InvocationHandler() {
@@ -128,7 +131,13 @@ public class HttpClient {
                     }
                     else if (an[0] instanceof Param) {
                         Log.d("param", ((Param)an[0]).value()+objects[i].toString());
-                        map.put(((Param)an[0]).value(), objects[i] != null ? objects[i].toString() : "");
+                        if (StringUtils.isEmpty(((Param)an[0]).value())) {
+                            Log.d("isEmpty", "isEmpt");
+                            json = (objects[i].toString());
+                        } else {
+                            Log.d("isEmpty", "不为空");
+                            map.put(((Param)an[0]).value(), objects[i] != null ? objects[i].toString() : "");
+                        }
                     }
                     else if (an[0] instanceof ParamMap) {
                         if (objects[i] != null) {
@@ -143,7 +152,13 @@ public class HttpClient {
                 }
             }
             try {
-                String content = gson.toJson(map);
+                String content;
+                if (map.isEmpty()) {
+                    content = json;
+                } else {
+                    content = gson.toJson(map);
+                }
+
                 Log.d("上传数据:", content);
                 Request request = rb.post(RequestBody.create(MEDIA_TYPE_JSON, content)).build();
                 if (interceptor != null && !interceptor.intercept() && !skips.contains(action)) {
@@ -179,6 +194,7 @@ public class HttpClient {
             return false;
         }
     };
+
 
     public HttpClient(OkHttpClient client, Gson gson, String url, Interceptor interceptor) {
         this.gson = gson;

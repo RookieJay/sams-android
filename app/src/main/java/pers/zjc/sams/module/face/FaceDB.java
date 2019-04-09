@@ -296,7 +296,7 @@ public class FaceDB {
                         @Override
                         public void onResponse(String response, int id) {
                             Log.d(TAG, response);
-    //                                Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_SHORT).show();
                         }
                     });
         }

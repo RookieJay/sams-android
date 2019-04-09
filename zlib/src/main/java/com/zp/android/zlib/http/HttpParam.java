@@ -1,5 +1,7 @@
 package com.zp.android.zlib.http;
 
+import com.zp.android.zlib.utils.StringUtils;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,7 +19,12 @@ public class HttpParam {
         else {
             StringBuilder sb = new StringBuilder();
             for (String key : map.keySet()) {
-                sb.append(key).append("=").append(map.get(key)).append("&");
+                if (StringUtils.isEmpty(key) || StringUtils.equals(key, "null")) {
+                    sb.append(map.get(key));
+                } else {
+                    sb.append(key).append("=").append(map.get(key)).append("&");
+                }
+
             }
             return sb.toString();
         }
@@ -35,6 +42,11 @@ public class HttpParam {
 
         public Factory add(String key, String value) {
             param.map.put(key, value);
+            return this;
+        }
+
+        public Factory add(String value) {
+            param.map.put(null, value);
             return this;
         }
 

@@ -66,6 +66,7 @@ public class AppModule {
         GsonBuilder builder = new GsonBuilder();
         builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
         builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
+        builder.disableHtmlEscaping();
         return builder.create();
     }
 

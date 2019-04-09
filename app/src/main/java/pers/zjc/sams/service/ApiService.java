@@ -76,7 +76,7 @@ public interface ApiService {
     Result modifyPwd(@ParamMap  HttpParam param);
 
     @POST("/api/mobile/users/register")
-    Result register(@ParamMap HttpParam httpParam);
+    Result register(@Param HttpParam httpParam);
 
     @POST("/api/mobile/users/students/info")
     Result<Student> stuInfo(@ParamMap HttpParam httpParam);
@@ -96,7 +96,7 @@ public interface ApiService {
     @POST("/api/mobile/device/all")
     Result<DevicesWrapper> allDevices();
 
-    @POST("/api/mobile/device/updateDevice")
+    @POST("/api/mobile/device/update")
     Result updateDevice(@ParamMap HttpParam httpParam);
 
     @POST("/api/mobile/users/students/all")
